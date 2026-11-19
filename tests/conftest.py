@@ -81,10 +81,7 @@ def pytest_configure(config):
 def pytest_assertrepr_compare(op, left, right):
     from .image_compare import assertrepr_compare
 
-    try:
-        return assertrepr_compare(op, left, right)
-    except ImportError:  # plotnine not installed
-        return None
+    return assertrepr_compare(op, left, right)
 
 
 @pytest.fixture(autouse=True)

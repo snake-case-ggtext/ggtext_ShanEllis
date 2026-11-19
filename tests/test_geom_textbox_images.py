@@ -193,4 +193,4 @@ def test_bad_orientation():
     df = pd.DataFrame({"x": [1], "y": [1], "label": ["x"]})
     p = ggplot(df, aes("x", "y", label="label")) + geom_textbox(orientation="sideways")
     with pytest.raises(PlotnineError, match="orientation"):
-        p.draw_test()  # pyright: ignore
+        p.draw_test()  # pyright: ignore  # pyrefly: ignore[missing-attribute]

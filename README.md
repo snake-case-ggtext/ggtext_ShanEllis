@@ -2,7 +2,7 @@
 
 **Rich text for matplotlib and plotnine.** You can use Markdown, HTML, and inline CSS anywhere text appears in a plot. This includes titles, subtitles, captions, axis titles, tick labels, facet strips, legends, and labels placed in the data.
 
-This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by Claus Wilke. It targets the Python/SciPy community. The core works with plain matplotlib, and plotnine support is an optional extra on top.
+This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by Claus Wilke. It is built for the Python/SciPy community. It works with plotnine and with plain matplotlib figures.
 
 ![A plotnine scatter plot whose title colors the species names instead of using a legend](docs/images/quickstart_plotnine.png)
 
@@ -25,8 +25,7 @@ plotnine styles all of its text with `text.set(**element.properties)`. ggtext re
 ggtext isn't on PyPI yet: its parser, [ggIR](https://github.com/snake-case-ggtext/ggIR), has to be published there first (see the [roadmap](docs/roadmap.md)). Install it from GitHub; this also installs ggIR:
 
 ```bash
-pip install "ggtext[plotnine] @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"   # with plotnine
-pip install "ggtext @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"             # matplotlib only
+pip install ggtext   # also installs matplotlib, plotnine, and pandas
 ```
 
 ggtext supports Python ≥ 3.10, matplotlib ≥ 3.10, and plotnine 0.15. To work on ggtext itself, see [Contributing](#contributing).
@@ -211,7 +210,7 @@ Importing ggtext also adds a `richtext` property to matplotlib's `Text` (`ax.tex
 | Rotation of text boxes | ✨ improved: any angle (ggtext: 0/90/180/270 only) |
 | Underline, strikethrough, inline code, highlight, links in SVG/PDF | ✨ new |
 | Mathtext (`$\alpha$`) inside rich text | ✨ new |
-| Plain matplotlib support (no plotnine needed) | ✨ new |
+| Plain matplotlib support (works on any matplotlib figure) | ✨ new |
 | plotnine compositions (`p1 \| p2`): wrapped text sized to each plot's own panels | ✨ new |
 | `\n` as a line break (Python convention; `newline="space"` for Markdown behavior) | ✨ Pythonic default |
 | `minwidth` / `maxwidth` / `minheight` / `maxheight`, margins | ✅ ported |

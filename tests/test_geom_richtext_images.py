@@ -244,7 +244,7 @@ def test_unsupported_tag_warns():
     df = pd.DataFrame({"x": [1], "y": [1], "label": ["a<table>x</table>b"]})
     p = ggplot(df, aes("x", "y", label="label")) + geom_richtext()
     with pytest.warns(UserWarning):
-        p.draw_test()  # pyright: ignore
+        p.draw_test()  # pyright: ignore  # pyrefly: ignore[missing-attribute]
 
 
 # justification (plotnine-ggtext: compute_just) --------------------------------

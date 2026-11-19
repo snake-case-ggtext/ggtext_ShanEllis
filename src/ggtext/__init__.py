@@ -22,8 +22,6 @@ plotnine
 
 from __future__ import annotations
 
-from typing import Any
-
 from ._artist import RichText, is_rich, make_plain, make_rich
 from ._images import options, register_image
 from ._parse import parse
@@ -40,6 +38,13 @@ from .mpl import (
     text,
     textbox,
 )
+from .plotnine import (
+    element_markdown,
+    element_textbox,
+    element_textbox_simple,
+    geom_richtext,
+    geom_textbox,
+)
 
 __version__ = "0.1.0"
 
@@ -49,7 +54,7 @@ __all__ = [
     "RichTextSpec",
     "Style",
     "annotate",
-    # plotnine (imported lazily)
+    # plotnine
     "element_markdown",
     "element_textbox",
     "element_textbox_simple",
@@ -70,25 +75,3 @@ __all__ = [
     "text",
     "textbox",
 ]
-
-_PLOTNINE_NAMES = {
-    "element_markdown",
-    "element_textbox",
-    "element_textbox_simple",
-    "geom_richtext",
-    "geom_textbox",
-}
-
-
-def __getattr__(name: str) -> Any:
-    # plotnine is an optional dependency, so import it only when code
-    # uses a plotnine helper.
-    if name in _PLOTNINE_NAMES:
-        from . import plotnine as _p9
-
-        return getattr(_p9, name)
-    raise AttributeError(f"module 'ggtext' has no attribute {name!r}")
-
-
-def __dir__():
-    return sorted(set(globals()) | _PLOTNINE_NAMES)
