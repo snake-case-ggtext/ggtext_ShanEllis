@@ -6,7 +6,7 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 
 ## Before a first release
 
-- **Publish ggIR to PyPI, then ggtext.** ggtext depends on ggIR straight from GitHub (`ggir @ git+https://...`), and PyPI doesn't accept packages with such dependencies. Until then, install from GitHub: `pip install "ggtext[plotnine] @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"`.
+- **Publish ggIR to PyPI, then ggtext.** ggtext depends on ggIR straight from GitHub (`ggir @ git+https://...`), and PyPI doesn't accept packages with such dependencies. Until then, install from GitHub: `pip install "ggtext @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"`.
 
 ## Not yet ported from R ggtext
 

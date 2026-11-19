@@ -3,8 +3,7 @@
 ## Install
 
 ```bash
-pip install "ggtext[plotnine]"   # matplotlib + plotnine helpers
-pip install ggtext               # matplotlib only
+pip install ggtext   # also installs matplotlib, plotnine, and pandas
 ```
 
 | You have | You get |
@@ -12,12 +11,12 @@ pip install ggtext               # matplotlib only
 | Python 3.10 | matplotlib 3.10.x (matplotlib 3.11 needs Python ≥ 3.11) |
 | Python ≥ 3.11 | matplotlib 3.11.x |
 
-ggtext works with both. It depends only on matplotlib, numpy, and [ggIR](https://github.com/snake-case-ggtext/ggIR). ggIR parses the markup with [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. plotnine is optional (version 0.15).
+ggtext works with both. It depends on matplotlib, numpy, plotnine (version 0.15), pandas, and [ggIR](https://github.com/snake-case-ggtext/ggIR), which parses the markup with [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. All of them are installed with ggtext.
 
 To install the development version from a local clone:
 
 ```bash
-pip install -e ".[plotnine]"
+pip install -e .
 ```
 
 ## Your first plotnine plot

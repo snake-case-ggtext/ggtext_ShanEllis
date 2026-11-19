@@ -95,7 +95,7 @@ def parse(
     if base is None:
         base = Style()
     doc = ggir.parse(
-        str(s),
+        s,
         markdown=markdown,
         html=html,
         math=math,

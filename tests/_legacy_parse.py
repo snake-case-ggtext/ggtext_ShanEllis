@@ -625,7 +625,6 @@ def parse(
 
     if base is None:
         base = Style()
-    s = str(s)
     segments: List[str] = []
     if math and s.count("$") - s.count(r"\$") >= 2:
         s, segments = _protect_math(s)

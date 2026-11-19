@@ -30,7 +30,7 @@ def test_examples_found():
 
 
 @pytest.mark.parametrize("script", EXAMPLES, ids=lambda p: p.stem)
-def test_example_runs(script: Path, tmp_path: Path, monkeypatch):
+def test_example_runs(script: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     from plotnine import theme_get, theme_set
 
     monkeypatch.setenv("GGTEXT_EXAMPLES_OUT", str(tmp_path))

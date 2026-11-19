@@ -4,36 +4,36 @@ Thanks for helping! Bug reports, docs fixes, examples, and features are all welc
 
 ## Development setup
 
-We use [uv](https://docs.astral.sh/uv/), but plain `pip` + `venv` works too.
+Development dependencies live in [dependency groups](https://packaging.python.org/en/latest/specifications/dependency-groups/) in `pyproject.toml`:
 
-ggtext supports two version matrices, because **matplotlib 3.11 requires Python ≥ 3.11**:
+| Group | Contents |
+|---|---|
+| `test` | pytest, pytest-cov, pytest-randomly |
+| `docs` | jupyter, nbconvert |
+| `dev` | `test` + `docs` + ruff, prek, pyrefly |
 
-| Environment | Python | matplotlib | plotnine |
-|---|---|---|---|
-| `.venv310` | 3.10 | 3.10.x | 0.15.x |
-| `.venv311` | 3.11+ | 3.11.x | 0.15.x |
+We use [uv](https://docs.astral.sh/uv/), but plain `pip` + `venv` works too (pip ≥ 25.1 is needed for `--group`).
 
-Set up both:
+### With uv
 
-```bash
-# Python 3.10 + matplotlib 3.10
-uv venv -p 3.10 .venv310
-source .venv310/bin/activate
-uv pip install -e ".[dev]" "matplotlib>=3.10,<3.11"
-deactivate
-
-# Python 3.11 + matplotlib 3.11
-uv venv -p 3.11 .venv311
-source .venv311/bin/activate
-uv pip install -e ".[dev]" "matplotlib>=3.11,<3.12"
-```
-
-With pip:
+uv creates the environment, installs ggtext (editable) and the group from `uv.lock`, and runs the command:
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
+uv run --group dev pytest tests
 ```
+
+### With pip
+
+`--group` installs only the group, so also install ggtext itself with `-e .`:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade "pip>=25.1"
+pip install -e . --group dev
+```
+
+pip ignores `uv.lock`, so it installs the newest versions `pyproject.toml` allows.
 
 ## Make targets
 
@@ -62,9 +62,9 @@ pytest -m image              # image comparisons only
 pytest --update-baselines -m image   # rewrite image baselines (Linux + matplotlib 3.11 only)
 ```
 
-`pip install -e ".[dev]"` includes the `notebook` extra, so the tour notebook is executed too; without it that test is skipped.
+With uv, prefix any of these with `uv run --group dev`, e.g. `uv run --group dev pytest -k tick`.
 
-**Run the suite in both environments** before opening a pull request. The geometry code follows matplotlib's private `Text._get_layout`, which changed between 3.10 and 3.11. The parity tests in `tests/test_artist.py` (`test_extent_matches_plain_text`) catch any drift.
+**Run the suite** before opening a pull request. The geometry code follows matplotlib's private `Text._get_layout`, which can change between matplotlib releases. The parity tests in `tests/test_artist.py` (`test_extent_matches_plain_text`) catch any drift.
 
 The test files and what they cover:
 
