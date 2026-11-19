@@ -19,7 +19,7 @@ PLAIN = {"markdown": False, "html": False}
 
 
 # ---------------------------------------------------------------------------
-# Geometry: rich text must be measured exactly like plain text
+# Geometry: measure rich text exactly like plain text
 # ---------------------------------------------------------------------------
 @pytest.mark.parametrize("s", ["Hello world", "gyp", "two\nlines", "a\nb\nc"])
 @pytest.mark.parametrize("rotation", [0, 33, 90, 180, 270])

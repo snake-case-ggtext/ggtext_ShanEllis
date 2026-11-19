@@ -1,21 +1,21 @@
 # ggtext
 
-**Rich text for matplotlib and plotnine.** You can use Markdown, HTML, and inline CSS anywhere text appears in a plot: titles, subtitles, captions, axis titles, tick labels, facet strips, legends, and labels placed in the data.
+**Rich text for matplotlib and plotnine.** You can use Markdown, HTML, and inline CSS anywhere text appears in a plot. This includes titles, subtitles, captions, axis titles, tick labels, facet strips, legends, and labels placed in the data.
 
-This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by Claus Wilke. It is built for the Python/SciPy community. The core works with plain matplotlib, and plotnine support is an optional extra on top.
+This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by Claus Wilke. It targets the Python/SciPy community. The core works with plain matplotlib, and plotnine support is an optional extra on top.
 
 ![A plotnine scatter plot whose title colors the species names instead of using a legend](docs/images/quickstart_plotnine.png)
 
-Parsing (markdown, HTML, inline CSS) is done by [ggIR](https://github.com/snake-case-ggtext/ggIR); ggtext measures and draws the result.
+[ggIR](https://github.com/snake-case-ggtext/ggIR) parses markdown, HTML, and inline CSS; ggtext measures and draws the result.
 
 ## Is ggtext-style text possible in plotnine? Yes.
 
-[plotnine issue #612](https://github.com/has2k1/plotnine/issues/612) asked for ggtext-style rich text. The answer was that matplotlib's graphics stack made it "nearly impossible". The problem is that a matplotlib `Text` artist draws a string in a single style. Earlier workarounds stitch several `Text` objects together inside offset boxes. plotnine's layout engine can't see those boxes, and they can't be rotated.
+[plotnine issue #612](https://github.com/has2k1/plotnine/issues/612) asked for ggtext-style rich text. The answer was that matplotlib's graphics stack made it "nearly impossible". The problem is that a matplotlib `Text` artist draws a string in a single style. Earlier workarounds stitch several `Text` objects together inside offset boxes. plotnine's layout engine can't see those boxes, and they cannot rotate.
 
 ggtext takes a different route. Its `RichText` **is** a matplotlib `Text`. It overrides only the two methods everything else relies on: `_get_layout()` (measuring) and `draw()`. Because of that:
 
 - plotnine's layout engine, legends, `constrained`/`tight` layout, and `bbox_inches="tight"` all reserve the right amount of space automatically.
-- Rich text can be rotated to **any** angle, boxes included.
+- Rich text rotates to **any** angle, boxes included.
 - A plain string in a `RichText` lands on exactly the same pixels as a plain `Text`. The test suite checks this across rotations, alignments, and line spacings on matplotlib 3.10 and 3.11.
 
 plotnine styles all of its text with `text.set(**element.properties)`. ggtext registers a `richtext` property on matplotlib `Text`, so `element_markdown()` works for **every** text themeable without patching plotnine. [docs/design.md](docs/design.md) has the full story.
@@ -220,7 +220,7 @@ Importing ggtext also adds a `richtext` property to matplotlib's `Text` (`ax.tex
 
 ## Differences from ggtext
 
-ggtext follows Python, matplotlib, and plotnine conventions where they differ from R/ggplot2. ggplot2 spellings are accepted as aliases so ported code keeps working.
+ggtext follows Python, matplotlib, and plotnine conventions where they differ from R/ggplot2. ggplot2 spellings also work as aliases, so ported code keeps working.
 
 | ggtext (R) | ggtext (Python) | Note |
 |---|---|---|
@@ -345,7 +345,7 @@ make pre-commit          # run the git hooks (ruff, pyrefly, file checks) on eve
 
 ## Credits
 
-The design follows [ggtext](https://wilkelab.org/ggtext/) and [gridtext](https://wilkelab.org/gridtext/) by Claus O. Wilke. The two earlier Python attempts, [flexitext](https://github.com/tomicapretto/flexitext) by Tomás Capretto and [highlight_text](https://github.com/znstrider/highlight_text) by Danny Phan, showed what Python users want from this. No code was copied from these projects.
+The design follows [ggtext](https://wilkelab.org/ggtext/) and [gridtext](https://wilkelab.org/gridtext/) by Claus O. Wilke. Two earlier Python attempts, [flexitext](https://github.com/tomicapretto/flexitext) by Tomás Capretto and [highlight_text](https://github.com/znstrider/highlight_text) by Danny Phan, showed what Python users want from this. This project copies no code from them.
 
 Parsing is done by [ggIR](https://github.com/snake-case-ggtext/ggIR). The image-comparison tests for the geoms, with their R reference renders, were ported from [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext) by Tyler Riccio, who also contributed the ggIR integration and the development tooling.
 

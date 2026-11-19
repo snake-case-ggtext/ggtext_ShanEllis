@@ -3,7 +3,7 @@ A frozen copy of ggtext's own parser, from before parsing moved to ggIR.
 
 Used only by ``test_ir_adapter.py`` as the reference ("golden") output
 for ``tokens_from_document(ggir.parse(...))``. Do not edit: it records
-the old behaviour. It produces the same token classes as ggtext, so the
+the legacy behaviour. It produces the same token classes as ggtext, so the
 two outputs compare equal with ``==``.
 """
 
@@ -80,12 +80,12 @@ def parse_length(
     em :
         Size of 1em in points, required for ``em`` and ``%`` units.
     allow_percent :
-        Whether percentages are allowed.
+        Whether to accept percentages.
 
     Returns
     -------
     float or None
-        The length in points, or ``None`` if it could not be parsed.
+        The length in points, or ``None`` if the parser rejects the value.
     """
     if value is None:
         return None
@@ -124,7 +124,7 @@ def parse_color(value: str) -> Any:
     """
     Parse a CSS color into something matplotlib understands.
 
-    Supports every color format matplotlib accepts plus CSS
+    Supports every color format matplotlib accepts. It also supports CSS
     ``rgb(r, g, b)`` and ``rgba(r, g, b, a)`` with 0-255 channels
     (or percentages). Returns ``None`` for invalid colors.
     """
@@ -177,8 +177,8 @@ def parse_css(declarations: str, style: Style) -> Style:
     ``color``, ``font-size``, ``font-family``, ``font-weight``,
     ``font-style``, ``font-variant``, ``background-color``
     (or ``background``), ``text-decoration`` (``underline``,
-    ``line-through``, ``none``) and ``vertical-align`` (``super``,
-    ``sub``, ``baseline`` or a length).
+    ``line-through``, ``none``). ``vertical-align`` takes ``super``,
+    ``sub``, ``baseline`` or a length.
 
     Unknown properties produce a single :class:`UserWarning` and are
     otherwise ignored.
@@ -258,7 +258,7 @@ MONOSPACE = ("monospace",)
 # -----------------------------------------------------------------------
 # Math protection
 # -----------------------------------------------------------------------
-# Mathtext segments must not be touched by the markdown parser
+# The markdown parser must not touch mathtext segments
 # (``$a_1 * b_2$`` has underscores and stars). We swap each segment for a
 # placeholder made of private-use characters and restore it afterwards.
 _PH_OPEN, _PH_CLOSE = "", ""
@@ -466,7 +466,7 @@ class _Builder:
         # a self-closed non-void tag (<span/>) has no content: ignore
 
     def _paragraph_break(self):
-        """Start a new line unless we are already at the start of one."""
+        """Start another line unless we are already at the start of one."""
         if self.tokens and self.tokens[-1] is not LINE_BREAK:
             self.line_break()
 
@@ -601,18 +601,18 @@ def parse(
         The style of text outside of any markup (default: an empty
         style, i.e. everything inherited from the artist).
     markdown :
-        Interpret Markdown syntax. If False, only HTML is interpreted.
+        Interpret Markdown syntax. If False, the parser handles only HTML.
     html :
         Interpret HTML tags. Only applies when ``markdown=False``;
         with markdown the HTML tags are always recognized.
-        If both are False the text is returned as a single run.
+        If both are False, the parser returns the text as a single run.
     math :
         Treat ``$...$`` segments as matplotlib mathtext.
     newline :
         What a newline character (``"\\n"``) means: ``"break"`` (the
-        default, as in matplotlib) starts a new line; ``"space"``
-        treats it as a space, as in Markdown/HTML (use ``<br>`` or two
-        trailing spaces for a break).
+        default, as in matplotlib) starts another line. ``"space"``
+        treats it as a space, as in Markdown/HTML. Use ``<br>`` or two
+        trailing spaces for a break.
 
     Returns
     -------

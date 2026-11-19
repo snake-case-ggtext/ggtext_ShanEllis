@@ -12,7 +12,7 @@ pip install ggtext               # matplotlib only
 | Python 3.10 | matplotlib 3.10.x (matplotlib 3.11 needs Python ≥ 3.11) |
 | Python ≥ 3.11 | matplotlib 3.11.x |
 
-ggtext works with both. It depends only on matplotlib, numpy, and [ggIR](https://github.com/snake-case-ggtext/ggIR), which parses the markup with [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. plotnine is optional (version 0.15).
+ggtext works with both. It depends only on matplotlib, numpy, and [ggIR](https://github.com/snake-case-ggtext/ggIR). ggIR parses the markup with [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. plotnine is optional (version 0.15).
 
 To install the development version from a local clone:
 
@@ -22,7 +22,7 @@ pip install -e ".[plotnine]"
 
 ## Your first plotnine plot
 
-Write Markdown or HTML in any label, then tell the theme to render that piece of text as rich text with `element_markdown()`:
+Write Markdown or HTML in any label. Then tell the theme to render that piece of text as rich text with `element_markdown()`:
 
 ```python
 from plotnine import ggplot, aes, geom_point, labs, theme
@@ -44,7 +44,7 @@ from ggtext import element_markdown
 )
 ```
 
-Only the themeables you set use rich text. A label is parsed as Markdown only if its theme element is an `element_markdown` (or a textbox element). To turn rich text on everywhere at once, use the `text` themeable:
+Only the themeables you set use rich text. ggtext parses a label as Markdown only if its theme element is an `element_markdown` (or a textbox element). To turn rich text on everywhere at once, use the `text` themeable:
 
 ```python
 theme(text=element_markdown())

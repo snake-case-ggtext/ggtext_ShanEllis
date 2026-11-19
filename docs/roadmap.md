@@ -1,6 +1,6 @@
 # Roadmap and known limitations
 
-Feedback and pull requests are welcome. The items below are roughly ordered by how much they would help.
+Feedback and pull requests are welcome. The items below roughly rank by how much they would help.
 
 Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snake-case-ggtext/ggIR). New tags or CSS properties, lists, tables and paragraph handling are parser work and start there; ggtext then lays out and draws what ggIR produces.
 
@@ -18,9 +18,9 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 
 - **`usetex=True`** isn't supported. The text falls back to plain TeX rendering with a warning. Mixing LaTeX with styled runs would need a different measuring strategy.
 - **Images rotate only in steps of 90°.** At other angles they're drawn upright (with a warning).
-- **Image vertical alignment** is fixed: images sit on the baseline. A CSS `vertical-align: middle` for images would help icons line up with lowercase text.
+- **Image vertical alignment** has no option: images sit on the baseline. A CSS `vertical-align: middle` for images would help icons line up with lowercase text.
 - **Wrapping** breaks at whitespace only. There's no hyphenation and no `text-align: justify`. Use a non-breaking space (`&nbsp;`) to keep two words on the same line.
-- **Kerning across style changes** is approximate, because each run is measured on its own.
+- **Kerning across style changes** is approximate, because the code measures each run on its own.
 - **Legend keys** (the little glyph drawn by `geom_richtext` in a legend) are plain text ("a"), as for `geom_text`.
 - `<p>` and `<div>` only start new lines. There's no paragraph spacing (parser support belongs in ggIR).
 - **Image comparisons run in one environment only.** Text rasterizes differently across platforms and between the FreeType versions bundled with matplotlib 3.10 and 3.11, so the picture tests compare against baselines only on Linux with matplotlib 3.11 (elsewhere the plots are drawn and the comparison is skipped).
@@ -32,7 +32,7 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 
 ## Ideas
 
-- **Upstream hooks.** Propose a documented text-layout protocol in matplotlib and an element hook in plotnine (see [design.md](design.md#a-path-upstream)), so the private-API pieces can go away.
+- **Upstream hooks.** Propose a documented text-layout protocol in matplotlib and an element hook in plotnine (see [design.md](design.md#a-path-upstream)). This would let the private-API pieces go away.
 - **Text on a path** (curved labels).
 - **Per-run path effects** (e.g. `<span style='outline: 2px white'>`), which highlight_text users like.
 - **`font-feature-settings`** (OpenType features) via matplotlib 3.11's `fontfeatures`.

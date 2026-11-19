@@ -6,9 +6,9 @@ Baselines live in tests/baseline_images/test_geom_richtext_images/. Run
 one-to-one ports are in tests/reference_r/.
 
 Parameter translation from plotnine-ggtext: padding, margins and radii
-are points (not grid units), ``label_size`` is points (mm * 72.27/25.4)
-and ``\\n`` is a line break (``newline="space"`` where the original
-relied on R's behavior).
+are points (not grid units). ``label_size`` is points (mm * 72.27/25.4).
+``\\n`` is a line break (``newline="space"`` where the original relied on
+R's behavior).
 """
 
 import pandas as pd
@@ -233,7 +233,7 @@ def test_nudge_with_position_accepted():
     # test_nudge_with_position_accepted.
     # Adapted: ggtext (Python) inherits plotnine's geom_text handling, which
     # accepts nudge_x together with an explicit position (no error), so
-    # only check that the geom is constructed.
+    # only check that building the geom succeeds.
     geom_richtext(nudge_x=1, position=position_nudge(1))
 
 
@@ -254,7 +254,7 @@ def test_unsupported_tag_warns():
 
 def test_resolve_just_numbers():
     # Port of test_geom_base.py::test_compute_just_numbers. Adapted: scalar,
-    # per-label API; the position (npc) is ignored for numbers.
+    # per-label API; the position (npc) does not apply to numbers.
     assert resolve_just(0.3, 0.1, "x") == pytest.approx(0.3)
     assert resolve_just(0.3, 0.9, "x") == pytest.approx(0.3)
     assert resolve_just(0.0, 0.5, "x") == "left"

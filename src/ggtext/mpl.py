@@ -1,8 +1,8 @@
 """
 Rich text helpers for plain matplotlib.
 
-Every helper accepts the usual matplotlib text keyword arguments (they set
-the default style of the text) together with any
+Every helper accepts the usual matplotlib text keyword arguments.
+They set the default style of the text. You can also pass any
 :class:`~ggtext.RichTextSpec` option (``width``, ``fill``,
 ``box_color``, ``padding``, ``r``, ``halign``, ...).
 
@@ -67,8 +67,8 @@ def _pop_fractional_alignment(text_kw: dict) -> dict:
     """
     Remove numeric ``ha``/``va`` values (ggplot2-style justification).
 
-    matplotlib's ``Text`` only accepts names, so these are applied after
-    the artist has been turned into a :class:`RichText`.
+    matplotlib's ``Text`` only accepts names, so ggtext applies these after
+    the artist becomes a :class:`RichText`.
     """
     late = {}
     for key in list(text_kw):
@@ -115,8 +115,8 @@ def text(
     s :
         The text, with Markdown and/or HTML markup.
     richtext :
-        Base :class:`RichTextSpec` (or dict of options); individual
-        options can also be passed as keyword arguments.
+        Base :class:`RichTextSpec` (or dict of options). You can also pass
+        individual options as keyword arguments.
     **kwargs :
         :class:`RichTextSpec` options and
         :class:`matplotlib.text.Text` properties.
@@ -160,12 +160,12 @@ def textbox(
     target :
         Axes or Figure.
     x, y :
-        Position of the box; ``ha``/``va`` say which point of the box
-        is placed there (default: its center).
+        Position of the box. ``ha``/``va`` say which point of the box
+        sits there (default: its center).
     s :
         The text.
     width :
-        Width of the box: a string with units (``"2in"``, ``"150pt"``)
+        Width of the box. A string with units (``"2in"``, ``"150pt"``)
         or a fraction of the axes (or figure) width. ``None`` sizes the
         box to the text.
     fill, box_color, padding, r, linewidth :
@@ -303,7 +303,7 @@ def _keep_new_ticks_rich(axis_obj) -> None:
     """
     Make ticks that matplotlib creates later inherit rich text.
 
-    New ticks copy their properties from the first tick through
+    Later ticks copy their properties from the first tick through
     ``Axis._copy_tick_props``; we wrap it on this axis instance only.
     """
     if getattr(axis_obj, "_ggtext_copy_wrapped", False):

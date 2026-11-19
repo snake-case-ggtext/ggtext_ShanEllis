@@ -2,14 +2,15 @@
 Golden test: ggIR gives the tokens ggtext's own parser gave.
 
 Parsing moved to ggIR (``ggir.parse`` builds a document tree and
-``ggir.resolve`` resolves it into tokens; ``ggtext._parse.parse`` calls
-both with ggtext's policy and colour validation). This
-test runs both on a large corpus, under every option combination and
-with bases with and without a size, and asserts the token lists are
-equal. The old parser is frozen in ``tests/_legacy_parse.py``.
+``ggir.resolve`` resolves it into tokens). ``ggtext._parse.parse`` calls
+both with ggtext's policy and colour validation.
 
-Inputs where the new pipeline deliberately differs (ggIR is more
-correct) are listed in ``EXPECTED_DIFFERENCES`` with the new output.
+The test runs both parsers on a large corpus. It covers every option
+combination and bases with and without a size. It asserts that the token
+lists are equal. The legacy parser is frozen in ``tests/_legacy_parse.py``.
+
+``EXPECTED_DIFFERENCES`` lists inputs where the ggIR pipeline deliberately
+differs (ggIR is more correct), with the ggIR output.
 """
 
 from __future__ import annotations
@@ -217,8 +218,8 @@ EDGE_CASES = [
     "x\n\n<p>y</p>\n",
 ]
 
-# Expected differences: (input, options, new output with the sized base).
-# Each is a case where ggIR's tree is more correct than the old parser.
+# Expected differences: (input, options, ggIR output with the sized base).
+# Each is a case where ggIR's tree is more correct than the legacy parser.
 # The options are a subset: the input is exempt from the corpus check
 # under every combination that includes them, and checked under the
 # defaults plus these options below.
@@ -226,25 +227,25 @@ _S = BASES["sized"]
 _LITERAL = {"markdown": False, "html": False, "newline": "break"}
 
 EXPECTED_DIFFERENCES: list[tuple[str, dict, list]] = [
-    # A self-closed <p/> is empty: it no longer starts a new line.
+    # A self-closed <p/> is empty: it no longer starts another line.
     ("a<p/>b", {}, [TextRun("ab", _S)]),
-    # A stray </p> with no opening <p> no longer starts a new line.
+    # A stray </p> with no opening <p> no longer starts another line.
     ("a</p>b", {}, [TextRun("ab", _S)]),
     # A trailing paragraph leaves no empty last line even when an inline
-    # tag closes after it (the old parser only looked for a literal
+    # tag closes after it (the legacy parser only looked for a literal
     # "</p>" at the end of the string) ...
     ("<b><p>a</p></b>", {}, [TextRun("a", _S.update(weight="bold"))]),
     # ... or when the <p> is never closed.
     ("<p>a<br>", {}, [TextRun("a", _S)]),
     # With markup off, a literal "</p>" at the end no longer swallows the
-    # final newline (the old parser checked the raw string for "</p>").
+    # final newline (the legacy parser checked the raw string for "</p>").
     ("<p>one</p>\n", _LITERAL, [TextRun("<p>one</p>", _S), LINE_BREAK]),
     (
         "x\n\n<p>y</p>\n",
         _LITERAL,
         [TextRun("x", _S), LINE_BREAK, LINE_BREAK, TextRun("<p>y</p>", _S), LINE_BREAK],
     ),
-    # An empty face='' is ignored instead of setting an empty family.
+    # The parser ignores an empty face='' instead of setting an empty family.
     ("<font face=''>x</font>", {}, [TextRun("x", _S)]),
     # CSS vertical-align does not apply to block elements.
     ("<p style='vertical-align:super'>x</p>", {}, [TextRun("x", _S)]),

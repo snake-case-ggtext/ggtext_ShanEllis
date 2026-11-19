@@ -1,6 +1,6 @@
 # Syntax reference
 
-Everything on this page works the same way in every ggtext entry point: plotnine theme elements, the geoms, and the matplotlib helpers.
+Everything on this page works the same way in every ggtext entry point. These include plotnine theme elements, the geoms, and the matplotlib helpers.
 
 ![A two-column cheatsheet showing each syntax element's source and how it renders](images/syntax_cheatsheet.png)
 
@@ -40,7 +40,7 @@ A name that *starts and ends* with underscores is valid emphasis, so `__init__` 
 
 ## HTML
 
-Tags can be nested and combined with Markdown (`<span style='color:red'>**bold red**</span>`). A tag that is never closed runs to the end of the text.
+You can nest tags and combine them with Markdown (`<span style='color:red'>**bold red**</span>`). A tag that is never closed runs to the end of the text.
 
 | Tag | Effect |
 |---|---|
@@ -82,7 +82,7 @@ Inside `style='...'`:
 
 Unsupported properties trigger a single warning and are otherwise ignored.
 
-> Relative sizes (`em`, `%`, `larger`, and the keywords such as `large`) are relative to the size of the *surrounding* text. That makes them predictable inside plots of any font size.
+> Relative sizes (`em`, `%`, `larger`, and keywords such as `large`) depend on the size of the *surrounding* text. That makes them predictable inside plots of any font size.
 
 ## Math
 
@@ -92,7 +92,7 @@ Segments between dollar signs go to matplotlib's [mathtext](https://matplotlib.o
 "The $\alpha_1 \times \beta$ coefficient"
 ```
 
-Math keeps the style around it (color, size), and Markdown inside `$...$` is left alone, so `$a_1 * b_2$` is safe. A single `$` is just a dollar sign. Write `\$` for a literal dollar sign in a string that also contains math. Turn math off with `math=False`.
+Math keeps the style around it (color, size). Inside `$...$`, Markdown has no effect, so `$a_1 * b_2$` is safe. A single `$` is just a dollar sign. Write `\$` for a literal dollar sign in a string that also contains math. Turn math off with `math=False`.
 
 In Python source, use raw strings (`r"$\alpha$"`) or double the backslashes.
 
@@ -104,7 +104,7 @@ In Python source, use raw strings (`r"$\alpha$"`) or double the backslashes.
 | `"a<br>b"` | two lines | two lines |
 | `"a  \nb"` (two trailing spaces) | two lines | two lines |
 
-The default follows matplotlib and Python: `\n` starts a new line. This differs from R's ggtext, where newlines are spaces as in Markdown. To get the Markdown behavior, pass `newline="space"` (to `element_markdown`, the geoms, or `RichTextSpec`).
+The default follows matplotlib and Python: `\n` starts a line. This differs from R's ggtext, where newlines are spaces as in Markdown. To get the Markdown behavior, pass `newline="space"` (to `element_markdown`, the geoms, or `RichTextSpec`).
 
 ## Images
 
@@ -130,12 +130,12 @@ ggtext.register_image("red_square", np.array([[[1.0, 0, 0]]]))
 "<img src='red_square' width='10pt' height='10pt'> means danger"
 ```
 
-How images are sized:
+How ggtext sizes images:
 
-- If you give only `width` or only `height`, the other is set from the image's aspect ratio.
-- If you give neither, the image is as tall as the font size, which suits axis labels and legends. (R's ggtext uses the image's natural pixel size, which can easily overwhelm a plot.)
-- Images sit on the text baseline and can be rotated in steps of 90°. At other angles they are drawn upright, with a warning.
-- An image that can't be loaded triggers a warning and takes no space.
+- If you give only `width` or only `height`, the image's aspect ratio sets the other.
+- If you give neither, the image is as tall as the font size, which suits axis labels and legends. R's ggtext uses the image's natural pixel size instead, which can easily overwhelm a plot.
+- Images sit on the text baseline and can rotate in steps of 90°. At other angles, ggtext draws them upright and issues a warning.
+- An image that fails to load triggers a warning and takes no space.
 
 ## Units
 
@@ -147,11 +147,11 @@ How images are sized:
 
 The reference size for fractions is:
 
-- the axes, for text inside an axes (including the geoms);
-- the **panel area** (the box around all axes), for figure-level text such as plot titles;
+- the axes, for text inside an axes (including the geoms).
+- the **panel area** (the box around all axes), for figure-level text such as plot titles.
 - the figure, if there are no axes.
 
-For text rotated closer to vertical than horizontal, `width` runs along the text, so it is measured against the reference *height*.
+For text rotated closer to vertical than horizontal, `width` runs along the text. ggtext therefore measures `width` against the reference *height*.
 
 A bare number greater than 1 is an error (`width=3` could mean inches, points, or pixels). Write `"3in"` or `"3pt"` instead.
 

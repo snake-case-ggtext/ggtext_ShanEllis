@@ -2,7 +2,7 @@
 Tests for the layout algorithm (ggtext._layout) with a fake measurer.
 
 The fake measurer makes every character 0.6 em wide, ascent 0.8 em and
-descent 0.2 em, so expected positions can be computed by hand.
+descent 0.2 em. You can compute expected positions by hand.
 """
 
 import pytest
@@ -120,7 +120,7 @@ def test_wrapping_keeps_styles_and_merges_runs():
     assert [ln.text for ln in L.lines] == ["aaa bbb", "ccc ddd"]
     first = L.lines[0].fragments
     assert [f.run.style.weight for f in first] == [None, "bold"]
-    # "aaa " is merged into a single fragment
+    # "aaa " merges into a single fragment
     assert first[0].run.text == "aaa "
 
 
