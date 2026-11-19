@@ -101,9 +101,8 @@ jupyter nbconvert --to notebook --execute --inplace examples/ggtext_tour.ipynb
 
 ```
 src/ggtext/
-  _style.py      Style dataclass, color validation
-  _parse.py      token classes; parse() = ggir.parse + _ir
-  _ir.py         ggIR document tree -> styled tokens
+  _style.py      Style (ggir.Style + matplotlib FontProperties), color validation
+  _parse.py      re-exports ggIR's token classes; parse() = ggir.parse + ggir.resolve
   _layout.py     line breaking, line heights, alignment (renderer independent)
   _spec.py       RichTextSpec (the rich text options)
   _artist.py     RichText, measuring/drawing, make_rich, the `richtext` Text property

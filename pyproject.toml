@@ -28,7 +28,7 @@ classifiers = [
 # matplotlib 3.11 needs Python >= 3.11; on Python 3.10 you get matplotlib 3.10.
 dependencies = [
     # ggIR parses markdown/HTML/CSS (and brings in markdown-it-py)
-    "ggir @ git+https://github.com/snake-case-ggtext/ggIR@v0.2.0",
+    "ggir @ git+https://github.com/snake-case-ggtext/ggIR@v0.3.0",
     "matplotlib>=3.10",
     "numpy>=1.23",
 ]
