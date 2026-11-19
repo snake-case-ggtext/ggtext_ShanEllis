@@ -3,8 +3,10 @@ Parse Markdown / HTML / CSS strings into a flat list of styled tokens.
 
 Parsing itself is done by `ggIR <https://github.com/snake-case-ggtext/ggIR>`_,
 which turns a string into a renderer-independent document tree (see its
-README for the supported Markdown, HTML and CSS). :mod:`ggtext._ir`
-resolves that tree into the tokens defined here. A string such as::
+README for the supported Markdown, HTML and CSS), and ``ggir.resolve``
+turns that tree into styled tokens using ggtext's numbers
+(:data:`GGTEXT_POLICY`) and matplotlib colour validation. The token
+types are ggIR's and are re-exported here. A string such as::
 
     "Hello **world** and <span style='color:red'>red</span>"
 
@@ -19,10 +21,20 @@ wrapping, aligning) happens later in :mod:`ggtext._layout`.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import List, Sequence, Union
+from typing import List
 
-from ._style import Style
+import ggir
+from ggir.resolve import (
+    LINE_BREAK,
+    ImageRun,
+    LineBreak,
+    Policy,
+    TextRun,
+    Token,
+    plain_text,
+)
+
+from ._style import Style, parse_color
 
 __all__ = [
     "TextRun",
@@ -30,48 +42,16 @@ __all__ = [
     "LineBreak",
     "LINE_BREAK",
     "Token",
+    "GGTEXT_POLICY",
     "parse",
     "plain_text",
 ]
 
-
-@dataclass(frozen=True)
-class TextRun:
-    """A run of text drawn in a single style."""
-
-    text: str
-    style: Style
-    math: bool = False
-
-
-@dataclass(frozen=True)
-class ImageRun:
-    """An inline image (``<img>`` or ``![alt](src)``)."""
-
-    src: str
-    style: Style
-    width: float | None = None  # points
-    height: float | None = None  # points
-    alt: str = ""
-
-
-class LineBreak:
-    """A hard line break."""
-
-    _instance: LineBreak | None = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __repr__(self) -> str:
-        return "LINE_BREAK"
-
-
-LINE_BREAK = LineBreak()
-
-Token = Union[TextRun, ImageRun, LineBreak]
+# How ggtext draws <sup>/<sub>: 0.7x the parent size, raised 0.4em or
+# lowered 0.2em; 1em is 10pt (matplotlib's "medium") when no size is set.
+GGTEXT_POLICY = Policy(
+    default_em=10.0, script_scale=0.7, sup_shift=0.40, sub_shift=-0.20
+)
 
 
 def parse(
@@ -113,10 +93,6 @@ def parse(
         :class:`TextRun`, :class:`ImageRun` and :data:`LINE_BREAK`
         tokens.
     """
-    import ggir
-
-    from ._ir import tokens_from_document
-
     if base is None:
         base = Style()
     doc = ggir.parse(
@@ -125,20 +101,13 @@ def parse(
         html=html,
         math=math,
         newline=newline,
-        # tokens_from_document warns about unsupported tags itself
+        # ggir.resolve warns about unsupported tags itself
         on_unknown="ignore",
     )
-    return tokens_from_document(doc, base)
-
-
-def plain_text(tokens: Sequence[Token]) -> str:
-    """The text content of *tokens* with markup removed."""
-    out = []
-    for t in tokens:
-        if isinstance(t, TextRun):
-            out.append(t.text)
-        elif isinstance(t, ImageRun):
-            out.append(t.alt)
-        else:
-            out.append("\n")
-    return "".join(out)
+    return ggir.resolve(
+        doc,
+        base,
+        policy=GGTEXT_POLICY,
+        validate_color=parse_color,
+        warn_prefix="ggtext",
+    )

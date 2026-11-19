@@ -1,8 +1,9 @@
 """
-Golden test: ggIR + the adapter give the tokens ggtext's own parser gave.
+Golden test: ggIR gives the tokens ggtext's own parser gave.
 
-Parsing moved to ggIR (``ggir.parse`` builds a document tree) and
-``ggtext._ir.tokens_from_document`` resolves the tree into tokens. This
+Parsing moved to ggIR (``ggir.parse`` builds a document tree and
+``ggir.resolve`` resolves it into tokens; ``ggtext._parse.parse`` calls
+both with ggtext's policy and colour validation). This
 test runs both on a large corpus, under every option combination and
 with bases with and without a size, and asserts the token lists are
 equal. The old parser is frozen in ``tests/_legacy_parse.py``.
@@ -25,9 +26,7 @@ import ggir.css
 import ggir.ir
 import pytest
 
-from ggtext import _ir
-from ggtext._ir import tokens_from_document
-from ggtext._parse import LINE_BREAK, TextRun
+from ggtext._parse import LINE_BREAK, TextRun, parse
 from ggtext._style import Style
 
 from . import _legacy_parse
@@ -333,7 +332,7 @@ OPTIONS = [
 
 
 def _new(s: str, base: Style, **options) -> list:
-    return tokens_from_document(ggir.parse(s, **options), base)
+    return parse(s, base, **options)
 
 
 def _show(tokens) -> list:
@@ -349,7 +348,7 @@ def _keep_warn_once_state():
     Parsing the corpus would use up the warn-once messages that other
     tests check for (e.g. ``<blink>``), so restore them afterwards.
     """
-    sets = [ggir.ir._warned, ggir.css._warned, _ir._warned]
+    sets = [ggir.ir._warned, ggir.css._warned]
     saved = [set(s) for s in sets]
     yield
     for s, old in zip(sets, saved, strict=True):

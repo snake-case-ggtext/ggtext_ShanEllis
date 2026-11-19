@@ -31,7 +31,7 @@ Everything in matplotlib that needs to know how big a piece of text is goes thro
 
 Every other `Text` method keeps working (`set_color`, `set_fontsize`, `set_rotation`, `set_position`, ...). Those properties become the default style for the unstyled parts of the text.
 
-Parsing comes from [ggIR](https://github.com/snake-case-ggtext/ggIR), which turns markdown, HTML and inline CSS into a renderer-independent document tree. `ggtext/_ir.py` resolves that tree into styled tokens (sizes in points, sup/sub shifts, validated colors). The token resolution and line layout (`ggtext/_layout.py`) are renderer-independent and are unit-tested with a fake measurer. Only the measuring and drawing code talks to matplotlib.
+Parsing comes from [ggIR](https://github.com/snake-case-ggtext/ggIR), which turns markdown, HTML and inline CSS into a renderer-independent document tree. `ggir.resolve` then turns the tree into styled tokens (sizes in points, sup/sub shifts), with ggtext supplying only its numbers (`GGTEXT_POLICY` in `ggtext/_parse.py`: sup/sub scale and shift, the default em) and matplotlib color validation. The token resolution and line layout (`ggtext/_layout.py`) are renderer-independent and are unit-tested with a fake measurer. Only the measuring and drawing code talks to matplotlib.
 
 ### 2. Exact geometry parity with `Text`
 
