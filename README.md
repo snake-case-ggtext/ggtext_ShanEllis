@@ -8,6 +8,8 @@ This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by
 
 ![A plotnine scatter plot whose title colors the species names instead of using a legend](docs/images/quickstart_plotnine.png)
 
+Parsing (markdown, HTML, inline CSS) is done by [ggIR](https://github.com/snake-case-ggtext/ggIR); ggtext measures and draws the result.
+
 ## Is ggtext-style text possible in plotnine? Yes.
 
 [plotnine issue #612](https://github.com/has2k1/plotnine/issues/612) asked for ggtext-style rich text. The answer was that matplotlib's graphics stack made it "nearly impossible". The problem is that a matplotlib `Text` artist draws a string in a single style. Earlier workarounds stitch several `Text` objects together inside offset boxes. plotnine's layout engine can't see those boxes, and they can't be rotated.
@@ -147,7 +149,7 @@ ggtext follows Python, matplotlib, and plotnine conventions where they differ fr
 | What draws the text | A custom artist that stamps out one plain `Text` per word at draw time | A real `Text` subclass, so layout engines, legends, and tight bounding boxes can measure it |
 | Line spacing and metrics | Copies gridtext/R, so it's closer to how R ggtext looks | Copies matplotlib, so rich text lines up exactly with plotnine's ordinary text |
 | Geom conventions | ggtext's: rotation around the anchor, `inward`/`outward`, mappable outline colors, margins, min/max sizes | The same (added after comparing the two packages) |
-| Markdown parser | python-markdown, which handles full documents (lists, headings, paragraphs) | markdown-it-py, inline syntax only |
+| Markdown parser | python-markdown, which handles full documents (lists, headings, paragraphs) | [ggIR](https://github.com/snake-case-ggtext/ggIR) (built on markdown-it-py), inline syntax only |
 | Unsupported markup | Raises an error | Warns once and still draws the text |
 | Python / matplotlib | Python ≥ 3.11 | Python ≥ 3.10; tested on matplotlib 3.10 and 3.11 |
 | License | GPL-2, same as ggtext | MIT |

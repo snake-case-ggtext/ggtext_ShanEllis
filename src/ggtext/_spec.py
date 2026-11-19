@@ -12,7 +12,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, fields, replace
 from typing import Any, Mapping, Tuple, Union
 
-from ._style import parse_length
+import ggir
 
 __all__ = ["RichTextSpec", "Length", "resolve_length"]
 
@@ -30,6 +30,14 @@ _ALIASES = {
     "label_r": "r",
     "radius": "r",
 }
+
+
+def parse_length(value: Any, *, allow_percent: bool = True) -> float | None:
+    """An absolute CSS length (``12``, ``"16px"``, ``"1in"``) in points, or None."""
+    length = ggir.parse_length(value, allow_percent=allow_percent)
+    if length is None or length.unit != "pt":  # em, %, keywords
+        return None
+    return length.value
 
 
 def _as_padding(value: Any) -> Tuple[float, float, float, float]:

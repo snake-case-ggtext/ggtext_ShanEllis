@@ -12,7 +12,7 @@ pip install ggtext               # matplotlib only
 | Python 3.10 | matplotlib 3.10.x (matplotlib 3.11 needs Python ≥ 3.11) |
 | Python ≥ 3.11 | matplotlib 3.11.x |
 
-ggtext works with both. It depends only on matplotlib, numpy, and [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. plotnine is optional (version 0.15).
+ggtext works with both. It depends only on matplotlib, numpy, and [ggIR](https://github.com/snake-case-ggtext/ggIR), which parses the markup with [`markdown-it-py`](https://markdown-it-py.readthedocs.io/), the CommonMark parser used across the Jupyter ecosystem. plotnine is optional (version 0.15).
 
 To install the development version from a local clone:
 
