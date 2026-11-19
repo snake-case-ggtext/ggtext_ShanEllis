@@ -1,0 +1,33 @@
+# Run by prek (https://github.com/j178/prek), a drop-in pre-commit replacement.
+# Set up once with `make install`; run on everything with `make pre-commit`.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+        exclude: ^pyrefly-baseline\.json$  # rewritten by `pyrefly check --update-baseline`
+      - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: check-added-large-files
+
+  # Use the project's own pinned tools (via uv) so hooks match `make lint`.
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types_or: [python, pyi, jupyter]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types_or: [python, pyi, jupyter, markdown]
+      - id: pyrefly
+        name: pyrefly
+        entry: uv run pyrefly check
+        language: system
+        types_or: [python, pyi]
+        pass_filenames: false

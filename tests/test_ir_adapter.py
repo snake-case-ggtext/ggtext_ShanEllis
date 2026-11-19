@@ -322,9 +322,9 @@ def _corpus() -> list[str]:
 
 CORPUS = _corpus()
 
-OPTIONS_DEFAULT = dict(markdown=True, html=True, math=True, newline="break")
+OPTIONS_DEFAULT = {"markdown": True, "html": True, "math": True, "newline": "break"}
 OPTIONS = [
-    dict(markdown=md, html=h, math=m, newline=nl)
+    {"markdown": md, "html": h, "math": m, "newline": nl}
     for md, h, m, nl in itertools.product(
         (True, False), (True, False), (True, False), ("break", "space")
     )

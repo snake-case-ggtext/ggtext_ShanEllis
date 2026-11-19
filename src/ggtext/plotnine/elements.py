@@ -21,7 +21,7 @@ facet strips and legends all get the right amount of space.
 
 from __future__ import annotations
 
-from typing import Any, Literal
+from typing import Any, ClassVar, Literal
 
 from plotnine.themes.elements import element_text
 
@@ -113,7 +113,7 @@ class element_markdown(element_text):
     >>> theme(axis_text_x=element_markdown(rotation=45, ha="right"))  # doctest: +SKIP
     """
 
-    _spec_defaults: dict = {}
+    _spec_defaults: ClassVar[dict[str, Any]] = {}
 
     def __init__(
         self,
@@ -131,18 +131,18 @@ class element_markdown(element_text):
         **kwargs: Any,
     ):
         aliases = self._pop_spec_aliases(kwargs)
-        spec_kwargs = dict(
-            fill=fill,
-            box_color=box_color,
-            linewidth=linewidth,
-            linestyle=linestyle,
-            r=r,
-            padding=padding,
-            halign=_as_halign(halign),
-            markdown=markdown,
-            newline=newline,
-            math=math,
-        )
+        spec_kwargs = {
+            "fill": fill,
+            "box_color": box_color,
+            "linewidth": linewidth,
+            "linestyle": linestyle,
+            "r": r,
+            "padding": padding,
+            "halign": _as_halign(halign),
+            "markdown": markdown,
+            "newline": newline,
+            "math": math,
+        }
         self._init(spec_kwargs, kwargs, aliases)
 
     # -- helpers ----------------------------------------------------------
@@ -246,25 +246,25 @@ class element_textbox(element_markdown):
                     f"not {orientation!r}"
                 ) from err
             kwargs.pop("angle", None)
-        spec_kwargs = dict(
-            width=width,
-            height=height,
-            minwidth=minwidth,
-            maxwidth=maxwidth,
-            minheight=minheight,
-            maxheight=maxheight,
-            valign=_as_valign(valign),
-            fill=fill,
-            box_color=box_color,
-            linewidth=linewidth,
-            linestyle=linestyle,
-            r=r,
-            padding=padding,
-            halign=_as_halign(halign),
-            markdown=markdown,
-            newline=newline,
-            math=math,
-        )
+        spec_kwargs = {
+            "width": width,
+            "height": height,
+            "minwidth": minwidth,
+            "maxwidth": maxwidth,
+            "minheight": minheight,
+            "maxheight": maxheight,
+            "valign": _as_valign(valign),
+            "fill": fill,
+            "box_color": box_color,
+            "linewidth": linewidth,
+            "linestyle": linestyle,
+            "r": r,
+            "padding": padding,
+            "halign": _as_halign(halign),
+            "markdown": markdown,
+            "newline": newline,
+            "math": math,
+        }
         self._init(spec_kwargs, kwargs, aliases)
 
 
@@ -281,7 +281,11 @@ class element_textbox_simple(element_textbox):
     All parameters of :class:`element_textbox` can be overridden.
     """
 
-    _spec_defaults = {"width": 1.0, "halign": "left", "valign": "top"}
+    _spec_defaults: ClassVar[dict[str, Any]] = {
+        "width": 1.0,
+        "halign": "left",
+        "valign": "top",
+    }
 
     def __init__(self, **kwargs: Any):
         # ggtext's element_textbox_simple uses lineheight = 1.2

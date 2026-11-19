@@ -9,14 +9,15 @@ drawn around the text.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass, fields, replace
-from typing import Any, Mapping, Tuple, Union
+from typing import Any
 
 import ggir
 
-__all__ = ["RichTextSpec", "Length", "resolve_length"]
+__all__ = ["Length", "RichTextSpec", "resolve_length"]
 
-Length = Union[float, str, None]
+Length = float | str | None
 
 #: Options that hold a length (absolute with units, or a fraction)
 LENGTH_FIELDS = ("width", "minwidth", "maxwidth", "height", "minheight", "maxheight")
@@ -40,7 +41,7 @@ def parse_length(value: Any, *, allow_percent: bool = True) -> float | None:
     return length.value
 
 
-def _as_padding(value: Any) -> Tuple[float, float, float, float]:
+def _as_padding(value: Any) -> tuple[float, float, float, float]:
     """
     Normalize padding to ``(top, right, bottom, left)`` in points.
 
@@ -144,8 +145,8 @@ class RichTextSpec:
     height: Length = None
     minheight: Length = None
     maxheight: Length = None
-    padding: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
-    margin: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
+    padding: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
+    margin: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
     fill: Any = None
     box_color: Any = None
     linewidth: float = 0.5

@@ -11,10 +11,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 # Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
 OUT = Path(
@@ -45,7 +45,7 @@ ggtext.annotate(
     xy=(np.pi / 2, 1),
     xytext=(3.2, 1.45),
     va="center",
-    arrowprops=dict(arrowstyle="->", color="#444444"),
+    arrowprops={"arrowstyle": "->", "color": "#444444"},
     fill="#FFF8E1",
     box_color="#999999",
     padding=4,

@@ -6,11 +6,11 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
-import pytest  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
+import pytest
 
-import ggtext  # noqa: E402,F401  (registers the richtext property)
+import ggtext  # noqa: F401  (registers the richtext property)
 
 
 @pytest.fixture(autouse=True)

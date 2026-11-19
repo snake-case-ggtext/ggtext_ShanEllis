@@ -15,9 +15,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import numpy as np
+import pandas as pd
+from plotnine import (
     aes,
     geom_col,
     ggplot,
@@ -27,8 +27,8 @@ from plotnine import (  # noqa: E402
     theme_minimal,
 )
 
-import ggtext  # noqa: E402
-from ggtext import element_markdown  # noqa: E402
+import ggtext
+from ggtext import element_markdown
 
 # Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
 OUT = Path(

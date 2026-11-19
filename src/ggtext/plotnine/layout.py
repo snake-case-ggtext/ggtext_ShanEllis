@@ -9,7 +9,8 @@ plot owns the text.
 
 from __future__ import annotations
 
-from typing import Any, Iterable, List
+from collections.abc import Iterable
+from typing import Any
 
 __all__ = ["plot_panels"]
 
@@ -36,7 +37,7 @@ def _plots_of(engine: Any) -> Iterable[Any]:
                 yield spec.plot
 
 
-def plot_panels(text: Any, figure: Any) -> List[Any] | None:
+def plot_panels(text: Any, figure: Any) -> list[Any] | None:
     """
     The panels (axes) of the plotnine plot that owns *text*.
 

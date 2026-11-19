@@ -16,7 +16,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_line,
     ggplot,
@@ -26,9 +26,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import economics_long  # noqa: E402
+from plotnine.data import economics_long
 
-from ggtext import element_markdown, element_textbox_simple  # noqa: E402
+from ggtext import element_markdown, element_textbox_simple
 
 # Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
 OUT = Path(

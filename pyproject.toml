@@ -35,11 +35,24 @@ dependencies = [
 
 [project.optional-dependencies]
 plotnine = ["plotnine>=0.15,<0.16"]
+
 test = ["pytest>=7", "pytest-cov", "plotnine>=0.15,<0.16"]
 # executes examples/ggtext_tour.ipynb in the test suite
 notebook = ["nbclient>=0.7", "nbformat>=5", "ipykernel"]
 docs = ["plotnine>=0.15,<0.16", "jupyter", "nbconvert"]
 dev = ["ggtext[test,notebook,docs]", "ruff"]
+
+[dependency-groups]
+# Installed by default with `uv sync` (and `make install`).
+dev = [
+    "plotnine>=0.15,<0.16",
+    "prek",
+    "pyrefly",
+    "pytest>=7",
+    "pytest-cov",
+    "pytest-randomly",
+    "ruff",
+]
 
 [project.urls]
 Documentation = "https://github.com/snake-case-ggtext/ggtext_ShanEllis/tree/main/docs"
@@ -73,11 +86,10 @@ branch = true
 show_missing = true
 skip_covered = true
 
-[tool.ruff]
-line-length = 88
-target-version = "py310"
-src = ["src", "tests"]
+# Ruff runs with its out-of-the-box rules and formatter settings.
 
-[tool.ruff.lint]
-select = ["E", "F", "W", "I", "B", "UP", "SIM"]
-ignore = ["E501", "UP007", "UP006", "UP035", "SIM108"]
+[tool.pyrefly]
+preset = "strict"
+project-includes = ["src", "tests", "examples"]
+search-path = ["src", "."]
+baseline = "pyrefly-baseline.json"

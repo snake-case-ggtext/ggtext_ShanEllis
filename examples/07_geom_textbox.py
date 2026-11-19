@@ -13,8 +13,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import pandas as pd
+from plotnine import (
     aes,
     geom_point,
     ggplot,
@@ -23,9 +23,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown, geom_textbox  # noqa: E402
+from ggtext import element_markdown, geom_textbox
 
 # Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
 OUT = Path(
@@ -44,11 +44,15 @@ notes = pd.DataFrame(
         "ha": ["left", "right"],
         "va": ["top", "bottom"],
         "label": [
-            f"<span style='color:{COLORS['Gentoo']}'>**Gentoo**</span> penguins are the "
-            "heaviest, with the longest flippers: most weigh **over 4.5 kg**.",
-            f"<span style='color:{COLORS['Adelie']}'>**Adelie**</span> and "
-            f"<span style='color:{COLORS['Chinstrap']}'>**Chinstrap**</span> overlap almost "
-            "completely; body mass alone *cannot* tell them apart.",
+            (
+                f"<span style='color:{COLORS['Gentoo']}'>**Gentoo**</span> penguins are the "
+                "heaviest, with the longest flippers: most weigh **over 4.5 kg**."
+            ),
+            (
+                f"<span style='color:{COLORS['Adelie']}'>**Adelie**</span> and "
+                f"<span style='color:{COLORS['Chinstrap']}'>**Chinstrap**</span> overlap almost "
+                "completely; body mass alone *cannot* tell them apart."
+            ),
         ],
         "halign": ["left", "right"],
     }

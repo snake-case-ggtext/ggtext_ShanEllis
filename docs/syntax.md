@@ -125,6 +125,7 @@ The default follows matplotlib and Python: `\n` starts a new line. This differs 
 
 ```python
 import numpy as np, ggtext
+
 ggtext.register_image("red_square", np.array([[[1.0, 0, 0]]]))
 "<img src='red_square' width='10pt' height='10pt'> means danger"
 ```

@@ -87,10 +87,12 @@ example_df = pd.DataFrame(
             "Some text **in bold.**",
             "Linebreaks<br>Linebreaks<br>Linebreaks",
             "*x*<sup>2</sup> + 5*x* + *C*<sub>*i*</sub>",
-            "Some <span style='color:blue'>blue text **in bold.**</span><br>"
-            "And *italics text.*<br>\n"
-            "      And some <span style='font-size:18pt; color:black'>"
-            "large</span> text.",
+            (
+                "Some <span style='color:blue'>blue text **in bold.**</span><br>"
+                "And *italics text.*<br>\n"
+                "      And some <span style='font-size:18pt; color:black'>"
+                "large</span> text."
+            ),
         ],
         "x": [0.2, 0.1, 0.5, 0.9],
         "y": [0.8, 0.4, 0.1, 0.5],

@@ -1,0 +1,3938 @@
+{
+  "errors": [
+    {
+      "column": 37,
+      "path": "examples/05_facet_strips_and_legends.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `(island: str) -> str` is not assignable to parameter `labeller` with type `Literal['label_both', 'label_context', 'label_value']` in function `plotnine.facets.facet_wrap.facet_wrap.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "examples/08_images_in_labels.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`stripes` is missing an annotation for parameter `colors`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "examples/08_images_in_labels.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`stripes` is missing an annotation for parameter `vertical`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "examples/08_images_in_labels.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`stripes` is missing an annotation for parameter `h`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "examples/08_images_in_labels.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`stripes` is missing an annotation for parameter `w`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `_BoundedCache.__setitem__` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__setitem__` is missing an annotation for parameter `key`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__setitem__` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 15,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_font_key` is missing an annotation for parameter `fp`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_metrics` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_metrics` is missing an annotation for parameter `fp`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_font_metrics` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_font_metrics` is missing an annotation for parameter `fp`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_font_metrics` is missing an annotation for parameter `figure`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`lines_of` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Class `Text` has no class attribute `_get_layout`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_linespacing`",
+      "severity": "error"
+    },
+    {
+      "column": 68,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `float | Any | None` is not assignable to parameter `points` with type `float` in function `_Measurer.points_to_pixels`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `layout`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `angle`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `offsetx`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `offsety`",
+      "severity": "error"
+    },
+    {
+      "column": 57,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `bbox`",
+      "severity": "error"
+    },
+    {
+      "column": 63,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `xys`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter for generic class `tuple`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_x`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_y`",
+      "severity": "error"
+    },
+    {
+      "column": 59,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_text`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `RichText.set_horizontalalignment` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`set_horizontalalignment` is missing an annotation for parameter `align`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `RichText.set_verticalalignment` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`set_verticalalignment` is missing an annotation for parameter `align`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `RichText.update_from` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`update_from` is missing an annotation for parameter `other`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_reference_size` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 55,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `axes`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `axes`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `bbox`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_rich_layout` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_fontproperties`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_get_multialignment`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_linespacing`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_get_wrap_line_width`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`length` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`length` is missing an annotation for parameter `ref_px`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_get_wrap_line_width`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`run_layout` is missing an annotation for parameter `box_width`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`run_layout` is missing an annotation for parameter `box_height`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_linespacing`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_rich_geometry` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 43,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_linespacing`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_get_layout` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `Text` has no attribute `_get_layout`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`draw` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_bbox_patch`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `float | None` is not assignable to parameter `posy` with type `float` in function `RichText._draw_box`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `float | None` is not assignable to parameter `posy` with type `float` in function `RichText._draw_fragments`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_x`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_y`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_box` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Figure | SubFigure | None` is not assignable to parameter `fig` with type `Figure | SubFigure` in function `matplotlib.artist.Artist.set_figure`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_clippath`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_clipon`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_new_gc` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_new_gc` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_new_gc` is missing an annotation for parameter `url`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_url`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_antialiased`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_set_gc_clip`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_fragments` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `ggir.style.Style` is not assignable to parameter `style` with type `ggtext._style.Style` in function `_Measurer.font_metrics`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `ggir.style.Style` is not assignable to parameter `style` with type `ggtext._style.Style` in function `_Measurer.fontproperties`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `transform`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `x`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `y`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `w`",
+      "severity": "error"
+    },
+    {
+      "column": 56,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `h`",
+      "severity": "error"
+    },
+    {
+      "column": 59,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_rect` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_image` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_image` is missing an annotation for parameter `run`",
+      "severity": "error"
+    },
+    {
+      "column": 58,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_image` is missing an annotation for parameter `x0`",
+      "severity": "error"
+    },
+    {
+      "column": 62,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_image` is missing an annotation for parameter `yb`",
+      "severity": "error"
+    },
+    {
+      "column": 66,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_draw_image` is missing an annotation for parameter `to_display`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Figure | SubFigure | None` is not assignable to parameter `fig` with type `Figure | SubFigure` in function `matplotlib.artist.Artist.set_figure`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_clippath`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `_clipon`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_ensure_relayout` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `execute`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__call__` is missing an annotation for parameter `figure`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `original`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__call__` is missing an annotation for parameter `args`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__call__` is missing an annotation for parameter `kwargs`",
+      "severity": "error"
+    },
+    {
+      "column": 18,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_wrap_engine` is missing an annotation for parameter `engine`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_with_alpha` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_with_alpha` is missing an annotation for parameter `alpha`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `set[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `text`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `base`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `markdown`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `html`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `math_`",
+      "severity": "error"
+    },
+    {
+      "column": 54,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_parse_cached` is missing an annotation for parameter `newline`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_annotation_draw` is missing an annotation for parameter `self`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "src/ggtext/_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_annotation_draw` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_artist.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `type[Text]` is not assignable to parameter `type` with type `type[RichText]` in function `object.__class__`",
+      "severity": "error"
+    },
+    {
+      "column": 14,
+      "path": "src/ggtext/_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_numeric` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "src/ggtext/_layout.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `ggir.style.Style` is not assignable to parameter `style` with type `ggtext._style.Style` in function `Measurer.text`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "src/ggtext/_layout.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `ggir.style.Style | ggtext._style.Style` is not assignable to parameter `style` with type `ggtext._style.Style` in function `Measurer.font_metrics`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "src/ggtext/_parse.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `str` is not assignable to parameter `newline` with type `Literal['break', 'space']` in function `ggir.ir.parse`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/_spec.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "src/ggtext/_style.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `str | None` is not assignable to parameter `style` with type `Literal['italic', 'normal', 'oblique'] | None` in function `matplotlib.font_manager.FontProperties.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "src/ggtext/_style.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `str | None` is not assignable to parameter `variant` with type `Literal['normal', 'small-caps'] | None` in function `matplotlib.font_manager.FontProperties.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_create` is missing an annotation for parameter `factory`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_create` is missing an annotation for parameter `args`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_keep_new_ticks_rich` is missing an annotation for parameter `axis_obj`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_copy_tick_props` is missing an annotation for parameter `src`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_copy_tick_props` is missing an annotation for parameter `dest`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_set_label` is missing an annotation for parameter `setter`",
+      "severity": "error"
+    },
+    {
+      "column": 55,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 55,
+      "path": "src/ggtext/mpl.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 68,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 68,
+      "path": "src/ggtext/plotnine/elements.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `mapping`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__init__` is missing an annotation for parameter `data`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "unsupported-operation",
+      "concise_description": "Cannot set item in `DataFrame`",
+      "severity": "error"
+    },
+    {
+      "column": 65,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_outline` is missing an annotation for parameter `text_color`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "no-matching-overload",
+      "concise_description": "No matching overload found for function `mizani._colors.utils.to_rgba` called with arguments: (Any, Any | None)",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `ha`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `va`",
+      "severity": "error"
+    },
+    {
+      "column": 61,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 61,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 70,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 70,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_make_artists` is missing an annotation for parameter `panel_params`",
+      "severity": "error"
+    },
+    {
+      "column": 66,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 66,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 10,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_spec_for_row` is missing an annotation for parameter `text_color`",
+      "severity": "error"
+    },
+    {
+      "column": 65,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_spec_for_row` is missing an annotation for parameter `ha`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[0] | Unknown` is not assignable to parameter `padding` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[0] | Unknown` is not assignable to parameter `margin` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `geom_richtext.draw_group` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_spec_for_row` is missing an annotation for parameter `text_color`",
+      "severity": "error"
+    },
+    {
+      "column": 65,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_spec_for_row` is missing an annotation for parameter `ha`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `str | None` is not assignable to parameter `valign` with type `str` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[0] | Unknown` is not assignable to parameter `padding` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[0] | Unknown` is not assignable to parameter `margin` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `geom_textbox._text_kwargs` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `ha`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_text_kwargs` is missing an annotation for parameter `va`",
+      "severity": "error"
+    },
+    {
+      "column": 61,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 61,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 70,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 70,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "src/ggtext/plotnine/geoms.py",
+      "name": "missing-override-decorator",
+      "concise_description": "Class member `geom_textbox.draw_group` overrides a member in a parent class but is missing an `@override` decorator",
+      "severity": "error"
+    },
+    {
+      "column": 11,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `set[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `AnyStr` for generic class `Match[AnyStr]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `set[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/_legacy_parse.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `ggir.style.Style | ggtext._style.Style` is not assignable to parameter `style` with type `ggtext._style.Style` in function `parse_css`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/_legacy_parse.py",
+      "name": "bad-return",
+      "concise_description": "Returned type `ggir.style.Style | ggtext._style.Style` is not assignable to declared return type `ggtext._style.Style`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/_legacy_parse.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 14,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`renderer` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`render_rgba` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pixels_in_bbox` is missing an annotation for parameter `bbox`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`has_color` is missing an annotation for parameter `rgb`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pytest_addoption` is missing an annotation for parameter `parser`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pytest_configure` is missing an annotation for parameter `config`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pytest_assertrepr_compare` is missing an annotation for parameter `op`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pytest_assertrepr_compare` is missing an annotation for parameter `left`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`pytest_assertrepr_compare` is missing an annotation for parameter `right`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/conftest.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_image_env` is missing an annotation for parameter `request`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`__exit__` is missing an annotation for parameter `args`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_sized` is missing an annotation for parameter `plot`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`ggplot_equals` is missing an annotation for parameter `plot`",
+      "severity": "error"
+    },
+    {
+      "column": 15,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`draw_test` is missing an annotation for parameter `self`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`assertrepr_compare` is missing an annotation for parameter `op`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`assertrepr_compare` is missing an annotation for parameter `left`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/image_compare.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`assertrepr_compare` is missing an annotation for parameter `right`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 51,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 54,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `rotation`",
+      "severity": "error"
+    },
+    {
+      "column": 64,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `ha`",
+      "severity": "error"
+    },
+    {
+      "column": 68,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `va`",
+      "severity": "error"
+    },
+    {
+      "column": 72,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_extent_matches_plain_text` is missing an annotation for parameter `rotation_mode`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_markdown_does_not_change_plain_extent` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_markdown_does_not_change_plain_extent` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `FigureCanvasBase` has no attribute `get_renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_bold_is_wider_than_plain` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_bold_is_wider_than_plain` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_bigger_span_increases_height` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_bigger_span_increases_height` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rotation_90_swaps_extent` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rotation_90_swaps_extent` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_padding_grows_extent` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_padding_grows_extent` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fixed_width_box` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fixed_width_box` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_maxwidth_shrinks_to_fit` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_maxwidth_shrinks_to_fit` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative_width_uses_axes` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative_width_figure_text_uses_panel_area` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative_width_figure_without_axes` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative_width_figure_without_axes` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative_width_along_rotated_text` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_custom_reference` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_custom_reference` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_matplotlib_wrap_is_honored` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_matplotlib_wrap_is_honored` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_empty_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_empty_text` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_invisible_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_invisible_text` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_nan_position_is_skipped` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 54,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_layout_cache_invalidates_on_property_change` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 59,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_layout_cache_invalidates_on_property_change` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_get_layout_format_311` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_get_layout_format_311` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 18,
+      "path": "tests/test_artist.py",
+      "name": "not-iterable",
+      "concise_description": "Type `float` is not iterable",
+      "severity": "error"
+    },
+    {
+      "column": 5,
+      "path": "tests/test_artist.py",
+      "name": "bad-unpacking",
+      "concise_description": "Cannot unpack tuple[Unknown, Unknown, Unknown] | tuple[Unknown, Unknown, Unknown, Unknown] | Unknown (of size 4) into 3 values",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_get_layout_format_310` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_get_layout_format_310` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 5,
+      "path": "tests/test_artist.py",
+      "name": "bad-unpacking",
+      "concise_description": "Cannot unpack tuple[Unknown, Unknown, Unknown] | tuple[Unknown, Unknown, Unknown, Unknown] | Unknown (of size 3) into 4 values",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/test_artist.py",
+      "name": "unsupported-operation",
+      "concise_description": "`>` is not supported between `tuple[tuple[Unknown, Unknown], tuple[Unknown, Unknown]]` and `Literal[0]`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_set_richtext_property_on_any_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `Text` has no attribute `get_richtext`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_text_constructor_accepts_richtext` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 51,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_set_richtext_false_is_noop_on_plain_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_make_rich_and_plain_roundtrip` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_make_rich_and_plain_roundtrip` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_set_richtext_none_turns_plain` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_make_plain_of_constructed_richtext` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_subclass_keeps_behaviour` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_update_from_copies_spec` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_pickle` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_pickle_dynamic_subclass` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_all_backends` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_all_backends` is missing an annotation for parameter `fmt`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_svg_contains_text_and_link` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_colors_are_drawn` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_base_color_applies_to_unstyled_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_box_fill_is_drawn` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_background_highlight_is_drawn` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_underline_draws_below_baseline` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 18,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`red_rows` is missing an annotation for parameter `t`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_alpha_is_applied` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_path_effects` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_registered_image_is_drawn` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rotated_images` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rotated_images` is missing an annotation for parameter `rotation`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_at_odd_angle_warns` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_missing_image_warns_and_skips` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_usetex_falls_back_to_plain` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_usetex_falls_back_to_plain` is missing an annotation for parameter `monkeypatch`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `self` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 52,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `renderer` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_mpl_backgroundcolor_still_works` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_tight_bbox_includes_rich_text` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_layout_engines_make_room` is missing an annotation for parameter `layout`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `execute`",
+      "severity": "error"
+    },
+    {
+      "column": 5,
+      "path": "tests/test_artist.py",
+      "name": "method-assign",
+      "concise_description": "Cannot assign to method `execute`",
+      "severity": "error"
+    },
+    {
+      "column": 5,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `execute`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/test_artist.py",
+      "name": "bad-assignment",
+      "concise_description": "`(fig: Figure) -> tuple[None, Unknown]` is not assignable to attribute `execute` with type `(fig: Figure) -> None`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_no_warnings_for_plain_usage` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fractional_alignment` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fractional_alignment` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fractional_alignment` is missing an annotation for parameter `mode`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `get_ha`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_artist.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `get_va`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fractional_alignment_matches_names` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fractional_alignment_matches_names` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_plain_text_rejects_fractional_alignment` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_margin_adds_space_but_box_stays_inside` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 54,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_margin_adds_space_but_box_stays_inside` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fixed_height_overflows_like_ggtext` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 50,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_fixed_height_overflows_like_ggtext` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_size_limits` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_size_limits` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_size_limits` is missing an annotation for parameter `kw`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_size_limits` is missing an annotation for parameter `which`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "tests/test_artist.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_size_limits` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "tests/test_geom_richtext_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_resolve_just_named` is missing an annotation for parameter `axis`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_geom_richtext_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_resolve_just_named` is missing an annotation for parameter `name`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/test_geom_richtext_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_resolve_just_named` is missing an annotation for parameter `val`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_new` is missing an annotation for parameter `options`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 11,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_show` is missing an annotation for parameter `tokens`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-type-argument",
+      "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_same_tokens_as_legacy_parser` is missing an annotation for parameter `options`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_same_tokens_as_legacy_parser` is missing an annotation for parameter `base_name`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_expected_differences` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_expected_differences` is missing an annotation for parameter `when`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_ir_adapter.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_expected_differences` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_ir_adapter.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `bool | str | Unknown` is not assignable to parameter `markdown` with type `bool` in function `tests._legacy_parse.parse`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_ir_adapter.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `bool | str | Unknown` is not assignable to parameter `html` with type `bool` in function `tests._legacy_parse.parse`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_ir_adapter.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `bool | str | Unknown` is not assignable to parameter `math` with type `bool` in function `tests._legacy_parse.parse`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_ir_adapter.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `bool | str | Unknown` is not assignable to parameter `newline` with type `str` in function `tests._legacy_parse.parse`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`text` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`text` is missing an annotation for parameter `style`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`text` is missing an annotation for parameter `math`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`font_metrics` is missing an annotation for parameter `style`",
+      "severity": "error"
+    },
+    {
+      "column": 21,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`image` is missing an annotation for parameter `run`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`points_to_pixels` is missing an annotation for parameter `points`",
+      "severity": "error"
+    },
+    {
+      "column": 9,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`lay` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 14,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`lay` is missing an annotation for parameter `kwargs`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_halign` is missing an annotation for parameter `halign`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_halign` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_layout.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `ImageRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_valign_in_tall_box` is missing an annotation for parameter `valign`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_layout.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_valign_in_tall_box` is missing an annotation for parameter `top`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_text_on_axes_uses_data_coords` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_text_on_figure` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_text_with_base_spec` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 48,
+      "path": "tests/test_mpl_api.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[2]` is not assignable to parameter `padding` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_textbox_defaults` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `width`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 61,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `get_ha`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `get_va`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_annotate` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_annotate_text_is_drawn` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_richify_single_and_many` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 84,
+      "path": "tests/test_mpl_api.py",
+      "name": "not-iterable",
+      "concise_description": "Type `Text` is not iterable",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `f` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `ax` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `f` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `ax` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `f` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-lambda",
+      "concise_description": "Type of lambda parameter `ax` is unknown",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_label_setters` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_label_setters` is missing an annotation for parameter `func`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_label_setters` is missing an annotation for parameter `getter`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_suptitle` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rich_ticklabels_survive_new_ticks` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rich_ticklabels_axes` is missing an annotation for parameter `fig_ax`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rich_ticklabels_axes` is missing an annotation for parameter `axis`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_rich_ticklabels_axes` is missing an annotation for parameter `which`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_png_bytes` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_load_local_file` is missing an annotation for parameter `tmp_path`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `shape`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_mpl_api.py",
+      "name": "unsupported-operation",
+      "concise_description": "`None` is not subscriptable",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_mpl_api.py",
+      "name": "unsupported-operation",
+      "concise_description": "`None` is not subscriptable",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_remote_images_can_be_disabled` is missing an annotation for parameter `monkeypatch`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_register_image_formats` is missing an annotation for parameter `img`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `shape`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_mpl_api.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "tests/test_mpl_api.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 10,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`runs` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 15,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`runs` is missing an annotation for parameter `kwargs`",
+      "severity": "error"
+    },
+    {
+      "column": 11,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`texts` is missing an annotation for parameter `tokens`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 25,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_bold` is missing an annotation for parameter `src`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_italic` is missing an annotation for parameter `src`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_snake_case_is_not_italic` is missing an annotation for parameter `src`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 46,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 43,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 52,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_simple_tags` is missing an annotation for parameter `tag`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_simple_tags` is missing an annotation for parameter `attr`",
+      "severity": "error"
+    },
+    {
+      "column": 43,
+      "path": "tests/test_parse.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_simple_tags` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 51,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `src`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `width`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `height`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `alt`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 31,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `text`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `ImageRun | LineBreak | TextRun` has no attribute `math`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_parse.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 10,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`draw` is missing an annotation for parameter `p`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `element_text` has no attribute `spec`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_numeric_halign` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_numeric_halign` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 15,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`find_text` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`find_text` is missing an annotation for parameter `s`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_single_text_themeables` is missing an annotation for parameter `themeable`",
+      "severity": "error"
+    },
+    {
+      "column": 30,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_sequence_themeables` is missing an annotation for parameter `themeable`",
+      "severity": "error"
+    },
+    {
+      "column": 22,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_tick_labels` is missing an annotation for parameter `themeable`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_tick_labels` is missing an annotation for parameter `axis`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_visible`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_panel_area` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_window_extent`",
+      "severity": "error"
+    },
+    {
+      "column": 11,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_window_extent`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of type `Text | None` has no attribute `_rich_layout`",
+      "severity": "error"
+    },
+    {
+      "column": 13,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_window_extent`",
+      "severity": "error"
+    },
+    {
+      "column": 11,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_window_extent`",
+      "severity": "error"
+    },
+    {
+      "column": 14,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `get_window_extent`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_save_formats` is missing an annotation for parameter `fmt`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_save_formats` is missing an annotation for parameter `tmp_path`",
+      "severity": "error"
+    },
+    {
+      "column": 19,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_rich_artists` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 69,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `has_box`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `r`",
+      "severity": "error"
+    },
+    {
+      "column": 24,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 18,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 20,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `markdown`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `halign`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `valign`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_orientation` is missing an annotation for parameter `orientation`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_orientation` is missing an annotation for parameter `angle`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `r`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `padding`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_values` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_values` is missing an annotation for parameter `axis`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_values` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_inward_outward` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 42,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_inward_outward` is missing an annotation for parameter `npc`",
+      "severity": "error"
+    },
+    {
+      "column": 47,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_inward_outward` is missing an annotation for parameter `axis`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_inward_outward` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_one_label` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_plotnine.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_numeric_hjust` is missing an annotation for parameter `kw`",
+      "severity": "error"
+    },
+    {
+      "column": 17,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `RichText` has no attribute `get_ha`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `halign`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `halign`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 62,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `linewidth`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 62,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `linewidth`",
+      "severity": "error"
+    },
+    {
+      "column": 23,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 53,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `linewidth`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `box_color`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_plotnine.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `margin`",
+      "severity": "error"
+    },
+    {
+      "column": 37,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_falsy_gives_none` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_spec.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `fill`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_spec.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `padding`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_ggplot2_aliases` is missing an annotation for parameter `alias`",
+      "severity": "error"
+    },
+    {
+      "column": 43,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_ggplot2_aliases` is missing an annotation for parameter `field`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_forms` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_forms` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `tuple[Literal[1], Literal[2], Literal[3]]` is not assignable to parameter `padding` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_errors` is missing an annotation for parameter `kwargs`",
+      "severity": "error"
+    },
+    {
+      "column": 35,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_errors` is missing an annotation for parameter `match`",
+      "severity": "error"
+    },
+    {
+      "column": 41,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_limits_are_validated` is missing an annotation for parameter `name`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `markdown` with type `bool` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `html` with type `bool` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `math` with type `bool` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `newline` with type `str` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `halign` with type `str | None` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `valign` with type `str` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `padding` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Unpacked keyword argument `int` is not assignable to parameter `margin` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `Literal[3]` is not assignable to parameter `margin` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 32,
+      "path": "tests/test_spec.py",
+      "name": "bad-argument-type",
+      "concise_description": "Argument `tuple[Literal[1], Literal[2]]` is not assignable to parameter `margin` with type `tuple[float, float, float, float]` in function `ggtext._spec.RichTextSpec.__init__`",
+      "severity": "error"
+    },
+    {
+      "column": 27,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_values` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 34,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_values` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 28,
+      "path": "tests/test_spec.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_invalid` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_style.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `LineBreak` has no attribute `style`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "tests/test_style.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_absolute` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_style.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_absolute` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 29,
+      "path": "tests/test_style.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative` is missing an annotation for parameter `value`",
+      "severity": "error"
+    },
+    {
+      "column": 36,
+      "path": "tests/test_style.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_relative` is missing an annotation for parameter `expected`",
+      "severity": "error"
+    },
+    {
+      "column": 38,
+      "path": "tests/test_style.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_matplotlib_colors` is missing an annotation for parameter `c`",
+      "severity": "error"
+    }
+  ]
+}

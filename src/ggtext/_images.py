@@ -19,11 +19,11 @@ import io
 import os
 import warnings
 from functools import lru_cache
-from typing import Any, Dict
+from typing import Any
 
 import numpy as np
 
-__all__ = ["register_image", "load_image", "options"]
+__all__ = ["load_image", "options", "register_image"]
 
 
 class _Options:
@@ -37,7 +37,7 @@ class _Options:
 
 options = _Options()
 
-_REGISTRY: Dict[str, np.ndarray] = {}
+_REGISTRY: dict[str, np.ndarray] = {}
 
 
 def _to_rgba_array(img: Any) -> np.ndarray:
@@ -108,10 +108,10 @@ def load_image(src: str) -> np.ndarray | None:
                 )
             from urllib.request import urlopen
 
-            with urlopen(src, timeout=options.remote_timeout) as resp:  # noqa: S310
+            with urlopen(src, timeout=options.remote_timeout) as resp:
                 return _read_bytes(resp.read())
 
-        path = src[len("file://") :] if src.startswith("file://") else src
+        path = src.removeprefix("file://")
         path = os.path.expanduser(path)
         with open(path, "rb") as f:
             return _read_bytes(f.read())
