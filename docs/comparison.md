@@ -32,8 +32,6 @@ These three projects tackle the same problem, styling parts of a label, in diffe
 - **flexitext:** a small, dependency-light way to style parts of an annotation with a compact tag syntax.
 - **R ggtext:** you're in R. Its `align_widths` option is still ahead of this port.
 
-The README also compares this package with [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext), a separate, geoms-only port of ggtext; see [the README section](../README.md#compared-with-plotnine-ggtext).
-
 ## Differences from R ggtext in detail
 
 - **Newlines.** Python: `\n` is a line break by default (`newline="space"` gives R's behavior).

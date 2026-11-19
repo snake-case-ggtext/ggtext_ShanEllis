@@ -137,35 +137,6 @@ ggtext follows Python, matplotlib, and plotnine conventions where they differ fr
 | — | `$...$` mathtext, underline, strikethrough, `<mark>`, inline code, links | additions |
 | `align_widths`, `align_heights`, `rotate_margins` | not yet | see the [roadmap](docs/roadmap.md) |
 
-## Compared with plotnine-ggtext
-
-[plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext) is a separate port of ggtext's two geoms (`geom_richtext`, `geom_textbox`) and of the gridtext layout engine. The two packages overlap only on those geoms.
-
-### How they're built
-
-| | plotnine-ggtext | ggtext (this package) |
-|---|---|---|
-| Scope | The two geoms (labels and boxes inside the panels) | The same two geoms, plus theme elements (titles, captions, axis titles, tick labels, facet strips, legends, tag), plus plain matplotlib helpers |
-| What draws the text | A custom artist that stamps out one plain `Text` per word at draw time | A real `Text` subclass, so layout engines, legends, and tight bounding boxes can measure it |
-| Line spacing and metrics | Copies gridtext/R, so it's closer to how R ggtext looks | Copies matplotlib, so rich text lines up exactly with plotnine's ordinary text |
-| Geom conventions | ggtext's: rotation around the anchor, `inward`/`outward`, mappable outline colors, margins, min/max sizes | The same (added after comparing the two packages) |
-| Markdown parser | python-markdown, which handles full documents (lists, headings, paragraphs) | [ggIR](https://github.com/snake-case-ggtext/ggIR) (built on markdown-it-py), inline syntax only |
-| Unsupported markup | Raises an error | Warns once and still draws the text |
-| Python / matplotlib | Python ≥ 3.11 | Python ≥ 3.10; tested on matplotlib 3.10 and 3.11 |
-| License | GPL-2, same as ggtext | MIT |
-| Tests | Picture-comparison tests copied one-for-one from ggtext's own, with the R renders included for reference | Placement checks against plain matplotlib text, pixel checks, plotnine integration tests, and the same ggtext picture-comparison tests (ported from plotnine-ggtext) |
-
-### Behaviour on the same inputs
-
-| Label | plotnine-ggtext | ggtext (this package) |
-|---|---|---|
-| `1. Adelie`, `# of penguins`, `- n = 344` | Error (read as a list or heading) | Shown as typed |
-| `<u>`, `` `code` ``, `<img>`, `font-size:150%` | Error | Works |
-| `$\alpha_1$` | Drawn by splitting into words; math with spaces breaks | Drawn as matplotlib math |
-| `a\nb` | One line, "a b" (Markdown/R convention) | Two lines (matplotlib convention) |
-| `bill_length_mm`, `<span style='color:red'>` | Works | Works |
-| `x&nbsp;y` | Can still break across lines | Stays on one line |
-
 ## Documentation
 
 - [Getting started](docs/getting-started.md)
