@@ -35,9 +35,21 @@ dependencies = [
 
 [project.optional-dependencies]
 plotnine = ["plotnine>=0.15,<0.16"]
-test = ["pytest>=7", "pytest-cov", "plotnine>=0.15,<0.16"]
+test = ["pytest>=7", "pytest-cov", "pytest-randomly", "plotnine>=0.15,<0.16"]
 docs = ["plotnine>=0.15,<0.16", "jupyter", "nbconvert"]
-dev = ["ggtext[test,docs]", "ruff"]
+dev = ["ggtext[test,docs]", "ruff", "pyrefly", "prek"]
+
+[dependency-groups]
+# Installed by default with `uv sync` (and `make install`).
+dev = [
+    "plotnine>=0.15,<0.16",
+    "prek",
+    "pyrefly",
+    "pytest>=7",
+    "pytest-cov",
+    "pytest-randomly",
+    "ruff",
+]
 
 [project.urls]
 Documentation = "https://github.com/snake-case-ggtext/ggtext_ShanEllis/tree/main/docs"
