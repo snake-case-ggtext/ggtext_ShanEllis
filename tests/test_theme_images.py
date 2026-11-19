@@ -121,7 +121,7 @@ def test_axis_titles_and_tick_labels():
                 fill="#E8EEF7",
                 padding=4,
                 r=3,
-            ),  # fmt: skip
+            ),
             axis_text_x=element_markdown(rotation=45, ha="right", size=10),
             axis_text_y=element_markdown(color=GREEN),
         )
@@ -130,13 +130,14 @@ def test_axis_titles_and_tick_labels():
 
 
 def test_facet_strips_top_and_right():
-    def labeller(value):
+    def labeller(value: str) -> str:
         return f"**{value}** <span style='color:{ORANGE}'>panel</span>"
 
     p = (
         ggplot(df, aes("x", "y"))
         + geom_point()
-        + facet_grid("row", "col", labeller=labeller)
+        # plotnine types `labeller` as a Literal, but it also accepts a callable
+        + facet_grid("row", "col", labeller=labeller)  # pyrefly: ignore[bad-argument-type]
         + theme(
             strip_text=element_markdown(),
             strip_text_y=element_markdown(rotation=-90),

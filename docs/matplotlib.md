@@ -1,6 +1,6 @@
 # matplotlib guide
 
-ggtext doesn't need plotnine. Everything below works with plain matplotlib.
+You don't have to use plotnine. Everything below works with plain matplotlib figures.
 
 ```python
 import matplotlib.pyplot as plt

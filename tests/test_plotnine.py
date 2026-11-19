@@ -5,9 +5,6 @@ import io
 import numpy as np
 import pandas as pd
 import pytest
-
-plotnine = pytest.importorskip("plotnine")
-
 from plotnine import (
     aes,
     element_blank,
@@ -121,7 +118,7 @@ class TestElements:
 
     def test_bad_orientation(self):
         with pytest.raises(ValueError, match="orientation"):
-            element_textbox(orientation="sideways")
+            element_textbox(orientation="sideways")  # pyrefly: ignore[bad-argument-type]
 
     def test_textbox_size_limits(self):
         s = element_textbox(

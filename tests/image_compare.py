@@ -76,7 +76,7 @@ _state = {"update": False}
 
 
 def set_update(flag: bool) -> None:
-    _state["update"] = bool(flag)
+    _state["update"] = flag
 
 
 def make_test_image_filenames(name: str, test_file: str):

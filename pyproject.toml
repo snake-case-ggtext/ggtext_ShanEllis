@@ -31,27 +31,20 @@ dependencies = [
     "ggir @ git+https://github.com/snake-case-ggtext/ggIR@v0.3.0",
     "matplotlib>=3.10",
     "numpy>=1.23",
+    "plotnine>=0.15,<0.16",
+    "pandas",
 ]
 
-[project.optional-dependencies]
-plotnine = ["plotnine>=0.15,<0.16"]
-
-test = ["pytest>=7", "pytest-cov", "plotnine>=0.15,<0.16"]
-# executes examples/ggtext_tour.ipynb in the test suite
-notebook = ["nbclient>=0.7", "nbformat>=5", "ipykernel"]
-docs = ["plotnine>=0.15,<0.16", "jupyter", "nbconvert"]
-dev = ["ggtext[test,notebook,docs]", "ruff"]
-
-[dependency-groups]
 # Installed by default with `uv sync` (and `make install`).
+[dependency-groups]
+test = ["pytest>=7", "pytest-cov", "pytest-randomly"]
+docs = ["jupyter", "nbconvert"]
 dev = [
-    "plotnine>=0.15,<0.16",
+    { include-group = "test" },
+    { include-group = "docs" },
+    "ruff",
     "prek",
     "pyrefly",
-    "pytest>=7",
-    "pytest-cov",
-    "pytest-randomly",
-    "ruff",
 ]
 
 [project.urls]
@@ -87,7 +80,6 @@ show_missing = true
 skip_covered = true
 
 # Ruff runs with its out-of-the-box rules and formatter settings.
-
 [tool.pyrefly]
 preset = "strict"
 project-includes = ["src", "tests", "examples"]
