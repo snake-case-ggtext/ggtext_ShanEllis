@@ -22,7 +22,18 @@ plotnine
 
 from __future__ import annotations
 
-from ._artist import RichText, is_rich, make_plain, make_rich
+from typing import Any
+
+from ._artist import (
+    RichText,
+    disable,
+    enable,
+    enabled,
+    is_rich,
+    make_plain,
+    make_rich,
+)
+
 from ._images import options, register_image
 from ._parse import parse
 from ._spec import RichTextSpec
@@ -54,10 +65,13 @@ __all__ = [
     "RichTextSpec",
     "Style",
     "annotate",
-    # plotnine
+    "disable",
+    # plotnine (imported lazily)
     "element_markdown",
     "element_textbox",
     "element_textbox_simple",
+    "enable",
+    "enabled",
     "geom_richtext",
     "geom_textbox",
     "is_rich",
