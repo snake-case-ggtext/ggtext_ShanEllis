@@ -6,6 +6,7 @@ Handy for annotating a plot with a few sentences.
 Run:  python examples/07_geom_textbox.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -26,7 +27,11 @@ from plotnine.data import penguins  # noqa: E402
 
 from ggtext import element_markdown, geom_textbox  # noqa: E402
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 COLORS = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}

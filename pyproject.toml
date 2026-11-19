@@ -36,8 +36,10 @@ dependencies = [
 [project.optional-dependencies]
 plotnine = ["plotnine>=0.15,<0.16"]
 test = ["pytest>=7", "pytest-cov", "plotnine>=0.15,<0.16"]
+# executes examples/ggtext_tour.ipynb in the test suite
+notebook = ["nbclient>=0.7", "nbformat>=5", "ipykernel"]
 docs = ["plotnine>=0.15,<0.16", "jupyter", "nbconvert"]
-dev = ["ggtext[test,docs]", "ruff"]
+dev = ["ggtext[test,notebook,docs]", "ruff"]
 
 [project.urls]
 Documentation = "https://github.com/snake-case-ggtext/ggtext_ShanEllis/tree/main/docs"
@@ -59,6 +61,8 @@ filterwarnings = [
 markers = [
     "plotnine: tests that need plotnine",
     "network: tests that need internet access",
+    "examples: run the gallery examples in examples/",
+    "notebook: execute the example notebook (needs the 'notebook' extra)",
 ]
 
 [tool.coverage.run]

@@ -9,6 +9,7 @@ A tour of the matplotlib helpers.
 Run:  python examples/09_matplotlib_features.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -20,7 +21,11 @@ import numpy as np  # noqa: E402
 
 import ggtext  # noqa: E402
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 rng = np.random.default_rng(1)

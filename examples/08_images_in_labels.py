@@ -8,6 +8,7 @@ With real files you would write <img src='path/to/flag.png' width='20'>.
 Run:  python examples/08_images_in_labels.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -29,7 +30,11 @@ from plotnine import (  # noqa: E402
 import ggtext  # noqa: E402
 from ggtext import element_markdown  # noqa: E402
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 

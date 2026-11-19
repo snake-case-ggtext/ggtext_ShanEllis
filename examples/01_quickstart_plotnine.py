@@ -7,6 +7,7 @@ itself can be dropped. This is the classic ggtext use case.
 Run:  python examples/01_quickstart_plotnine.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -26,7 +27,11 @@ from plotnine.data import penguins  # noqa: E402
 
 from ggtext import element_markdown  # noqa: E402
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Okabe-Ito colors, an accessible palette
