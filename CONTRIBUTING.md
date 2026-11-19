@@ -57,7 +57,11 @@ pytest tests/test_parse.py   # one file
 pytest -k tick               # by name
 pytest --cov=ggtext          # with coverage
 pytest --doctest-modules src/ggtext   # docstring examples
+pytest -m image              # image comparisons only
+pytest --update-baselines -m image   # rewrite image baselines (Linux + matplotlib 3.11 only)
 ```
+
+`pip install -e ".[dev]"` includes the `notebook` extra, so the tour notebook is executed too; without it that test is skipped.
 
 **Run the suite in both environments** before opening a pull request. The geometry code follows matplotlib's private `Text._get_layout`, which changed between 3.10 and 3.11. The parity tests in `tests/test_artist.py` (`test_extent_matches_plain_text`) catch any drift.
 
@@ -65,21 +69,28 @@ How the tests are organized:
 
 | File | Covers |
 |---|---|
-| `test_style.py` | CSS parsing, lengths, colors |
-| `test_parse.py` | Markdown/HTML parser |
+| `test_style.py` | lengths, colors, CSS properties |
+| `test_parse.py` | Markdown/HTML parsing through `ggtext.parse()` (ggIR) |
+| `test_ir_adapter.py` | golden test: ggIR gives the tokens of the original parser |
 | `test_spec.py` | `RichTextSpec` options and validation |
 | `test_layout.py` | line layout with a fake measurer (no matplotlib rendering) |
 | `test_artist.py` | `RichText`: parity with `Text`, drawing (pixel checks), backends, pickling, layout engines |
 | `test_mpl_api.py` | the matplotlib helper functions |
 | `test_plotnine.py` | elements, geoms, every themeable, layout space, compositions |
+| `test_geom_richtext_images.py`, `test_geom_textbox_images.py` | geoms against ggtext's image tests (ported from plotnine-ggtext) |
+| `test_theme_images.py` | theme text (titles, axes, strips, legends, tags) against baselines |
+| `test_examples.py` | every `examples/NN_*.py` runs and writes its images |
+| `test_notebook.py` | the tour notebook runs (needs the `notebook` extra) |
 
-New features need tests. For anything visual, prefer checking geometry (`get_window_extent`) or pixel colors (see the helpers in `tests/conftest.py`) over comparing whole images, which break when fonts change.
+New features need tests. For anything visual, check geometry (`get_window_extent`) or pixel colors first (see the helpers in `tests/conftest.py`); they don't depend on fonts. Add an image comparison (`assert p == "name"` in a test marked `image`) when the overall look matters. Image baselines are made in one reference environment, Linux with matplotlib 3.11, and the comparisons are skipped elsewhere (see `tests/image_compare.py`). Generate a new baseline there with `pytest --update-baselines -m image` and look at it before committing.
 
 ## Continuous integration
 
 `.github/workflows/tests.yml` runs on every push and pull request:
 
 - Tests on Python 3.10 + matplotlib 3.10, and Python 3.11 / 3.12 / 3.13 + matplotlib 3.11, on Ubuntu, plus macOS and Windows (Python 3.13).
+- The examples and the tour notebook (installed with the `notebook` extra).
+- Image comparisons, in the Linux + matplotlib 3.11 jobs.
 - Doctests (`pytest --doctest-modules src/ggtext`).
 - Lint: `ruff check` and `ruff format --check`.
 
@@ -106,7 +117,7 @@ python examples/run_all.py        # runs every example, writes docs/images/*.png
 python examples/make_gallery.py   # only rebuild docs/gallery.md
 ```
 
-To add an example, create `examples/NN_short_name.py` following the existing ones: a docstring whose first line is the title, saving into `docs/images/` under `if __name__ == "__main__":`. Run `run_all.py` and **look at the image** before committing.
+To add an example, create `examples/NN_short_name.py` following the existing ones: a docstring whose first line is the title, saving into `OUT` (which is `docs/images/` unless the tests set `GGTEXT_EXAMPLES_OUT`) under `if __name__ == "__main__":`. `tests/test_examples.py` picks it up automatically. Run `run_all.py` and **look at the image** before committing.
 
 To re-execute the notebook tour:
 

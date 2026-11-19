@@ -163,13 +163,13 @@ ggtext follows Python, matplotlib, and plotnine conventions where they differ fr
 
 ## Testing
 
-The suite has 1,040 tests in 10 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,039 pass, 1 skipped). Elsewhere the 10 image comparisons are also skipped (see below). A full run takes 15–25 seconds.
+The suite has 1,059 tests in 13 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,058 pass, 1 skipped). Elsewhere the 16 image comparisons are also skipped (see below). A full run takes 20–30 seconds.
 
 ```bash
-pip install -e ".[test]"
+pip install -e ".[test,notebook]"     # the notebook extra runs examples/ggtext_tour.ipynb
 pytest                                # everything
 pytest -m image                       # only the image-comparison tests
-pytest -m "not image"                 # everything else
+pytest -m "not image and not notebook and not examples"   # the fast core
 pytest --update-baselines -m image    # rewrite the image baselines after an intended change
 pytest --doctest-modules src/ggtext   # examples in the docstrings
 ```
@@ -185,7 +185,10 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 | `tests/test_layout.py` | 29 | The layout algorithm, isolated from matplotlib |
 | `tests/test_mpl_api.py` | 28 | Plain-matplotlib helpers and image loading |
 | `tests/test_geom_richtext_images.py` | 20 | `geom_richtext` against ggtext's image tests, plus justification |
+| `tests/test_examples.py` | 12 | Every gallery example runs and writes its images |
+| `tests/test_theme_images.py` | 6 | Theme text (titles, axes, strips, legends, tags) against baselines |
 | `tests/test_geom_textbox_images.py` | 5 | `geom_textbox` against ggtext's image tests |
+| `tests/test_notebook.py` | 1 | The tour notebook runs from top to bottom |
 
 **The core artist (`test_artist.py`)**
 - About 600 of the tests check placement: a plain string drawn as rich text must land on exactly the same pixels as a normal matplotlib `Text`, across every rotation, alignment and rotation-mode combination. This is why plotnine's layout can treat rich text like ordinary text, and it is what would catch a matplotlib update breaking the internals ggtext relies on.
@@ -201,13 +204,17 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 - The geoms: boxes, mapped fills and outline colors, text color, justification (numbers and `"inward"`/`"outward"`), rotation around the anchor, margins, min/max sizes, `orientation`, `format_string`, and missing labels.
 - The ggplot2 spellings (`colour`, `hjust`, `box.colour`, ...), saving to PNG, PDF and SVG, and one full example that must render with no warnings.
 
-**Image comparisons (`test_geom_richtext_images.py`, `test_geom_textbox_images.py`)**
-- Ported from [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext): one test for each of ggtext's own `vdiffr` snapshot tests for the two geoms, with the same data and parameters, plus the roxygen examples (10 image comparisons in all).
-- Each plot is saved at 640 × 480 pixels with DejaVu fonts and compared with a baseline in `tests/baseline_images/` (RMS tolerance 2, as in plotnine). Results and diffs go to `tests/result_images/`, which git ignores.
-- The R ggtext renderings of the same plots are in `tests/reference_r/` for side-by-side comparison; recreate them with `Rscript tests/reference_r/render.R`.
-- The same files also hold 15 unit tests for justification (`resolve_just`, including `"inward"`/`"outward"`), nudging, unsupported tags and orientations.
+**Image comparisons (`test_geom_richtext_images.py`, `test_geom_textbox_images.py`, `test_theme_images.py`)**
+- **Geoms (10 comparisons):** ported from [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext), one test for each of ggtext's own `vdiffr` snapshot tests for the two geoms, with the same data and parameters, plus the roxygen examples. The R ggtext renderings of the same plots are in `tests/reference_r/` for side-by-side comparison; recreate them with `Rscript tests/reference_r/render.R`.
+- **Theme text (6 comparisons):** the text around the panels, where plotnine's layout has to make room for rich text: a colored title with a wrapped, boxed `element_textbox_simple` subtitle and a caption; a boxed title and a tag; rich axis titles, a wrapping rotated textbox y title and rotated rich tick labels; top and right facet strips; a legend with rich labels and a multi-line title; and a colorbar title in a bottom legend.
+- Each plot is saved at 640 × 480 pixels with DejaVu fonts and compared with a baseline in `tests/baseline_images/` (RMS tolerance 2, as in plotnine). Results and diffs go to `tests/result_images/`, which git ignores; CI uploads them when a test fails.
 - Baselines depend on how text is rasterized, which differs between platforms and between the FreeType versions bundled with matplotlib 3.10 and 3.11. They are made in one reference environment, **Linux with matplotlib 3.11** (CI's `ubuntu-latest` jobs). Anywhere else the plots are still drawn, so the code paths run, but the pixel comparison is skipped with the reason shown, and `--update-baselines` refuses to overwrite the baselines. Set `GGTEXT_IMAGE_TESTS=force` to compare or update anyway.
+- The geom image files also hold 15 unit tests for justification (`resolve_just`, including `"inward"`/`"outward"`), nudging, unsupported tags and orientations.
 - The image harness (`tests/image_compare.py`) is switched on only for tests marked `image`, so the rest of the suite is unaffected.
+
+**Examples and notebook (`test_examples.py`, `test_notebook.py`)**
+- Every `examples/NN_*.py` script runs with warnings treated as errors and must write non-empty images. The images go to a temporary folder (`GGTEXT_EXAMPLES_OUT`), so tests never touch `docs/images/`; `python examples/run_all.py` still regenerates the gallery.
+- `examples/ggtext_tour.ipynb` is executed from top to bottom with nbclient and must finish with no errors and show its figures. It needs the `notebook` extra and is skipped without it.
 
 **Parsing (`test_parse.py`, `test_ir_adapter.py`)**
 - Parsing is done by [ggIR](https://github.com/snake-case-ggtext/ggIR); `test_parse.py` checks the result through `ggtext.parse()`: every supported Markdown and HTML feature, nesting, unclosed tags, unknown tags (which warn) and comments.
@@ -217,11 +224,10 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 **Layout (`test_layout.py`)** uses a fake text-measuring stand-in with predictable sizes, so positions can be checked by hand: wrapping, alignment, line spacing for both matplotlib versions, superscripts, padding, margins, fixed heights with overflow, and non-breaking spaces.
 
 **Not covered yet**
-- **Theme elements in images:** the image comparisons cover the two geoms only; titles, axis text, strips and legends are checked by geometry and pixel tests, not against baselines.
-- **Examples and notebook:** the gallery examples (`python examples/run_all.py`) and the notebook are run by hand, not by the test suite.
+- **Plot compositions in images:** side-by-side plots (`p1 | p2`) are checked by geometry, not against a baseline image.
 - **Remote images:** downloading images from URLs isn't tested, because it needs the network.
 
-CI (`.github/workflows/tests.yml`) runs the suite on Python 3.10 with matplotlib 3.10 and on Python 3.11–3.13 with matplotlib 3.11 on Linux, plus macOS and Windows, along with the doctests and `ruff`. The image comparisons run in the Linux + matplotlib 3.11 jobs.
+CI (`.github/workflows/tests.yml`) runs the suite, including the examples and the notebook, on Python 3.10 with matplotlib 3.10 and on Python 3.11–3.13 with matplotlib 3.11 on Linux, plus macOS and Windows, along with the doctests and `ruff`. The image comparisons run in the Linux + matplotlib 3.11 jobs.
 
 ## Contributing
 

@@ -4,6 +4,7 @@ Quickstart: rich text with plain matplotlib (no plotnine needed).
 Run:  python examples/02_quickstart_matplotlib.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -15,7 +16,11 @@ import numpy as np
 
 import ggtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 BLUE, ORANGE = "#0072B2", "#D55E00"

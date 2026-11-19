@@ -6,6 +6,7 @@ Unlike plotnine's geom_label, boxed labels can be rotated.
 Run:  python examples/06_geom_richtext.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -28,7 +29,11 @@ from plotnine import (
 
 from ggtext import element_markdown, geom_richtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Labels arranged on a circle, each rotated to point outwards

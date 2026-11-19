@@ -25,11 +25,6 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 - `<p>` and `<div>` only start new lines. There's no paragraph spacing (parser support belongs in ggIR).
 - **Image comparisons run in one environment only.** Text rasterizes differently across platforms and between the FreeType versions bundled with matplotlib 3.10 and 3.11, so the picture tests compare against baselines only on Linux with matplotlib 3.11 (elsewhere the plots are drawn and the comparison is skipped).
 
-## Testing
-
-- **Image tests for theme text:** titles, wrapped subtitles, axis titles and tick labels, facet strips, legends and tags are checked by geometry and pixel tests but not against baseline images (the image comparisons cover the two geoms).
-- **Examples and notebook in the test suite:** the gallery examples (`python examples/run_all.py`) and `examples/ggtext_tour.ipynb` are run by hand.
-
 ## Less reliance on matplotlib internals
 
 - **Opt-in `richtext` property.** `import ggtext` adds `set_richtext`/`get_richtext` to matplotlib's `Text`, which is what lets plotnine's theme elements become rich text. Make this an explicit opt-in (e.g. `ggtext.install()`, or done when the first `element_markdown` is created) so importing ggtext changes nothing globally.
