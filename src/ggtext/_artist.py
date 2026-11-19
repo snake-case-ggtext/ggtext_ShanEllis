@@ -36,13 +36,17 @@ class for a rich subclass of its own class. ggtext also registers a
 ``richtext`` property on ``Text``, so ``text.set(richtext=True)`` does
 the same thing. That is the hook the plotnine integration uses: theme
 elements pass their properties to ``text.set(**properties)``.
+:func:`disable`, :func:`enable` and the :func:`enabled` context manager
+remove and restore that property.
 """
 
 from __future__ import annotations
 
 import math
+import threading
 import warnings
-from collections.abc import Callable
+from collections.abc import Callable, Generator
+from contextlib import contextmanager
 from functools import lru_cache
 from typing import Any
 
@@ -1071,9 +1075,76 @@ def install_text_property() -> None:
     a property. Existing behaviour of ``Text`` does not change.
     ggtext runs this function on import.
     """
-    if getattr(Text, "set_richtext", None) is not _text_set_richtext:
-        Text.set_richtext = _text_set_richtext  # type: ignore[attr-defined]
-        Text.get_richtext = _text_get_richtext  # type: ignore[attr-defined]
+    with _property_lock:
+        if not _property_installed():
+            Text.set_richtext = _text_set_richtext  # type: ignore[attr-defined]
+            Text.get_richtext = _text_get_richtext  # type: ignore[attr-defined]
+
+
+def uninstall_text_property() -> None:
+    """Remove the ``richtext`` property that :func:`install_text_property` added."""
+    with _property_lock:
+        if _property_installed():
+            del Text.set_richtext  # type: ignore[attr-defined]
+            del Text.get_richtext  # type: ignore[attr-defined]
+
+
+def _property_installed() -> bool:
+    return Text.__dict__.get("set_richtext") is _text_set_richtext
+
+
+_property_lock = threading.RLock()
+
+
+def enable() -> None:
+    """
+    Add the ``richtext`` property to every matplotlib ``Text``.
+
+    ggtext does this on import, so you only need it after :func:`disable`.
+    """
+    install_text_property()
+
+
+def disable() -> None:
+    """
+    Remove the ``richtext`` property from matplotlib ``Text``.
+
+    Text that is already rich stays rich. Afterwards, ``element_markdown``
+    themes and ``ax.text(..., richtext=True)`` fail with an
+    ``AttributeError`` until :func:`enable` is called. The ggtext helpers
+    (:func:`ggtext.text`, the geoms, :func:`make_rich`) keep working.
+    """
+    uninstall_text_property()
+
+
+@contextmanager
+def enabled() -> Generator[None]:
+    """
+    Enable the ``richtext`` property for the duration of a ``with`` block.
+
+    On exit the previous state is restored, so blocks nest. It also
+    works as a decorator.
+
+    The property is needed when the theme is *applied*, which for
+    plotnine is when the plot is drawn, not when it is built. Draw (or
+    save) the plot inside the block::
+
+        ggtext.disable()
+        with ggtext.enabled():
+            fig = plot.draw()
+        fig.savefig("plot.png")  # fine: the text is already rich
+
+    The property lives on the ``Text`` class, so it is shared by all
+    threads; the block scopes it in time, not per thread.
+    """
+    with _property_lock:
+        was_enabled = _property_installed()
+        install_text_property()
+    try:
+        yield
+    finally:
+        if not was_enabled:
+            uninstall_text_property()
 
 
 install_text_property()

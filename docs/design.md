@@ -74,6 +74,7 @@ Text.set_richtext = ...  # and Text.get_richtext
 - It works for every themeable at once, including future ones that plotnine adds, since they all go through `.set()`.
 - It survives theme merging. When `theme_bw()` already defines `plot_title`, plotnine merges the property dictionaries but keeps the *original* element object. A hook based on the element's class would be lost there; a property in the dictionary is not.
 - It also works in plain matplotlib: `ax.text(..., richtext=True)`, `plt.setp(labels, richtext=True)`.
+- It can be switched off. `ggtext.disable()` removes the property and `ggtext.enable()` adds it back; `with ggtext.enabled():` adds it for one block and then restores the previous state. Text that is already rich stays rich, and ggtext's own helpers and geoms don't need the property. plotnine applies themes when a plot is *drawn*, so the plot must be drawn (or saved) inside the block. The property lives on the class, so the block scopes it in time, not per thread.
 
 ### 5. In-place class swap
 
