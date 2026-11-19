@@ -71,9 +71,65 @@ colors = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}
 )
 ```
 
-Also available: `element_textbox_simple()` for long subtitles that wrap to the panel width, and the `geom_richtext()` and `geom_textbox()` geoms for labels in the data.
+### Long subtitles that wrap
+
+`element_textbox_simple()` word-wraps text to the width of the panels, so a subtitle can be a real sentence or two. Here the colored words in the title also replace the legend:
+
+```python
+from plotnine import (
+    aes,
+    geom_line,
+    ggplot,
+    labs,
+    scale_color_manual,
+    scale_x_datetime,
+    theme,
+    theme_minimal,
+)
+from plotnine.data import economics_long
+from ggtext import element_markdown, element_textbox_simple
+
+BLUE, ORANGE = "#0072B2", "#D55E00"
+df = economics_long[economics_long["variable"].isin(["psavert", "uempmed"])]
+
+(
+    ggplot(df, aes("date", "value", color="variable"))
+    + geom_line(size=0.8)
+    + scale_color_manual(values={"psavert": BLUE, "uempmed": ORANGE})
+    + scale_x_datetime(date_labels="%Y")
+    + labs(
+        title=f"<span style='color:{BLUE}'>**Personal savings rate**</span> and "
+        f"<span style='color:{ORANGE}'>**unemployment duration**</span>, 1967–2015",
+        subtitle="This subtitle is drawn with **element_textbox_simple()**: it is "
+        "word-wrapped to the width of the panel area, so you can write a real "
+        "sentence or two about what the reader should notice. Styles such as "
+        "*italics*, <span style='color:#0072B2'>**colored bold text**</span> and "
+        "units like m<sup>2</sup> survive the line breaks.",
+        x="",
+        y="",
+        caption="Source: *economics_long* (US FRED data) bundled with plotnine",
+    )
+    + theme_minimal()
+    + theme(
+        figure_size=(8, 5),
+        legend_position="none",
+        plot_title=element_markdown(size=14, ha="left"),
+        plot_subtitle=element_textbox_simple(
+            size=10,
+            color="#333333",
+            fill="#F2F2F2",
+            padding=(6, 8),
+            r=4,
+            margin={"t": 4, "b": 10},
+        ),
+        plot_caption=element_markdown(size=8, color="#666666"),
+    )
+)
+```
 
 ![A wrapped subtitle in a grey box above a line chart](docs/images/titles_and_subtitles.png)
+
+This is [`examples/03_titles_and_subtitles.py`](examples/03_titles_and_subtitles.py). For labels inside the panels, see the `geom_richtext()` and `geom_textbox()` geoms in the [plotnine guide](docs/plotnine.md#geoms).
 
 ## matplotlib in 30 seconds
 
