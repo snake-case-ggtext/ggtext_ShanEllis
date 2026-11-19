@@ -1,0 +1,135 @@
+"""
+Image comparison harness for the plotnine geoms.
+
+Adapted from plotnine's own test suite. A test compares a plot with a
+baseline image using ``assert p == "name"``. Result images are written to
+``tests/result_images/<test_module>/`` and compared with
+``tests/baseline_images/<test_module>/<name>.png`` (tolerance 2, as in
+plotnine).
+
+Create or update baselines with ``pytest --update-baselines``.
+
+Everything here is local to image tests: ``ggplot.__eq__`` is only
+patched while a test marked ``image`` runs (see ``conftest.py``), and the
+size, dpi, fonts and rcParams are applied per comparison and restored.
+"""
+
+from __future__ import annotations
+
+import inspect
+import io
+import shutil
+import types
+from pathlib import Path
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from matplotlib.testing.compare import compare_images
+
+TOLERANCE = 2  # Same default tolerance as plotnine
+DPI = 72
+# 640 x 480 pixels, the size of ggtext's vdiffr snapshots and of the R
+# renders in tests/reference_r/
+FIGURE_SIZE = (640 / DPI, 480 / DPI)
+
+# Fonts that ship with matplotlib, for identical images everywhere
+FONT_RCPARAMS = {
+    "font.monospace": ["DejaVu Sans Mono"],
+    "font.sans-serif": ["DejaVu Sans"],
+    "font.serif": ["DejaVu Serif"],
+}
+
+tests_dir = Path(__file__).parent
+baseline_images_dir = tests_dir / "baseline_images"
+result_images_dir = tests_dir / "result_images"
+
+_state = {"update": False}
+
+
+def set_update(flag: bool) -> None:
+    _state["update"] = bool(flag)
+
+
+def make_test_image_filenames(name: str, test_file: str):
+    name_ = Path(name).with_suffix(".png")
+    subdir = Path(test_file).stem
+    filenames = types.SimpleNamespace(
+        baseline=baseline_images_dir / subdir / name_,
+        result=result_images_dir / subdir / name_,
+        expected=result_images_dir / subdir / f"{name_.stem}-expected.png",
+    )
+    filenames.result.parent.mkdir(parents=True, exist_ok=True)
+    return filenames
+
+
+class _test_cleanup:
+    """Deterministic rcParams and fonts, restored on exit."""
+
+    def __enter__(self):
+        from plotnine.themes.theme import DEFAULT_RCPARAMS
+
+        plt.close("all")
+        self._rc = mpl.rcParams.copy()
+        self._default_rc = dict(DEFAULT_RCPARAMS)
+        mpl.rcdefaults()
+        mpl.rcParams["text.hinting"] = "auto"
+        mpl.rcParams["text.antialiased"] = True
+        DEFAULT_RCPARAMS.update(FONT_RCPARAMS)
+        mpl.rcParams.update(FONT_RCPARAMS)
+        return self
+
+    def __exit__(self, *args):
+        from plotnine.themes.theme import DEFAULT_RCPARAMS
+
+        plt.close("all")
+        DEFAULT_RCPARAMS.clear()
+        DEFAULT_RCPARAMS.update(self._default_rc)
+        mpl.rcParams.update(self._rc)
+
+
+def _sized(plot):
+    from plotnine import theme
+
+    return plot + theme(figure_size=FIGURE_SIZE, dpi=DPI)
+
+
+def ggplot_equals(plot, name: str) -> bool:
+    test_file = inspect.stack()[1][1]
+    filenames = make_test_image_filenames(name, test_file)
+    with _test_cleanup():
+        _sized(plot).save(filenames.result, verbose=False, dpi=DPI)
+
+    if _state["update"]:
+        filenames.baseline.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(filenames.result, filenames.baseline)
+
+    if not filenames.baseline.exists():
+        raise Exception(f"Baseline image {filenames.baseline} is missing")
+
+    shutil.copyfile(filenames.baseline, filenames.expected)
+    err = compare_images(
+        str(filenames.expected),
+        str(filenames.result),
+        TOLERANCE,
+        in_decorator=True,
+    )
+    plot._err = err  # pyright: ignore[reportAttributeAccessIssue]
+    return not err
+
+
+def draw_test(self):
+    with _test_cleanup():
+        fig = _sized(self).draw()
+        fig.savefig(io.BytesIO(), dpi=DPI)  # text is laid out lazily
+
+
+def assertrepr_compare(op, left, right):
+    from plotnine import ggplot
+
+    if isinstance(left, ggplot) and isinstance(right, str) and op == "==":
+        err = getattr(left, "_err", None)
+        if err:
+            return [
+                "images not close: {actual:s} vs. {expected:s} "
+                "(RMS {rms:.2f})".format(**err)
+            ]
