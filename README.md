@@ -38,7 +38,15 @@ ggtext supports Python ≥ 3.10, matplotlib ≥ 3.10, and plotnine 0.15.
 Swap `element_text()` for `element_markdown()`, then write Markdown or HTML in your labels:
 
 ```python
-from plotnine import ggplot, aes, geom_point, labs, theme, theme_minimal, scale_color_manual
+from plotnine import (
+    ggplot,
+    aes,
+    geom_point,
+    labs,
+    theme,
+    theme_minimal,
+    scale_color_manual,
+)
 from plotnine.data import penguins
 from ggtext import element_markdown
 
@@ -50,14 +58,16 @@ colors = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}
     + scale_color_manual(values=colors)
     + labs(
         title="Bill size of <span style='color:#E69F00'>**Adelie**</span>, "
-              "<span style='color:#56B4E9'>**Chinstrap**</span> and "
-              "<span style='color:#009E73'>**Gentoo**</span> penguins",
+        "<span style='color:#56B4E9'>**Chinstrap**</span> and "
+        "<span style='color:#009E73'>**Gentoo**</span> penguins",
         caption="Data: *palmerpenguins*",
     )
     + theme_minimal()
-    + theme(plot_title=element_markdown(size=14),
-            plot_caption=element_markdown(),
-            legend_position="none")
+    + theme(
+        plot_title=element_markdown(size=14),
+        plot_caption=element_markdown(),
+        legend_position="none",
+    )
 )
 ```
 
@@ -76,7 +86,9 @@ ax.plot([0, 1, 2], [0, 1, 4])
 ggtext.set_title(ax, "<span style='color:#0072B2'>**Growth**</span> is *quadratic*")
 ggtext.set_xlabel(ax, "time, *t* (s)")
 ggtext.set_ylabel(ax, "area (m<sup>2</sup>)")
-ggtext.textbox(ax, 0.6, 3, "A **word-wrapped** box, like ggtext's *geom_textbox*.", width="1.5in")
+ggtext.textbox(
+    ax, 0.6, 3, "A **word-wrapped** box, like ggtext's *geom_textbox*.", width="1.5in"
+)
 
 # Or turn any existing Text into rich text:
 ggtext.richify(ax.title)

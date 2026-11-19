@@ -74,8 +74,16 @@ ggtext.textbox(ax, 0.5, 0.5, "Half the axes wide", width=0.5, transform=ax.trans
 `ax.annotate` with rich text. The arrow attaches to the edge of the rich text box:
 
 ```python
-ggtext.annotate(ax, "**Outlier?**", xy=(3, 9.7), xytext=(1.2, 10.5),
-                arrowprops=dict(arrowstyle="->"), fill="white", box_color="grey", padding=3)
+ggtext.annotate(
+    ax,
+    "**Outlier?**",
+    xy=(3, 9.7),
+    xytext=(1.2, 10.5),
+    arrowprops=dict(arrowstyle="->"),
+    fill="white",
+    box_color="grey",
+    padding=3,
+)
 ```
 
 ## Titles and labels
@@ -92,8 +100,10 @@ Each takes the same arguments as the matplotlib method, plus rich text options, 
 ### Tick labels
 
 ```python
-ax.set_xticks([1, 2, 3], ["Control", "**Low**", "<span style='color:#D55E00'>High</span>"])
-ggtext.rich_ticklabels(ax, "x")           # "x", "y" or "both"; which="major"/"minor"/"both"
+ax.set_xticks(
+    [1, 2, 3], ["Control", "**Low**", "<span style='color:#D55E00'>High</span>"]
+)
+ggtext.rich_ticklabels(ax, "x")  # "x", "y" or "both"; which="major"/"minor"/"both"
 ```
 
 matplotlib creates new tick objects when the view changes (zooming, new limits). `rich_ticklabels` makes sure those new ticks are rich too.
@@ -139,6 +149,7 @@ plt.setp(ax.get_xticklabels(), richtext=True)
 
 ```python
 from ggtext import RichText
+
 t = RichText(0.5, 0.5, "**hi**", transform=ax.transAxes, ha="center")
 ax.add_artist(t)
 ```

@@ -8,7 +8,7 @@ import pytest
 
 plotnine = pytest.importorskip("plotnine")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     element_blank,
     element_text,
@@ -23,7 +23,7 @@ from plotnine import (  # noqa: E402
     theme_gray,
 )
 
-from ggtext import (  # noqa: E402
+from ggtext import (
     RichText,
     RichTextSpec,
     element_markdown,
@@ -33,7 +33,7 @@ from ggtext import (  # noqa: E402
     geom_textbox,
 )
 
-from .conftest import has_color, pixels_in_bbox, render_rgba  # noqa: E402
+from .conftest import has_color, pixels_in_bbox, render_rgba
 
 pytestmark = pytest.mark.plotnine
 
@@ -570,7 +570,7 @@ def test_relative_width_in_composition_uses_own_plot():
 # ggtext conventions in the geoms: anchor rotation, justification,
 # mappable outline/text colors, margins and size limits
 # ---------------------------------------------------------------------------
-from ggtext.plotnine.geoms import resolve_just  # noqa: E402
+from ggtext.plotnine.geoms import resolve_just
 
 
 class TestResolveJust:

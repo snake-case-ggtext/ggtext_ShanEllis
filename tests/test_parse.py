@@ -137,7 +137,7 @@ class TestHtml:
         assert tokens[0].style.color == "blue" and tokens[0].style.weight == "bold"
 
     def test_sup_sub(self):
-        x, sup, h, sub = runs("x<sup>2</sup>H<sub>2</sub>")[:4]
+        _x, sup, h, sub = runs("x<sup>2</sup>H<sub>2</sub>")[:4]
         assert sup.style.size < 10 and sup.style.shift > 0
         assert sub.style.size < 10 and sub.style.shift < 0
         assert h.style.shift == 0

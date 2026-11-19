@@ -144,7 +144,7 @@ def ggplot_equals(plot, name: str) -> bool:
         shutil.copyfile(filenames.result, filenames.baseline)
 
     if not filenames.baseline.exists():
-        raise Exception(f"Baseline image {filenames.baseline} is missing")
+        raise FileNotFoundError(f"Baseline image {filenames.baseline} is missing")
 
     shutil.copyfile(filenames.baseline, filenames.expected)
     err = compare_images(

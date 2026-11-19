@@ -35,7 +35,21 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
+## Make targets
+
+```bash
+make test         # pytest in random order (pytest-randomly) with coverage
+make lint         # ruff check + ruff format --check + pyrefly (strict)
+make pre-commit   # install the prek git hooks and run them on every file
+```
+
+Run `make pre-commit` once after cloning: the hooks then run ruff and pyrefly on every commit.
+
+pyrefly runs in strict mode. Existing errors are recorded in `pyrefly-baseline.json`, so only new ones fail. After fixing typed code, shrink the baseline with `uv run pyrefly check --update-baseline`.
+
 ## Running the tests
+
+Tests run in a random order (pytest-randomly). To reproduce a failure, rerun with the seed printed in the header: `pytest -p randomly --randomly-seed=<seed>`.
 
 ```bash
 pytest                       # whole suite
@@ -72,9 +86,12 @@ New features need tests. For anything visual, prefer checking geometry (`get_win
 ## Code style
 
 ```bash
-ruff check src tests          # lint
-ruff format src tests         # format
+make lint                     # ruff + pyrefly
+uv run ruff check --fix .     # autofix
+uv run ruff format .          # format
 ```
+
+Ruff uses its default rules; don't add per-project rule selections.
 
 - Code must run on Python 3.10, so don't use 3.11+ syntax or stdlib features.
 - Public functions get NumPy-style docstrings with an example where it helps.

@@ -14,7 +14,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     facet_wrap,
     geom_point,
@@ -24,9 +24,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_bw,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -45,8 +45,10 @@ p = (
     + facet_wrap("island", labeller=island_label)
     + scale_color_manual(
         values={"female": "#CC79A7", "male": "#0072B2"},
-        labels=["<span style='color:#CC79A7'>**female**</span>",
-                "<span style='color:#0072B2'>**male**</span>"],
+        labels=[
+            "<span style='color:#CC79A7'>**female**</span>",
+            "<span style='color:#0072B2'>**male**</span>",
+        ],
     )
     + labs(
         x="Flipper length (mm)",

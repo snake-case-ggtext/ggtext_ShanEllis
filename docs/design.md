@@ -65,7 +65,7 @@ text_artist.set(**element.properties)
 Importing ggtext registers one new property on `matplotlib.text.Text`:
 
 ```python
-Text.set_richtext = ...   # and Text.get_richtext
+Text.set_richtext = ...  # and Text.get_richtext
 ```
 
 `element_markdown()` is an `element_text` with one extra entry in its properties, `richtext=RichTextSpec(...)`. When plotnine applies the theme, `text.set(..., richtext=spec)` calls `set_richtext`, which turns that artist into rich text **in place**.

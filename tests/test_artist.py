@@ -29,8 +29,8 @@ PLAIN = {"markdown": False, "html": False}
 )
 @pytest.mark.parametrize("rotation_mode", ["default", "anchor"])
 def test_extent_matches_plain_text(fig, renderer, s, rotation, ha, va, rotation_mode):
-    kw = dict(rotation=rotation, ha=ha, va=va, rotation_mode=rotation_mode,
-              fontsize=12, ma="center")  # fmt: skip
+    kw = {"rotation": rotation, "ha": ha, "va": va, "rotation_mode": rotation_mode,
+              "fontsize": 12, "ma": "center"}  # fmt: skip
     plain = fig.text(0.4, 0.5, s, **kw)
     rich = fig.add_artist(RichText(0.4, 0.5, s, richtext=PLAIN, **kw))
     a = plain.get_window_extent(renderer).extents
@@ -46,6 +46,26 @@ def test_markdown_does_not_change_plain_extent(fig, renderer):
         rich.get_window_extent(renderer).extents,
         atol=0.6,
     )
+
+
+def test_metric_caches_follow_font_rcparams():
+    # The same FontProperties ("sans-serif", 12pt) resolves to different
+    # fonts under different rcParams. Measuring under one font must not leak
+    # cached metrics into figures that use another.
+    s = "two\nlines"
+    extents = {}
+    for family in (["DejaVu Sans"], ["DejaVu Sans Mono"]):
+        with plt.rc_context({"font.family": "sans-serif", "font.sans-serif": family}):
+            f = plt.figure(figsize=(6, 4), dpi=100)
+            r = f.canvas.get_renderer()
+            plain = f.text(0.4, 0.5, s, fontsize=12)
+            rich = f.add_artist(RichText(0.4, 0.5, s, fontsize=12, richtext=PLAIN))
+            a = plain.get_window_extent(r).extents
+            b = rich.get_window_extent(r).extents
+            np.testing.assert_allclose(a, b, atol=0.6)
+            extents[family[0]] = b
+    # Sanity check: the two fonts really do measure differently
+    assert not np.allclose(extents["DejaVu Sans"], extents["DejaVu Sans Mono"])
 
 
 def test_bold_is_wider_than_plain(fig, renderer):
@@ -170,17 +190,17 @@ def test_layout_cache_invalidates_on_property_change(fig, renderer):
 @pytest.mark.skipif(not MPL_311, reason="format of matplotlib >= 3.11")
 def test_get_layout_format_311(fig, renderer):
     t = ggtext.text(fig, 0.5, 0.5, "a\n**b**")
-    bbox, info, (corner, size) = t._get_layout(renderer)
+    _bbox, info, (_corner, _size) = t._get_layout(renderer)
     assert len(info) == 2
-    line, (w, a, d), xy = info[0]
+    line, (_w, _a, _d), xy = info[0]
     assert line == "a" and len(xy) == 2
 
 
 @pytest.mark.skipif(MPL_311, reason="format of matplotlib < 3.11")
 def test_get_layout_format_310(fig, renderer):
     t = ggtext.text(fig, 0.5, 0.5, "a\n**b**")
-    bbox, info, descent = t._get_layout(renderer)
-    line, (w, h), x, y = info[0]
+    _bbox, info, descent = t._get_layout(renderer)
+    line, (_w, _h), _x, _y = info[0]
     assert line == "a" and descent > 0
 
 

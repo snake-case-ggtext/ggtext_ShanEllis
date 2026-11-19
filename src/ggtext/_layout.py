@@ -18,13 +18,14 @@ so baselines have negative y values. This matches the convention used by
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import List, Protocol, Sequence, Tuple, Union
+from typing import Protocol
 
 from ._parse import LINE_BREAK, ImageRun, TextRun, Token
 from ._style import Style
 
-__all__ = ["Measurer", "Fragment", "Line", "Layout", "layout_tokens"]
+__all__ = ["Fragment", "Layout", "Line", "Measurer", "layout_tokens"]
 
 # Break only at ordinary whitespace: \s would also match the non-breaking
 # space (&nbsp;, U+00A0), which must keep words together.
@@ -34,11 +35,11 @@ _WS_RE = re.compile(r"([ \t\n\r\f\v]+)")
 class Measurer(Protocol):
     """What the layout algorithm needs to know about the renderer."""
 
-    def text(self, s: str, style: Style, math: bool) -> Tuple[float, float, float]:
+    def text(self, s: str, style: Style, math: bool) -> tuple[float, float, float]:
         """Return ``(width, ascent, descent)`` of *s* in pixels."""
         ...
 
-    def font_metrics(self, style: Style) -> Tuple[float, float, float]:
+    def font_metrics(self, style: Style) -> tuple[float, float, float]:
         """
         Return ``(ascent, descent, line_gap)`` of the font of *style*.
 
@@ -48,7 +49,7 @@ class Measurer(Protocol):
         """
         ...
 
-    def image(self, run: ImageRun) -> Tuple[float, float]:
+    def image(self, run: ImageRun) -> tuple[float, float]:
         """Return the ``(width, height)`` of an image in pixels."""
         ...
 
@@ -61,7 +62,7 @@ class Measurer(Protocol):
 class Fragment:
     """A positioned piece of a line: some text or an image."""
 
-    run: Union[TextRun, ImageRun]
+    run: TextRun | ImageRun
     width: float
     ascent: float  # above the baseline, including any shift
     descent: float  # below the baseline, including any shift
@@ -81,7 +82,7 @@ class Fragment:
 class Line:
     """A laid out line of fragments."""
 
-    fragments: List[Fragment] = field(default_factory=list)
+    fragments: list[Fragment] = field(default_factory=list)
     width: float = 0.0
     ascent: float = 0.0
     descent: float = 0.0
@@ -103,15 +104,15 @@ class Line:
 class Layout:
     """The result of laying out rich text."""
 
-    lines: List[Line]
+    lines: list[Line]
     width: float  # outer width: box + margins
     height: float  # outer height: box + margins
     content_width: float
-    padding: Tuple[float, float, float, float]  # t, r, b, l in pixels
-    margin: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
+    padding: tuple[float, float, float, float]  # t, r, b, l in pixels
+    margin: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
 
     @property
-    def box(self) -> Tuple[float, float, float, float]:
+    def box(self) -> tuple[float, float, float, float]:
         """``(x, y, width, height)`` of the box (margins excluded); y is its bottom."""
         mt, mr, mb, ml = self.margin
         return (ml, -self.height + mb, self.width - ml - mr, self.height - mt - mb)
@@ -131,8 +132,8 @@ def _numeric(value) -> float | None:
         return None
 
 
-def _split_logical_lines(tokens: Sequence[Token]) -> List[List[Token]]:
-    lines: List[List[Token]] = [[]]
+def _split_logical_lines(tokens: Sequence[Token]) -> list[list[Token]]:
+    lines: list[list[Token]] = [[]]
     for tok in tokens:
         if tok is LINE_BREAK:
             lines.append([])
@@ -141,7 +142,7 @@ def _split_logical_lines(tokens: Sequence[Token]) -> List[List[Token]]:
     return lines
 
 
-def _measure(tok: Union[TextRun, ImageRun], m: Measurer) -> Fragment:
+def _measure(tok: TextRun | ImageRun, m: Measurer) -> Fragment:
     if isinstance(tok, ImageRun):
         w, h = m.image(tok)
         shift = m.points_to_pixels(tok.style.shift)
@@ -151,7 +152,7 @@ def _measure(tok: Union[TextRun, ImageRun], m: Measurer) -> Fragment:
     return Fragment(tok, w, a + shift, d - shift, shift)
 
 
-def _pieces(tokens: Sequence[Token], wrap: bool) -> List[Union[TextRun, ImageRun]]:
+def _pieces(tokens: Sequence[Token], wrap: bool) -> list[TextRun | ImageRun]:
     """
     Break tokens into the units that layout works with.
 
@@ -159,7 +160,7 @@ def _pieces(tokens: Sequence[Token], wrap: bool) -> List[Union[TextRun, ImageRun
     kerning). With wrapping, text runs are split into words and runs of
     whitespace so that lines can be broken at the spaces.
     """
-    out: List[Union[TextRun, ImageRun]] = []
+    out: list[TextRun | ImageRun] = []
     for tok in tokens:
         if isinstance(tok, TextRun) and wrap and not tok.math:
             for part in _WS_RE.split(tok.text):
@@ -170,12 +171,12 @@ def _pieces(tokens: Sequence[Token], wrap: bool) -> List[Union[TextRun, ImageRun
     return out
 
 
-def _wrap(frags: List[Fragment], width: float | None) -> List[List[Fragment]]:
+def _wrap(frags: list[Fragment], width: float | None) -> list[list[Fragment]]:
     """Greedy line breaking at whitespace fragments."""
     if width is None:
         return [frags]
 
-    lines: List[List[Fragment]] = [[]]
+    lines: list[list[Fragment]] = [[]]
     current = 0.0
     for f in frags:
         line = lines[-1]
@@ -200,9 +201,9 @@ def _wrap(frags: List[Fragment], width: float | None) -> List[List[Fragment]]:
     return lines
 
 
-def _merge(frags: List[Fragment], m: Measurer) -> List[Fragment]:
+def _merge(frags: list[Fragment], m: Measurer) -> list[Fragment]:
     """Merge adjacent text fragments that share a style (after wrapping)."""
-    merged: List[Fragment] = []
+    merged: list[Fragment] = []
     for f in frags:
         prev = merged[-1] if merged else None
         if (
@@ -229,9 +230,9 @@ def layout_tokens(
     box_width: float | None = None,
     box_height: float | None = None,
     valign: str = "top",
-    padding: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
-    margin: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
-    linespacing: Union[float, str, None] = None,
+    padding: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
+    margin: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
+    linespacing: float | str | None = None,
     line_model: str = "mpl311",
 ) -> Layout:
     """
@@ -288,7 +289,7 @@ def layout_tokens(
     wrap = wrap_width is not None
 
     # 1. Horizontal layout: break into lines and place fragments
-    rows: List[List[Fragment]] = []
+    rows: list[list[Fragment]] = []
     for logical in _split_logical_lines(tokens):
         frags = [_measure(p, measurer) for p in _pieces(logical, wrap)]
         for row in _wrap(frags, wrap_width):
@@ -297,7 +298,7 @@ def layout_tokens(
     # 2. Vertical metrics of every line
     multiline = len(rows) > 1
     numeric_ls = _numeric(linespacing)
-    lines: List[Line] = []
+    lines: list[Line] = []
     for row in rows:
         line = Line(row)
         x = 0.0

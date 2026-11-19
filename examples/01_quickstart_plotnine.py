@@ -13,7 +13,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_point,
     ggplot,
@@ -22,9 +22,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
