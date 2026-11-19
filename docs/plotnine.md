@@ -29,7 +29,7 @@ from ggtext import (
 
 Theme merging works as usual. `theme_bw() + theme(plot_title=element_markdown())` keeps theme_bw's title size and color and adds Markdown. A later `element_text()` for the same themeable keeps the Markdown, and `element_blank()` hides the text.
 
-Text is parsed only where you ask for it, so a plot without ggtext elements is unchanged: `labs(title="**x**")` alone still shows the asterisks.
+ggtext parses text only where you ask for it. A plot without ggtext elements renders as before: `labs(title="**x**")` alone still shows the asterisks.
 
 ### `element_markdown()`
 
@@ -57,7 +57,7 @@ theme(
 | `math` | `True` | render `$...$` as mathtext |
 | `**kwargs` | | everything `element_text()` accepts: `size`, `color`, `family`, `weight`, `style`, `ha`, `va`, `ma`, `rotation`, `linespacing`, `margin`, ... |
 
-A box is drawn only if `fill` or `box_color` is set. The box (including `padding`) is part of the text's size, so the layout makes room for it. `margin` stays outside the box, as in ggplot2.
+The box draws only when you set `fill` or `box_color`. The box (including `padding`) is part of the text's size, so the layout makes room for it. `margin` stays outside the box, as in ggplot2.
 
 ### `element_textbox()`
 
@@ -73,7 +73,7 @@ Like `element_markdown()`, but the text can be **word-wrapped in a box of a give
 | `orientation` | `None` | `"upright"` (0°), `"left-rotated"` (90°), `"right-rotated"` (270°), `"inverted"` (180°). Overrides `rotation` |
 | `fill`, `box_color`, `linewidth`, `linestyle`, `r`, `padding`, `halign`, `markdown`, `newline`, `math` | | as in `element_markdown()` |
 
-Unlike R's ggtext, a text box can be rotated to **any** angle with `rotation=`. `orientation` is a shortcut with ggtext's names.
+Unlike R's ggtext, you can set `rotation=` to give a text box **any** angle. `orientation` is a shortcut with ggtext's names.
 
 ```python
 # A boxed y-axis title that spans 80% of the panel height
@@ -101,7 +101,7 @@ theme(plot_subtitle=element_textbox_simple(size=10, margin={"b": 8}))
 
 ### Relative widths
 
-A fractional `width` (or `maxwidth`, `height`) is measured against:
+ggtext measures a fractional `width` (or `maxwidth`, `height`) against:
 
 | Text | Reference |
 |---|---|
@@ -109,15 +109,15 @@ A fractional `width` (or `maxwidth`, `height`) is measured against:
 | text drawn inside the panels (`geom_textbox(width=0.5)`) | the panel (axes) |
 | rotated text (closer to vertical) | the panel *height*, so `width` always runs along the text |
 
-In a **plot composition** (`p1 | p2`, `p1 / p2`), each plot's titles are measured against that plot's own panels:
+In a **plot composition** (`p1 | p2`, `p1 / p2`), each plot's titles measure against that plot's own panels:
 
 ![Two plots side by side, each with its own wrapped subtitle box](images/plot_composition.png)
 
-Behind the scenes, plotnine measures text *before* it moves the panels into place. A wrapped box can therefore have a different height once the panels have moved, so ggtext runs plotnine's layout a second time for figures that contain fractional-width text. You don't need to do anything. [design.md](design.md#two-pass-layout) has the details.
+Behind the scenes, plotnine measures text *before* it moves the panels into place. A wrapped box can therefore have a different height once the panels have moved. So ggtext runs plotnine's layout a second time for figures that contain fractional-width text. You don't need to do anything. [design.md](design.md#two-pass-layout) has the details.
 
 ### ggplot2 spellings
 
-ggplot2 / R ggtext argument names are accepted as aliases so ported code keeps working:
+ggtext accepts ggplot2 / R ggtext argument names as aliases, so ported code keeps working:
 
 | R / ggplot2 | ggtext (Python) |
 |---|---|
@@ -129,7 +129,7 @@ ggplot2 / R ggtext argument names are accepted as aliases so ported code keeps w
 | `box.colour`, `box.color`, `box_colour` | `box_color` |
 | `linetype` | `linestyle` |
 
-Names with dots must be passed with `**{...}` in Python: `element_markdown(**{"box.colour": "grey"})`. We recommend using the Python names in new code.
+In Python, pass names with dots through `**{...}`: `element_markdown(**{"box.colour": "grey"})`. We recommend the Python names for code you write now.
 
 ## Geoms
 
@@ -149,12 +149,12 @@ ggplot(df, aes("x", "y", label="label", label_color="group")) + geom_richtext(
 
 The geoms follow ggtext's conventions:
 
-- **Rotation around the anchor.** Labels rotate around their anchor point (`rotation_mode="anchor"`), so `ha="left"` means "the text starts at the point" at every angle. plotnine's `geom_text()` instead rotates first and then aligns the rotated bounding box; pass `rotation_mode="default"` for that behavior.
-- **Justification.** `ha`/`va` (aliases `hjust`/`vjust`) accept names (`"left"`, `"center"`, `"right"`, `"bottom"`, `"top"`, `"middle"`, `"baseline"`), numbers in [0, 1] (`hjust=0.25`), and ggplot2's `"inward"`/`"outward"` (towards or away from the center of the panel).
-- **Lines follow `ha`.** The lines of a multi-line label are aligned like the label itself (`ha="right"` right-aligns them), as in gridtext. Set `halign` to override.
+- **Rotation around the anchor.** Labels rotate around their anchor point (`rotation_mode="anchor"`). So `ha="left"` means "the text starts at the point" at every angle. plotnine's `geom_text()` instead rotates first and then aligns the rotated bounding box; pass `rotation_mode="default"` for that behavior.
+- **Justification.** `ha`/`va` (aliases `hjust`/`vjust`) accept names (`"left"`, `"center"`, `"right"`, `"bottom"`, `"top"`, `"middle"`, `"baseline"`) and numbers in [0, 1] (`hjust=0.25`). They also accept ggplot2's `"inward"`/`"outward"` (towards or away from the center of the panel).
+- **Lines follow `ha`.** In a multi-line label, each line aligns like the label (`ha="right"` right-aligns them), as in gridtext. Set `halign` to override.
 - **Mappable box and text colors.** `label_color`, `label_size`, and `text_color` are aesthetics, so they can vary with the data.
 
-**Aesthetics:** `x`, `y`, `label` (required), `color`, `fill` (`"white"`), `alpha`, `size` (11), `angle`, `ha`/`hjust`, `va`/`vjust`, `family`, `fontweight`, `fontstyle`, `fontvariant`, `lineheight`, `group`, plus:
+**Aesthetics:** `x`, `y`, `label` (required), `color`, `fill` (`"white"`), `alpha`, `size` (11), `angle`, `ha`/`hjust`, `va`/`vjust`, `family`, `fontweight`, `fontstyle`, `fontvariant`, `lineheight`, `group`. In addition:
 
 | Aesthetic | Default | Meaning |
 |---|---|---|
@@ -179,7 +179,7 @@ To draw labels with no box, set `fill=None` and `label_size=0` (R: `fill = NA, l
 
 ### `geom_textbox()`
 
-Word-wrapped rich text in boxes of a fixed width. `ha`/`va` (or `hjust`/`vjust`, with the same values as in `geom_richtext()`) place the *box* relative to the point (default: centered), and `halign`/`valign` align the *text* inside the box. Rotated boxes (`orientation`) turn around the anchor point, as in ggtext.
+Word-wrapped rich text in boxes of a fixed width. `ha`/`va` (or `hjust`/`vjust`, with the same values as in `geom_richtext()`) place the *box* relative to the point (default: centered). `halign`/`valign` align the *text* inside the box. Rotated boxes (`orientation`) turn around the anchor point, as in ggtext.
 
 ```python
 ggplot(notes, aes("x", "y", label="label")) + geom_textbox(
@@ -187,7 +187,7 @@ ggplot(notes, aes("x", "y", label="label")) + geom_textbox(
 )
 ```
 
-**Aesthetics:** the text aesthetics of `geom_richtext()` plus `halign` (`"left"`), `valign` (`"top"`), `orientation` (`"upright"`), `box_color`/`box_colour` (`None`: the text color; `"none"`: no outline), `box_size` (`0.7` points), and `text_color`.
+**Aesthetics:** the text aesthetics of `geom_richtext()` plus `halign` (`"left"`), `valign` (`"top"`), and `orientation` (`"upright"`). Also `box_color`/`box_colour` (`None`: the text color; `"none"`: no outline), `box_size` (`0.7` points), and `text_color`.
 
 | Parameter | Default | Meaning |
 |---|---|---|
@@ -226,7 +226,7 @@ Differences to keep in mind:
 - **Newlines:** a plain `\n` is a line break by default. Use `newline="space"` for R's behavior.
 - **Units:** sizes are points, not grid units. Widths are fractions or strings with units.
 - **Image size:** an `<img>` with no size is as tall as the font, not its natural pixel size.
-- **Widths exclude margins:** `width`/`height` are the size of the box itself; `box_margin`/`label_margin` are added outside it. In ggtext the width includes the margins.
+- **Widths exclude margins:** `width`/`height` are the size of the box itself; `box_margin`/`label_margin` add space outside it. In ggtext the width includes the margins.
 - **Outline widths:** `label_size`/`box_size` are in points (plotnine's convention), not mm. Multiply ggtext values by 72.27 / 25.4 ≈ 2.85.
 - **Not yet ported:** `align_widths` / `align_heights`, `rotate_margins`. See the [roadmap](roadmap.md).
 

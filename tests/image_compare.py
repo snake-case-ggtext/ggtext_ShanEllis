@@ -2,7 +2,7 @@
 Image comparison harness for the plotnine geoms.
 
 Adapted from plotnine's own test suite. A test compares a plot with a
-baseline image using ``assert p == "name"``. Result images are written to
+baseline image using ``assert p == "name"``. The harness writes result images to
 ``tests/result_images/<test_module>/`` and compared with
 ``tests/baseline_images/<test_module>/<name>.png`` (tolerance 2, as in
 plotnine).

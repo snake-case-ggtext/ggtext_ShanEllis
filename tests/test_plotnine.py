@@ -181,7 +181,7 @@ def test_single_text_themeables(themeable):
     for name, value in labels.items():
         if name != _LABEL_FOR[themeable]:
             assert not isinstance(find_text(fig, value), RichText)
-    # it is positioned by the layout engine (not left at the origin) and
+    # the layout engine positions it (not at the origin) and
     # the red part is drawn where the artist is
     ext = artist.get_window_extent()
     assert ext.x0 > 0 or ext.y0 > 0

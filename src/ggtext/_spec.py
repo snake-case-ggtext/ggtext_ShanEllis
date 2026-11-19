@@ -3,7 +3,7 @@ The options that turn a matplotlib Text into rich text.
 
 A :class:`RichTextSpec` is what gets attached to a text artist with
 ``text.set(richtext=spec)``. Everything that is not a plain matplotlib
-text property lives here: parsing options, word wrapping and the box
+text property lives here. It covers parsing options, word wrapping and the box
 drawn around the text.
 """
 
@@ -45,9 +45,9 @@ def _as_padding(value: Any) -> tuple[float, float, float, float]:
     """
     Normalize padding to ``(top, right, bottom, left)`` in points.
 
-    Accepts a single number, a 2-tuple ``(vertical, horizontal)``, a
-    4-tuple in CSS order ``(top, right, bottom, left)``, or a dict with
-    any of the keys ``t``, ``r``, ``b``, ``l``.
+    Accepts a single number, a 2-tuple ``(vertical, horizontal)``, or a
+    4-tuple in CSS order ``(top, right, bottom, left)``. It also accepts a
+    dict with any of the keys ``t``, ``r``, ``b``, ``l``.
     """
     if value is None:
         return (0.0, 0.0, 0.0, 0.0)
@@ -83,7 +83,7 @@ class RichTextSpec:
     math :
         Render ``$...$`` segments with matplotlib's mathtext.
     newline :
-        ``"break"`` (default): a newline character starts a new line,
+        ``"break"`` (default): a newline character starts a line,
         as in matplotlib. ``"space"``: newlines are spaces, as in
         Markdown/HTML; use ``<br>`` for a line break.
     halign :
@@ -95,20 +95,19 @@ class RichTextSpec:
         ``height``: ``"top"``, ``"center"`` or ``"bottom"``.
     width :
         Width of the box. Text is word-wrapped to fit. A float between 0
-        and 1 is a fraction of the reference width (the panel area for
-        plot titles, the axes for text inside an axes, otherwise the
-        figure). A string may carry units: ``"3in"``, ``"200pt"``,
+        and 1 is a fraction of the reference width. The reference is the
+        panel area for plot titles. For text inside an axes, it is the axes;
+        otherwise it is the figure. A string may carry units: ``"3in"``, ``"200pt"``,
         ``"8cm"``, ``"50%"``. ``None`` (default) means no wrapping.
     minwidth, maxwidth :
         Limits for the width of the box, same units as ``width``. With a
-        ``width`` they clamp it (as in ggtext). Without a ``width``,
-        ``maxwidth`` gives a shrink-to-fit box that wraps only when the
-        text is longer than ``maxwidth``, and ``minwidth`` widens boxes
-        of short text.
+        ``width`` they clamp it (as in ggtext). Without a ``width``, ``maxwidth`` gives a shrink-to-fit box that wraps
+        only when the text is longer than ``maxwidth``. ``minwidth`` widens
+        boxes of short text.
     height :
         Height of the box (same units as ``width``; fractions are of the
-        reference height). The text is placed in it with ``valign`` and
-        may overflow a box that is too small, as in ggtext. ``None``
+        reference height). ``valign`` places the text in it. The text may overflow a box that is
+        too small, as in ggtext. ``None``
         (default) fits the box to the text.
     minheight, maxheight :
         Limits for the height of the box.
@@ -117,9 +116,8 @@ class RichTextSpec:
         A number, ``(vertical, horizontal)``, ``(top, right, bottom,
         left)`` or a dict with keys ``t``, ``r``, ``b``, ``l``.
     margin :
-        Space outside the box, in points, same forms as ``padding``. It
-        is part of the text's size (so it moves the box away from the
-        anchor point) but nothing is drawn there. Widths and heights
+        Space outside the box, in points, same forms as ``padding``. It counts toward the text's size (so it moves the box away from the
+        anchor point), but it draws nothing. Widths and heights
         refer to the box itself, excluding the margin.
     fill :
         Background color of the box. ``None`` for no background.
@@ -193,7 +191,7 @@ class RichTextSpec:
         Convert *value* to a spec.
 
         ``True`` gives the default spec, a dict gives a spec with those
-        options, a spec is returned unchanged and ``None``/``False``
+        options, and a spec passes through unchanged. ``None`` or ``False``
         give ``None`` (meaning: plain text).
         """
         if value is None or value is False:
@@ -243,7 +241,7 @@ def resolve_length(value: Length, reference: float, dpi: float) -> float | None:
     Parameters
     ----------
     value :
-        ``None``, a fraction of *reference* (``0 < value <= 1``), or a
+        ``None``, a fraction of *reference* (``0 < value <= 1``). A
         string with units (``"2in"``, ``"144pt"``, ``"5cm"``, ``"50%"``).
     reference :
         The reference length in pixels for fractions and percentages.

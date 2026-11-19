@@ -41,7 +41,7 @@ def plot_panels(text: Any, figure: Any) -> list[Any] | None:
     """
     The panels (axes) of the plotnine plot that owns *text*.
 
-    Returns None when the figure is not laid out by plotnine or the text
+    Returns None if the figure has no plotnine layout, or the text
     is not one of a plot's figure-level texts.
     """
     if figure is None:

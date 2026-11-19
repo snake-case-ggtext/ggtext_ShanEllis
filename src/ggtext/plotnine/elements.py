@@ -1,7 +1,8 @@
 """
 Theme elements that render plotnine text as Markdown/HTML.
 
-These are drop-in replacements for :class:`plotnine.element_text`::
+These elements are drop-in replacements for :class:`plotnine.element_text`.
+Example::
 
     theme(plot_title=element_markdown())
     theme(axis_text_x=element_markdown(color="gray"))
@@ -12,11 +13,11 @@ How it works
 Every plotnine themeable styles its text artists with
 ``text.set(**element.properties)``. These elements add one extra
 property, ``richtext``, holding a :class:`ggtext.RichTextSpec`. ggtext
-registers ``richtext`` as a matplotlib ``Text`` property, so when
-plotnine applies the theme the artist turns itself into a
+registers ``richtext`` as a matplotlib ``Text`` property. When
+plotnine applies the theme, the artist turns itself into a
 :class:`ggtext.RichText`. plotnine's layout engine then measures the
-rich text like any other text, so titles, axis labels, tick labels,
-facet strips and legends all get the right amount of space.
+rich text like any other text. As a result, titles, axis labels, tick
+labels, facet strips and legends all get the right amount of space.
 """
 
 from __future__ import annotations
@@ -93,17 +94,17 @@ class element_markdown(element_text):
         Alignment of the lines of multi-line text: ``"left"``,
         ``"center"``, ``"right"`` (or 0, 0.5, 1). Defaults to ``ma``.
     markdown :
-        Interpret Markdown. If False, only HTML tags are interpreted.
+        Interpret Markdown. If False, ggtext reads only HTML tags.
     newline :
         ``"break"`` (default) makes ``"\\n"`` a line break, ``"space"``
-        treats it as a space as in Markdown (then use ``<br>``).
+        treats it as a space, as in Markdown. Use ``<br>`` for a line break.
     math :
         Render ``$...$`` with matplotlib's mathtext.
     **kwargs :
         All :class:`plotnine.element_text` parameters (``color``,
         ``size``, ``family``, ``weight``, ``style``, ``ha``, ``va``,
-        ``rotation``, ``margin``, ...) and their ggplot2 spellings
-        (``colour``, ``face``, ``hjust``, ``vjust``, ``angle``,
+        ``rotation``, ``margin``, ...). You can also use their ggplot2
+        spellings (``colour``, ``face``, ``hjust``, ``vjust``, ``angle``,
         ``lineheight``).
 
     Examples
@@ -177,8 +178,8 @@ class element_textbox(element_markdown):
     Theme element: word-wrapped Markdown text in a box.
 
     Use it for long titles, subtitles and captions that should wrap to
-    the width of the plot. Unlike ggtext, the box may be rotated to any
-    angle with ``rotation``; ``orientation`` gives the ggtext names for
+    the width of the plot. Unlike ggtext, the box can rotate to any
+    angle with ``rotation``. ``orientation`` gives the ggtext names for
     the common angles.
 
     Most of the time you want :class:`element_textbox_simple`, which
@@ -188,7 +189,7 @@ class element_textbox(element_markdown):
     ----------
     width :
         Width of the box. A float in (0, 1] is a fraction of the panel
-        area (for plot titles, subtitles, captions and axis titles); a
+        area (for plot titles, subtitles, captions and axis titles). A
         string may give units (``"4in"``, ``"300pt"``, ``"10cm"``,
         ``"80%"``). ``None`` sizes the box to the text.
     height :
@@ -202,8 +203,8 @@ class element_textbox(element_markdown):
     minheight, maxheight :
         Limits for the height of the box.
     valign :
-        Vertical alignment of the text in a box taller than the text:
-        ``"top"``, ``"center"``, ``"bottom"`` (or 1, 0.5, 0).
+        Vertical alignment of the text in a box taller than the text.
+        Use ``"top"``, ``"center"``, or ``"bottom"`` (or 1, 0.5, 0).
     orientation :
         ``"upright"``, ``"left-rotated"`` (90°), ``"right-rotated"``
         (270°) or ``"inverted"`` (180°). Overrides ``rotation``.
@@ -272,8 +273,8 @@ class element_textbox_simple(element_textbox):
     """
     Theme element: :class:`element_textbox` with sensible defaults.
 
-    The box spans the full width of the panel area (``width=1``), has
-    no background or outline, and the text is left aligned within it.
+    The box spans the full width of the panel area (``width=1``). It has
+    no background or outline, and it left-aligns the text within it.
     This is the element to use for long, wrapping subtitles::
 
         theme(plot_subtitle=element_textbox_simple(size=10, lineheight=1.3))

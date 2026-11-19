@@ -7,14 +7,14 @@ Geoms that draw rich text labels in plotnine plots.
   width (ggtext's ``geom_textbox``).
 
 Both follow ggtext's conventions where they differ from plotnine's
-``geom_text``/``geom_label``:
+``geom_text``/``geom_label``.
 
-- labels are rotated around their anchor point (``rotation_mode="anchor"``),
-  so ``ha``/``va`` keep their meaning along the rotated text;
+- labels rotate around their anchor point (``rotation_mode="anchor"``).
+  ``ha``/``va`` keep their meaning along the rotated text.
 - ``ha``/``va`` (alias ``hjust``/``vjust``) accept names, numbers in
-  [0, 1] and ggplot2's ``"inward"``/``"outward"``;
-- the outline color and width and the text color are aesthetics, so they
-  can be mapped to data.
+  [0, 1] and ggplot2's ``"inward"``/``"outward"``.
+- the outline color and width and the text color are aesthetics.
+  You can map them to data.
 """
 
 from __future__ import annotations
@@ -94,9 +94,9 @@ def resolve_just(value: Any, npc: float, axis: str) -> Any:
     value :
         A name (``"left"``, ``"center"``, ``"right"``, ``"bottom"``,
         ``"top"``, ``"middle"``, and for ``va`` also ``"baseline"`` and
-        ``"center_baseline"``), a number in [0, 1], or ``"inward"`` /
-        ``"outward"`` (ggplot2): justify towards / away from the center
-        of the panel.
+        ``"center_baseline"``). A number in [0, 1], or ``"inward"`` /
+        ``"outward"`` (ggplot2). Inward / outward justify towards / away
+        from the center of the panel.
     npc :
         Position of the label in the panel, 0 to 1 (for inward/outward).
     axis :
@@ -268,14 +268,14 @@ class _RichGeomMixin:
 @document
 class geom_richtext(_RichGeomMixin, geom_text):  # type: ignore[misc]
     """
-    Rich text labels (Markdown, HTML and CSS)
+    Rich text labels (Markdown, HTML and CSS).
 
     {usage}
 
     Labels may contain Markdown (``**bold**``, ``*italic*``), HTML
-    (``<span style='color:red'>``, ``<sup>``, ``<br>``, ...) and
-    mathtext (``$\\alpha$``). Unlike [](`~plotnine.geom_label`), labels
-    with a box can be rotated to any angle.
+    (``<span style='color:red'>``, ``<sup>``, ``<br>``, ...), and
+    mathtext (``$\\alpha$``).
+    Unlike [](`~plotnine.geom_label`), labels with a box can rotate to any angle.
 
     Following ggtext, labels rotate around their anchor point, and
     ``ha``/``va`` (or ``hjust``/``vjust``) accept names, numbers in
@@ -302,7 +302,7 @@ class geom_richtext(_RichGeomMixin, geom_text):  # type: ignore[misc]
         ``"default"`` (plotnine's ``geom_text``) rotates first and then
         aligns the rotated bounding box.
     markdown : bool, default=True
-        Interpret Markdown. If False, only HTML is interpreted.
+        Interpret Markdown. If False, ggtext reads only HTML.
     newline : str, default="break"
         ``"break"`` makes ``"\\n"`` a line break; ``"space"`` treats it
         as a space (as in Markdown).
@@ -311,19 +311,20 @@ class geom_richtext(_RichGeomMixin, geom_text):  # type: ignore[misc]
     nudge_y : float, default=0
         Vertical adjustment to apply to the text.
     format_string : str, default=None
-        If not None, labels are formatted with this string using
+        If not None, this string formats the labels using
         [](`str.format`).
     path_effects : list, default=None
         matplotlib path effects applied to the text.
 
     Notes
     -----
-    Besides the usual text aesthetics, ``label_color`` (outline color;
-    None uses the text color, ``"none"`` draws no outline),
-    ``label_size`` (outline width in points; 0 for none) and
-    ``text_color`` (overrides ``color`` for the text only) can be mapped
-    to data. Set ``fill=None`` and ``label_size=0`` for labels without a
-    box (ggtext: ``fill = NA, label.colour = NA``).
+    Besides the usual text aesthetics, you can map ``label_color``,
+    ``label_size`` and ``text_color`` to data. ``label_color`` is the
+    outline color (None uses the text color, ``"none"`` draws no outline).
+    ``label_size`` is the outline width in points (0 for none).
+    ``text_color`` overrides ``color`` for the text only. Set
+    ``fill=None`` and ``label_size=0`` for labels without a box
+    (ggtext: ``fill = NA, label.colour = NA``).
 
     See Also
     --------
@@ -412,20 +413,20 @@ _textbox_params.update(
 @document
 class geom_textbox(_RichGeomMixin, geom_text):  # type: ignore[misc]
     """
-    Word-wrapped rich text in boxes
+    Word-wrapped rich text in boxes.
 
     {usage}
 
-    Each label is drawn in a box of a fixed width and word-wrapped to
-    fit. The ``ha``/``va`` aesthetics (or ``hjust``/``vjust``) place the
-    box relative to the point (default: centered); ``halign``/``valign``
-    align the text inside the box.
+    Each label appears in a box of a fixed width and wraps its text to fit.
+    The ``ha``/``va`` aesthetics (or ``hjust``/``vjust``) position the box
+    relative to the point (default: centered). ``halign``/``valign`` align
+    the text inside the box.
 
     Parameters
     ----------
     {common_parameters}
     width : str | float, default="2in"
-        Width of the boxes: a string with units (``"2in"``,
+        Width of the boxes. A string with units (``"2in"``,
         ``"150pt"``, ``"5cm"``) or a fraction (0, 1] of the panel
         width. ``None`` sizes each box to its text (see *maxwidth*).
     minwidth, maxwidth : str | float, default=None
@@ -445,10 +446,10 @@ class geom_textbox(_RichGeomMixin, geom_text):  # type: ignore[misc]
     box_r : float, default=5.5
         Radius of the rounded corners, in points.
     rotation_mode : str, default="anchor"
-        How rotated (``orientation``) boxes are placed; see
+        How ggtext positions rotated (``orientation``) boxes; see
         [](`~ggtext.geom_richtext`).
     markdown : bool, default=True
-        Interpret Markdown. If False, only HTML is interpreted.
+        Interpret Markdown. If False, ggtext reads only HTML.
     newline : str, default="break"
         ``"break"`` makes ``"\\n"`` a line break; ``"space"`` treats it
         as a space.
@@ -456,10 +457,11 @@ class geom_textbox(_RichGeomMixin, geom_text):  # type: ignore[misc]
     Notes
     -----
     ``box_color`` (outline color; None uses the text color, ``"none"``
-    draws no outline), ``box_size`` (outline width in points),
-    ``text_color``, ``halign``, ``valign`` and ``orientation``
-    (``"upright"``, ``"left-rotated"``, ``"right-rotated"``,
-    ``"inverted"``) are aesthetics and can be mapped to data.
+    draws no outline) is an aesthetic. ``box_size`` (outline width in
+    points) is an aesthetic. ``text_color``, ``halign``, ``valign`` and
+    ``orientation`` (``"upright"``, ``"left-rotated"``,
+    ``"right-rotated"``, ``"inverted"``) are aesthetics too. You can map
+    them to data.
 
     See Also
     --------

@@ -4,19 +4,19 @@
 How it works
 ------------
 A matplotlib :class:`~matplotlib.text.Text` draws a string in a single
-style. Everything that needs to know how big a text is — the
+style. Several components need the size of a text. These include the
 ``constrained``/``tight`` layout engines, plotnine's layout engine,
-legends (:class:`~matplotlib.offsetbox.TextArea`),
-``bbox_inches="tight"`` — asks the artist through
-``Text.get_window_extent()``, which in turn calls the (private)
+legends (:class:`~matplotlib.offsetbox.TextArea`), and
+``bbox_inches="tight"``. Each one asks the artist through
+``Text.get_window_extent()``, which calls the (private)
 ``Text._get_layout(renderer)``.
 
-:class:`RichText` subclasses ``Text`` and overrides exactly two methods:
+:class:`RichText` subclasses ``Text``. It overrides exactly two methods:
 
 ``_get_layout``
-    Parses the markup, measures every styled run with the renderer, wraps
-    and aligns the lines, applies the rotation and the ``ha``/``va``/
-    ``rotation_mode`` alignment exactly as ``Text`` does, and returns the
+    Parses the markup. Measures every styled run with the renderer. Wraps
+    and aligns the lines. Applies the rotation and the ``ha``/``va``/
+    ``rotation_mode`` alignment exactly as ``Text`` does. Returns the
     result in the format the installed matplotlib expects.
 
 ``draw``
@@ -24,15 +24,15 @@ legends (:class:`~matplotlib.offsetbox.TextArea`),
     ``renderer.draw_text`` at the positions computed above.
 
 Because the artist *is* a ``Text``, every other ``Text`` method keeps
-working (``set_color``, ``set_fontsize``, ``set_rotation``, ...): those
+working (``set_color``, ``set_fontsize``, ``set_rotation``, ...). Those
 properties become the defaults for the unstyled parts of the text.
 
 Converting existing artists
 ---------------------------
 Libraries such as matplotlib and plotnine create their own ``Text``
 artists (titles, tick labels, legend entries). :func:`make_rich` turns
-such an artist into rich text *in place* by swapping its class for a
-rich subclass of its own class. ggtext also registers a
+such an artist into rich text *in place*. It does so by swapping its
+class for a rich subclass of its own class. ggtext also registers a
 ``richtext`` property on ``Text``, so ``text.set(richtext=True)`` does
 the same thing. That is the hook the plotnine integration uses: theme
 elements pass their properties to ``text.set(**properties)``.
@@ -66,7 +66,7 @@ __all__ = ["RichText", "is_rich", "make_plain", "make_rich"]
 
 MPL_VERSION = tuple(mpl.__version_info__[:2])  # type: ignore[attr-defined]
 # matplotlib 3.11 changed the format of Text._get_layout and the way
-# line heights are computed.
+# it computes line heights.
 MPL_311 = MPL_VERSION >= (3, 11)
 
 UNDERLINE_OFFSET = 0.12  # below the baseline, in ems
@@ -90,7 +90,7 @@ class _BoundedCache(dict):
         super().__setitem__(key, value)
 
 
-# Keys never hold renderers or figures, so nothing is kept alive.
+# Keys never hold renderers or figures, so nothing stays alive.
 _TEXT_METRICS = _BoundedCache(8192)
 _FONT_METRICS = _BoundedCache(1024)
 
@@ -126,8 +126,9 @@ def _font_metrics(
     """
     ``(ascent, descent, line_gap)`` of a font, as matplotlib sees it.
 
-    We ask throw-away ``Text`` artists for their layout so that rich text
-    is spaced exactly like plain text in the installed matplotlib.
+    We ask throw-away ``Text`` artists for their layout.
+    This way, rich text spaces lines exactly as plain text does in the
+    installed matplotlib.
     """
     key = (renderer_key, _font_key(fp))
     try:
@@ -209,7 +210,7 @@ def _rotate(angle: float, x: float, y: float) -> tuple[float, float]:
 
 
 class _Geometry:
-    """The laid out text plus how it is rotated and aligned."""
+    """The laid out text plus its rotation and alignment."""
 
     __slots__ = ("angle", "bbox", "layout", "offsetx", "offsety", "xys")
 
@@ -236,9 +237,9 @@ def register_panel_resolver(func: Callable[[Any, Any], Any]) -> None:
     """
     Register a function that finds the panel area of a figure-level text.
 
-    *func* is called as ``func(text, figure)`` and returns the list of
-    axes whose union is the reference for fractional widths, or None if
-    it does not know. Used by integrations such as plotnine.
+    ggtext calls *func* as ``func(text, figure)``.
+    It returns a list of axes whose union is the reference for fractional
+    widths, or None if unknown. Used by integrations such as plotnine.
     """
     if func not in _PANEL_RESOLVERS:
         _PANEL_RESOLVERS.append(func)
@@ -252,8 +253,7 @@ class RichText(Text):
     A matplotlib text artist that renders Markdown, HTML and CSS.
 
     It accepts every argument of :class:`matplotlib.text.Text`; those
-    set the default style of the text. The rich text options are given
-    with *richtext*.
+    set the default style of the text. Pass the rich text options with *richtext*.
 
     Parameters
     ----------
@@ -324,7 +324,7 @@ class RichText(Text):
         Set the horizontal alignment.
 
         Besides matplotlib's ``"left"``, ``"center"`` and ``"right"``,
-        rich text accepts a number in [0, 1] (ggplot2's ``hjust``): the
+        rich text accepts a number in [0, 1] (ggplot2's ``hjust``). That number is the
         fraction of the text's width that lies left of the anchor.
         """
         if _is_frac(align):
@@ -338,7 +338,7 @@ class RichText(Text):
         Set the vertical alignment.
 
         Besides matplotlib's named alignments, rich text accepts a number
-        in [0, 1] (ggplot2's ``vjust``): 0 is the bottom, 1 the top.
+        in [0, 1] (ggplot2's ``vjust``). The value 0 is the bottom, and 1 the top.
         """
         if _is_frac(align):
             self._verticalalignment = float(align)
@@ -385,15 +385,15 @@ class RichText(Text):
         - text inside an axes: the axes,
         - figure-level text (e.g. plot titles): the *panel area*, i.e.
           the box around all axes of the figure (like ggtext's ``npc``
-          units for titles); the figure if it has no axes.
+          units for titles). A figure without axes uses the figure itself.
 
-        For rotated text (closer to vertical than horizontal) width and
-        height are swapped, so a ``width`` always runs along the text.
-        Integrations can refine the panel area by registering a function
-        with :func:`register_panel_resolver` (the plotnine integration
-        uses this so that, in a plot composition, a title refers to its
-        own plot's panels), or override everything by setting
-        ``_ggtext_reference`` to a callable.
+        For rotated text (closer to vertical than horizontal), ggtext swaps
+        width and height. So a ``width`` always runs along the text.
+        Integrations can refine the panel area by registering a function with
+        :func:`register_panel_resolver`. The plotnine integration uses this,
+        so that in a plot composition a title refers to its own plot's
+        panels. Alternatively, set ``_ggtext_reference`` to a callable to
+        override everything.
         """
         if self._ggtext_reference is not None:
             w, h = self._ggtext_reference(renderer)
@@ -808,7 +808,7 @@ class RichText(Text):
         from matplotlib.image import BboxImage
 
         angle = self.get_rotation() % 360
-        # Images can only be rotated by multiples of 90 degrees
+        # Images only support rotations that are multiples of 90 degrees
         quarter = round(angle / 90) % 4
         if not math.isclose(angle, quarter * 90, abs_tol=0.5):
             _warn_once("ggtext: images in text rotated by angles that are not "
@@ -859,14 +859,14 @@ def _ensure_relayout(fig) -> None:
     Make the layout engine of *fig* run twice per draw.
 
     Layout engines (plotnine's, matplotlib's tight layout) measure the
-    texts *before* they move the axes. A text box whose width is a
-    fraction of the panel area wraps differently once the panels have
-    moved, so its height can change. Running the engine a second time
-    measures the text against the settled panel positions. (matplotlib's
-    constrained layout already iterates internally, for the same reason.)
+    texts *before* they move the axes. Once the panels move, a text box
+    whose width is a fraction of the panel area wraps differently. Its
+    height can then change. Running the engine a second time measures the
+    text against the settled panel positions. (matplotlib's constrained
+    layout already iterates internally, for the same reason.)
 
-    Only figures that contain such relative-width rich text are touched,
-    and only the engine instance of that figure is wrapped.
+    ggtext touches only figures that contain such relative-width rich
+    text. It wraps only the engine instance of that figure.
     """
     if fig is None or getattr(fig, "_ggtext_relayout", False):
         return
@@ -889,7 +889,7 @@ class _ExecuteTwice:
 
 
 class _RelayoutSetter:
-    """``Figure.set_layout_engine`` that wraps the new engine."""
+    """``Figure.set_layout_engine`` that wraps the engine it sets."""
 
     def __init__(self, fig, original):
         self.fig = fig
@@ -945,8 +945,8 @@ def _rich_class_for(cls: type[Text]) -> type[RichText]:
     The rich version of a Text (sub)class.
 
     For a subclass ``B`` of ``Text`` this creates ``RichB(B, RichText)``
-    so that ``B``'s own behaviour (e.g. plotnine's strip text
-    positioning) is kept, and its call to ``super().draw()`` reaches
+    so that ``B`` keeps its own behaviour (e.g. plotnine's strip text
+    positioning), and its call to ``super().draw()`` reaches
     :meth:`RichText.draw`.
     """
     if issubclass(cls, RichText):
@@ -1068,8 +1068,8 @@ def install_text_property() -> None:
 
     After this, ``text.set(richtext=True)`` and
     ``Text(..., richtext=True)`` work on any text artist. This only *adds*
-    a property; existing behaviour of ``Text`` is unchanged. It is called
-    when ggtext is imported.
+    a property. Existing behaviour of ``Text`` does not change.
+    ggtext runs this function on import.
     """
     if getattr(Text, "set_richtext", None) is not _text_set_richtext:
         Text.set_richtext = _text_set_richtext  # type: ignore[attr-defined]

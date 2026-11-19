@@ -20,8 +20,8 @@ Every image in the documentation, with the code that made it. The scripts live i
 
 ## Quickstart: rich text in a plotnine plot
 
-The colored words in the title double as the legend, so the legend
-itself can be dropped. This is the classic ggtext use case.
+The colored words in the title double as the legend, so you can drop
+the legend itself. This is the classic ggtext use case.
 
 ![Quickstart: rich text in a plotnine plot](images/quickstart_plotnine.png)
 
@@ -268,8 +268,8 @@ if __name__ == "__main__":
 ## Axis titles and tick labels
 
 - Axis titles with units written with <sub>/<sup>.
-- Rich tick labels: each category label has its own style, and the
-  labels are rotated (any angle works).
+- Rich tick labels: each category label has its own style, and you can
+  rotate the labels to any angle.
 
 ![Axis titles and tick labels](images/axis_and_tick_labels.png)
 
@@ -464,7 +464,7 @@ if __name__ == "__main__":
 
 ## geom_richtext: rich text labels, with or without a box, at any angle
 
-Unlike plotnine's geom_label, boxed labels can be rotated.
+Unlike plotnine's geom_label, boxed labels can rotate.
 
 ![geom_richtext: rich text labels, with or without a box, at any angle](images/geom_richtext.png)
 

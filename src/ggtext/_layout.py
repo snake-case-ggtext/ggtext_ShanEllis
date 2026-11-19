@@ -1,17 +1,17 @@
 """
 Line layout for rich text.
 
-This module is independent of matplotlib's rendering machinery: it takes
-the tokens produced by :mod:`ggtext._parse` and a *measurer* object that
-reports the size of text and images, and computes where every fragment
-goes. That makes the layout algorithm easy to unit-test with a fake
+This module is independent of matplotlib's rendering machinery. It
+takes the tokens produced by :mod:`ggtext._parse` and a *measurer* object
+that reports the size of text and images. It then computes where every
+fragment goes. That makes the layout algorithm easy to unit-test with a fake
 measurer (see ``tests/test_layout.py``).
 
 Coordinate system
 -----------------
 All values are in display units (pixels). The origin is the top-left
-corner of the (padded) box, x grows to the right and y grows *upwards*,
-so baselines have negative y values. This matches the convention used by
+corner of the (padded) box. x grows to the right and y grows *upwards*.
+So baselines have negative y values. This matches the convention used by
 :meth:`matplotlib.text.Text._get_layout`.
 """
 
@@ -43,9 +43,9 @@ class Measurer(Protocol):
         """
         Return ``(ascent, descent, line_gap)`` of the font of *style*.
 
-        These are the font's own vertical metrics (not those of any
-        particular glyphs), used for the minimum height of a line and for
-        the space between lines, exactly as matplotlib does for plain text.
+        These are the font's own vertical metrics (not those of any particular
+        glyphs). The layout uses them for the minimum line height and the line
+        spacing, exactly as matplotlib does for plain text.
         """
         ...
 
@@ -156,9 +156,9 @@ def _pieces(tokens: Sequence[Token], wrap: bool) -> list[TextRun | ImageRun]:
     """
     Break tokens into the units that layout works with.
 
-    Without wrapping, runs are kept whole (fewer draw calls and correct
-    kerning). With wrapping, text runs are split into words and runs of
-    whitespace so that lines can be broken at the spaces.
+    Without wrapping, each run stays whole (fewer draw calls and correct
+    kerning). With wrapping, the code splits text runs into words and runs of
+    whitespace. This lets lines break at the spaces.
     """
     out: list[TextRun | ImageRun] = []
     for tok in tokens:
@@ -187,7 +187,7 @@ def _wrap(frags: list[Fragment], width: float | None) -> list[list[Fragment]]:
             continue
         # width of the line if we add this word (excluding trailing spaces)
         if line and current + f.width > width + 1e-6:
-            # strip trailing spaces and start a new line
+            # strip trailing spaces and start another line
             while line and line[-1].is_space:
                 line.pop()
             lines.append([f])
@@ -269,21 +269,21 @@ def layout_tokens(
         matplotlib's ``linespacing``: a number, ``"normal"`` or None
         (same as ``"normal"``).
     line_model :
-        How line heights are computed, mirroring matplotlib so that rich
-        text is spaced exactly like plain text:
+        How the layout computes line heights. This mirrors matplotlib, so rich
+        text spacing matches plain text.
 
         ``"mpl311"`` (matplotlib >= 3.11)
             With ``"normal"`` spacing, a line is at least as tall as the
-            font's ascent + descent, plus the font's line gap when there
-            is more than one line. With a numeric spacing every line is
-            ``linespacing * (ascent + descent)`` tall.
+            font's ascent + descent. With more than one line, the layout also
+            adds the font's line gap. With a numeric spacing, each line
+            measures ``linespacing * (ascent + descent)``.
         ``"mpl310"`` (matplotlib < 3.11)
-            A line is at least as tall as the font's "lp" box and the
-            ascent of every line after the first is multiplied by
+            A line is at least as tall as the font's "lp" box. The layout
+            multiplies the ascent of every line after the first by
             ``linespacing``.
 
-        For lines that mix font sizes the metrics of the largest font in
-        the line are used.
+        For lines that mix font sizes, the layout uses the metrics of the
+        largest font in the line.
     """
     pt, pr, pb, pl = padding
     wrap = wrap_width is not None

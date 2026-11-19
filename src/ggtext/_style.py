@@ -3,14 +3,12 @@ Text styles.
 
 A :class:`Style` describes how one run of text is drawn. It is
 ``ggir.Style`` (an immutable dataclass; see its docstring for the fields)
-plus conversion to and from matplotlib ``FontProperties``. Styles are
-derived from one another, e.g. the style inside a ``<b>`` tag is the
-surrounding style with ``weight="bold"``; ``ggir.resolve`` keeps this
-subclass when it derives them.
+plus conversion to and from matplotlib ``FontProperties``. One style derives from another. For example, the style inside a ``<b>``
+tag is the surrounding style with ``weight="bold"``. ``ggir.resolve``
+keeps this subclass when it derives them.
 
-Sizes are always stored in **points**. Colors are stored as given and
-resolved by matplotlib at draw time, so anything matplotlib accepts as a
-color works (``"red"``, ``"#ff0000"``, ``"C0"``, ``"tab:blue"``, ...), in
+Sizes are always stored in **points**. Colors keep the value as given. matplotlib resolves them at draw time.
+Anything matplotlib accepts as a color works (``"red"``, ``"#ff0000"``, ``"C0"``, ``"tab:blue"``, ...), in
 addition to the CSS ``rgb()``/``rgba()`` notations.
 """
 
@@ -82,9 +80,9 @@ def parse_color(value: str) -> Any:
     """
     Parse a CSS color into something matplotlib understands.
 
-    Supports every color format matplotlib accepts plus CSS
+    Supports every color format matplotlib accepts. It also supports CSS
     ``rgb(r, g, b)`` and ``rgba(r, g, b, a)`` with 0-255 channels
-    (or percentages), which ``ggir.parse_color`` converts to an RGBA
+    (or percentages). ``ggir.parse_color`` converts these to an RGBA
     tuple. Returns ``None`` for invalid colors.
     """
     color = ggir.parse_color(value)

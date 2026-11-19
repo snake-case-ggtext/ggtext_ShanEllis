@@ -81,8 +81,8 @@ _PLOTNINE_NAMES = {
 
 
 def __getattr__(name: str) -> Any:
-    # plotnine is an optional dependency; only import it when one of the
-    # plotnine helpers is used.
+    # plotnine is an optional dependency, so import it only when code
+    # uses a plotnine helper.
     if name in _PLOTNINE_NAMES:
         from . import plotnine as _p9
 

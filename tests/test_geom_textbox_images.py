@@ -6,8 +6,8 @@ Baselines live in tests/baseline_images/test_geom_textbox_images/. Run
 one-to-one ports are in tests/reference_r/.
 
 Parameter translation from plotnine-ggtext: widths are strings
-(``"1.5in"``) or fractions, margins/padding/r are points, ``box_size`` is
-points (mm * 72.27/25.4), and ``width``/``height`` exclude the margins.
+(``"1.5in"``) or fractions. Margins/padding/r are points. ``box_size`` is
+points (mm * 72.27/25.4). ``width``/``height`` exclude the margins.
 """
 
 import pandas as pd
@@ -175,7 +175,7 @@ def test_size_limits_and_paragraphs():
 
 def test_native_width_no_wrap():
     # Port of plotnine-ggtext test_geom_textbox.py::test_native_width_no_wrap
-    # (no R original). width=None is supported as in plotnine-ggtext.
+    # (no R original). width=None works as in plotnine-ggtext.
     df = pd.DataFrame(
         {"x": [0.5], "y": [0.5], "label": ["No wrapping<br>with **width=None**"]}
     )

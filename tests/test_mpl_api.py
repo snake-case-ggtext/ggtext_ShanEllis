@@ -107,7 +107,7 @@ def test_rich_ticklabels_survive_new_ticks(fig_ax):
     ax.set_xticks([0, 1], ["**a**", "*b*"])
     rich_ticklabels(ax, "x")
     assert all(isinstance(t.label1, RichText) for t in ax.xaxis.get_major_ticks())
-    # more ticks are created later: they must be rich too
+    # ticks created later must be rich too
     ax.set_xticks([0, 1, 2, 3], ["**a**", "*b*", "c", "d"])
     f.canvas.draw()
     ticks = ax.xaxis.get_major_ticks()

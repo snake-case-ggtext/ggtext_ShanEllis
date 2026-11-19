@@ -54,7 +54,7 @@ It returns the `RichText` artist.
 
 ### Numeric alignment
 
-Rich text also accepts numbers for `ha` and `va`, as ggplot2's `hjust`/`vjust` do: `ha=0.25` puts a quarter of the text to the left of the anchor, `va=0` is the bottom and `va=1` the top.
+Rich text also accepts numbers for `ha` and `va`, as ggplot2's `hjust`/`vjust` do. `ha=0.25` puts a quarter of the text to the left of the anchor. `va=0` is the bottom and `va=1` the top.
 
 ```python
 ggtext.text(ax, 0.5, 0.5, "**quarter**", ha=0.25, va=0.5)
@@ -62,7 +62,7 @@ ggtext.text(ax, 0.5, 0.5, "**quarter**", ha=0.25, va=0.5)
 
 ### `ggtext.textbox(target, x, y, s, width="2in", ...)`
 
-A word-wrapped box, like ggtext's `geom_textbox`. The defaults are `fill="white"`, `box_color="black"`, `padding=5.5`, `r=5.5`, `linewidth=0.5`, and the box is centered on `(x, y)` (`ha="center"`, `va="center"`).
+A word-wrapped box, like ggtext's `geom_textbox`. The defaults are `fill="white"`, `box_color="black"`, `padding=5.5`, `r=5.5`, `linewidth=0.5`, and the box's center sits on `(x, y)` (`ha="center"`, `va="center"`).
 
 ```python
 ggtext.textbox(ax, 4, 6, "A **long** note that wraps to two inches.", width="2in")
@@ -106,7 +106,7 @@ ax.set_xticks(
 ggtext.rich_ticklabels(ax, "x")  # "x", "y" or "both"; which="major"/"minor"/"both"
 ```
 
-matplotlib creates new tick objects when the view changes (zooming, new limits). `rich_ticklabels` makes sure those new ticks are rich too.
+matplotlib recreates tick objects when the view changes (zooming, different limits). `rich_ticklabels` makes sure those ticks are rich too.
 
 ## Making existing text rich
 
@@ -122,7 +122,7 @@ ggtext.richify(ax.get_legend().get_texts())
 
 ### The `richtext` property
 
-Importing ggtext adds a `richtext` property to every matplotlib `Text`, so you can turn rich text on anywhere that accepts text properties:
+Importing ggtext adds a `richtext` property to every matplotlib `Text`. You can turn rich text on anywhere that accepts text properties:
 
 ```python
 ax.text(0.5, 0.5, "**bold**", richtext=True)
@@ -158,7 +158,7 @@ ax.add_artist(t)
 
 - **Layout engines:** `layout="constrained"`, `layout="tight"`, `fig.tight_layout()`, and `savefig(bbox_inches="tight")` all measure rich text correctly, including rotated text and boxes.
 - **Backends:** PNG (Agg), PDF, SVG, PS/EPS, and the interactive backends. Text stays text in PDF/SVG (searchable, with `svg.fonttype="none"`), and links are real hyperlinks.
-- **Text properties:** `alpha`, `path_effects`, `backgroundcolor`, `bbox=dict(...)`, `zorder`, `clip_on`, `rasterized`, and `wrap=True` (wraps rich text at the figure edge, like plain text).
+- **Text properties:** `alpha`, `path_effects`, `backgroundcolor`, `bbox=dict(...)`, `zorder`, `clip_on`, `rasterized`, and `wrap=True`. `wrap=True` wraps rich text at the figure edge, like plain text.
 - **Pickling** a figure with rich text works.
 - **Not supported:** `usetex=True`. The text is drawn as plain (TeX) text, with a warning.
 

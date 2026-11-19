@@ -1,14 +1,14 @@
 """
 Loading images for ``<img>`` tags.
 
-Sources can be
+Sources can be one of the following.
 
 - a path to a local file (``"logo.png"``, ``"~/img/flag.jpg"``,
-  ``"file:///tmp/x.png"``),
-- a ``data:`` URI (``"data:image/png;base64,..."``),
-- an ``http(s)://`` URL (downloaded once and cached; can be disabled
-  with ``ggtext.options.allow_remote_images = False``),
-- the name of an image registered with :func:`register_image`, which
+  ``"file:///tmp/x.png"``).
+- a ``data:`` URI (``"data:image/png;base64,..."``).
+- an ``http(s)://`` URL. ggtext downloads it once and caches it. Set
+  ``ggtext.options.allow_remote_images = False`` to turn off downloads.
+- the name of an image registered with :func:`register_image`. This
   lets you use numpy arrays or PIL images directly.
 """
 
@@ -64,7 +64,7 @@ def register_image(name: str, image: Any) -> None:
         The name used in the ``src`` attribute.
     image :
         A numpy array (``(H, W)``, ``(H, W, 3)`` or ``(H, W, 4)``,
-        floats in [0, 1] or uint8) or a PIL image.
+        floats in [0, 1] or uint8). It can also be a PIL image.
 
     Examples
     --------
@@ -87,7 +87,7 @@ def load_image(src: str) -> np.ndarray | None:
     """
     Load the image *src* as an ``(H, W, 4)`` uint8 array.
 
-    Returns None (with a warning) if the image cannot be loaded.
+    Returns None (with a warning) if it cannot load the image.
     """
     if src in _REGISTRY:
         return _REGISTRY[src]

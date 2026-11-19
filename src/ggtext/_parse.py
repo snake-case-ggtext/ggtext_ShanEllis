@@ -1,16 +1,17 @@
 """
 Parse Markdown / HTML / CSS strings into a flat list of styled tokens.
 
-Parsing itself is done by `ggIR <https://github.com/snake-case-ggtext/ggIR>`_,
-which turns a string into a renderer-independent document tree (see its
-README for the supported Markdown, HTML and CSS), and ``ggir.resolve``
-turns that tree into styled tokens using ggtext's numbers
-(:data:`GGTEXT_POLICY`) and matplotlib colour validation. The token
-types are ggIR's and are re-exported here. A string such as::
+`ggIR <https://github.com/snake-case-ggtext/ggIR>`_ parses the string into a
+renderer-independent document tree (see its README for the supported
+Markdown, HTML and CSS). ``ggir.resolve`` turns that tree into styled
+tokens. It uses ggtext's numbers (:data:`GGTEXT_POLICY`) and matplotlib
+colour validation. The token types are ggIR's and are re-exported here.
+
+For example, this string::
 
     "Hello **world** and <span style='color:red'>red</span>"
 
-becomes::
+gives these tokens::
 
     [TextRun("Hello ", base), TextRun("world", bold),
      TextRun(" and ", base), TextRun("red", red)]
@@ -46,7 +47,7 @@ __all__ = [
 ]
 
 # How ggtext draws <sup>/<sub>: 0.7x the parent size, raised 0.4em or
-# lowered 0.2em; 1em is 10pt (matplotlib's "medium") when no size is set.
+# lowered 0.2em; 1em is 10pt (matplotlib's "medium") when the base has no size.
 GGTEXT_POLICY = Policy(
     default_em=10.0, script_scale=0.7, sup_shift=0.40, sub_shift=-0.20
 )
@@ -72,18 +73,18 @@ def parse(
         The style of text outside of any markup (default: an empty
         style, i.e. everything inherited from the artist).
     markdown :
-        Interpret Markdown syntax. If False, only HTML is interpreted.
+        Interpret Markdown syntax. If False, the parser handles only HTML.
     html :
         Interpret HTML tags. Only applies when ``markdown=False``;
         with markdown the HTML tags are always recognized.
-        If both are False the text is returned as a single run.
+        If both are False, the parser returns the text as a single run.
     math :
         Treat ``$...$`` segments as matplotlib mathtext.
     newline :
         What a newline character (``"\\n"``) means: ``"break"`` (the
-        default, as in matplotlib) starts a new line; ``"space"``
-        treats it as a space, as in Markdown/HTML (use ``<br>`` or two
-        trailing spaces for a break).
+        default, as in matplotlib) starts another line. ``"space"``
+        treats it as a space, as in Markdown/HTML. Use ``<br>`` or two
+        trailing spaces for a break.
 
     Returns
     -------
