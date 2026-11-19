@@ -10,10 +10,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -40,7 +40,7 @@ ggtext.annotate(
     xy=(np.pi / 2, 1),
     xytext=(3.2, 1.45),
     va="center",
-    arrowprops=dict(arrowstyle="->", color="#444444"),
+    arrowprops={"arrowstyle": "->", "color": "#444444"},
     fill="#FFF8E1",
     box_color="#999999",
     padding=4,

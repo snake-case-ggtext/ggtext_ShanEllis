@@ -21,8 +21,6 @@ wrapping, aligning) happens later in :mod:`ggtext._layout`.
 
 from __future__ import annotations
 
-from typing import List
-
 import ggir
 from ggir.resolve import (
     LINE_BREAK,
@@ -37,12 +35,12 @@ from ggir.resolve import (
 from ._style import Style, parse_color
 
 __all__ = [
-    "TextRun",
+    "GGTEXT_POLICY",
+    "LINE_BREAK",
     "ImageRun",
     "LineBreak",
-    "LINE_BREAK",
+    "TextRun",
     "Token",
-    "GGTEXT_POLICY",
     "parse",
     "plain_text",
 ]
@@ -62,7 +60,7 @@ def parse(
     html: bool = True,
     math: bool = True,
     newline: str = "break",
-) -> List[Token]:
+) -> list[Token]:
     """
     Parse a rich-text string into tokens.
 

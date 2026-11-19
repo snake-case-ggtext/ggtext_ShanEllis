@@ -29,8 +29,8 @@ PLAIN = {"markdown": False, "html": False}
 )
 @pytest.mark.parametrize("rotation_mode", ["default", "anchor"])
 def test_extent_matches_plain_text(fig, renderer, s, rotation, ha, va, rotation_mode):
-    kw = dict(rotation=rotation, ha=ha, va=va, rotation_mode=rotation_mode,
-              fontsize=12, ma="center")  # fmt: skip
+    kw = {"rotation": rotation, "ha": ha, "va": va, "rotation_mode": rotation_mode,
+              "fontsize": 12, "ma": "center"}  # fmt: skip
     plain = fig.text(0.4, 0.5, s, **kw)
     rich = fig.add_artist(RichText(0.4, 0.5, s, richtext=PLAIN, **kw))
     a = plain.get_window_extent(renderer).extents
@@ -190,17 +190,17 @@ def test_layout_cache_invalidates_on_property_change(fig, renderer):
 @pytest.mark.skipif(not MPL_311, reason="format of matplotlib >= 3.11")
 def test_get_layout_format_311(fig, renderer):
     t = ggtext.text(fig, 0.5, 0.5, "a\n**b**")
-    bbox, info, (corner, size) = t._get_layout(renderer)
+    _bbox, info, (_corner, _size) = t._get_layout(renderer)
     assert len(info) == 2
-    line, (w, a, d), xy = info[0]
+    line, (_w, _a, _d), xy = info[0]
     assert line == "a" and len(xy) == 2
 
 
 @pytest.mark.skipif(MPL_311, reason="format of matplotlib < 3.11")
 def test_get_layout_format_310(fig, renderer):
     t = ggtext.text(fig, 0.5, 0.5, "a\n**b**")
-    bbox, info, descent = t._get_layout(renderer)
-    line, (w, h), x, y = info[0]
+    _bbox, info, descent = t._get_layout(renderer)
+    line, (_w, _h), _x, _y = info[0]
     assert line == "a" and descent > 0
 
 

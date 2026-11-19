@@ -42,8 +42,9 @@ from __future__ import annotations
 
 import math
 import warnings
+from collections.abc import Callable
 from functools import lru_cache
-from typing import Any, Callable, Dict, List, Tuple, Type
+from typing import Any
 
 import matplotlib as mpl
 import numpy as np
@@ -61,7 +62,7 @@ from ._parse import ImageRun, parse, plain_text
 from ._spec import LENGTH_FIELDS, RichTextSpec, resolve_length
 from ._style import Style
 
-__all__ = ["RichText", "make_rich", "make_plain", "is_rich"]
+__all__ = ["RichText", "is_rich", "make_plain", "make_rich"]
 
 MPL_VERSION = tuple(mpl.__version_info__[:2])  # type: ignore[attr-defined]
 # matplotlib 3.11 changed the format of Text._get_layout and the way
@@ -94,7 +95,7 @@ _TEXT_METRICS = _BoundedCache(8192)
 _FONT_METRICS = _BoundedCache(1024)
 
 
-def _font_key(fp) -> Tuple[int, str]:
+def _font_key(fp) -> tuple[int, str]:
     """
     Cache key for a font: its properties *and* the file they resolve to.
 
@@ -107,7 +108,7 @@ def _font_key(fp) -> Tuple[int, str]:
 
 def _text_metrics(
     renderer_key: Any, renderer, s: str, fp, ismath: bool
-) -> Tuple[float, float, float]:
+) -> tuple[float, float, float]:
     """``(width, ascent, descent)`` of *s* in pixels."""
     key = (renderer_key, s, _font_key(fp), ismath)
     try:
@@ -121,7 +122,7 @@ def _text_metrics(
 
 def _font_metrics(
     renderer_key: Any, renderer, fp, figure
-) -> Tuple[float, float, float]:
+) -> tuple[float, float, float]:
     """
     ``(ascent, descent, line_gap)`` of a font, as matplotlib sees it.
 
@@ -162,7 +163,7 @@ class _Measurer:
         self.linespacing = text._linespacing
         # Renderer metrics depend on the renderer type and its dpi
         self.key = (type(renderer), getattr(renderer, "dpi", None), self.dpi)
-        self._fps: Dict[Style, Any] = {}
+        self._fps: dict[Style, Any] = {}
 
     def fontproperties(self, style: Style):
         fp = self._fps.get(style)
@@ -201,7 +202,7 @@ class _Measurer:
         return self.points_to_pixels(width), self.points_to_pixels(height)
 
 
-def _rotate(angle: float, x: float, y: float) -> Tuple[float, float]:
+def _rotate(angle: float, x: float, y: float) -> tuple[float, float]:
     theta = math.radians(angle)
     c, s = math.cos(theta), math.sin(theta)
     return c * x - s * y, s * x + c * y
@@ -210,7 +211,7 @@ def _rotate(angle: float, x: float, y: float) -> Tuple[float, float]:
 class _Geometry:
     """The laid out text plus how it is rotated and aligned."""
 
-    __slots__ = ("layout", "angle", "offsetx", "offsety", "bbox", "xys")
+    __slots__ = ("angle", "bbox", "layout", "offsetx", "offsety", "xys")
 
     def __init__(self, layout, angle, offsetx, offsety, bbox, xys):
         self.layout: Layout = layout
@@ -218,9 +219,9 @@ class _Geometry:
         self.offsetx: float = offsetx
         self.offsety: float = offsety
         self.bbox: Bbox = bbox  # rotated, axis aligned, relative to anchor
-        self.xys: List[Tuple[float, float]] = xys  # line starts
+        self.xys: list[tuple[float, float]] = xys  # line starts
 
-    def to_anchor(self, x: float, y: float) -> Tuple[float, float]:
+    def to_anchor(self, x: float, y: float) -> tuple[float, float]:
         """Box coordinates -> coordinates relative to the text anchor."""
         rx, ry = _rotate(self.angle, x, y)
         return rx - self.offsetx, ry - self.offsety
@@ -228,7 +229,7 @@ class _Geometry:
 
 # Functions ``(text, figure) -> list of Axes or None`` that say which axes
 # form the "panel area" of a figure-level text.
-_PANEL_RESOLVERS: List[Callable[[Any, Any], Any]] = []
+_PANEL_RESOLVERS: list[Callable[[Any, Any], Any]] = []
 
 
 def register_panel_resolver(func: Callable[[Any, Any], Any]) -> None:
@@ -278,7 +279,7 @@ class RichText(Text):
     """
 
     _richtext_spec: RichTextSpec | None
-    _ggtext_reference: Callable[[Any], Tuple[float, float]] | None = None
+    _ggtext_reference: Callable[[Any], tuple[float, float]] | None = None
 
     def __init__(
         self,
@@ -377,7 +378,7 @@ class RichText(Text):
         return spec
 
     # -- layout -----------------------------------------------------------
-    def _reference_size(self, renderer) -> Tuple[float, float]:
+    def _reference_size(self, renderer) -> tuple[float, float]:
         """
         The size (in pixels) that fractional widths/heights refer to.
 
@@ -463,7 +464,7 @@ class RichText(Text):
         )
         padding = tuple(renderer.points_to_pixels(p) for p in spec.padding)
         margin = tuple(renderer.points_to_pixels(p) for p in spec.margin)
-        pt_, pr, pb, pl = padding
+        _pt, pr, _pb, pl = padding
 
         def length(value, ref_px):
             return resolve_length(value, ref_px, dpi)
@@ -656,7 +657,7 @@ class RichText(Text):
         renderer.close_group("text")
         self.stale = False
 
-    def _display_position(self) -> Tuple[float | None, float | None]:
+    def _display_position(self) -> tuple[float | None, float | None]:
         x, y = self._x, self._y
         if np.ma.is_masked(x):
             x = np.nan
@@ -698,7 +699,11 @@ class RichText(Text):
         )
         patch.set_figure(self.get_figure(root=False))
         patch.update(
-            dict(clip_box=self.clipbox, clip_path=self._clippath, clip_on=self._clipon)
+            {
+                "clip_box": self.clipbox,
+                "clip_path": self._clippath,
+                "clip_on": self._clipon,
+            }
         )
         patch.draw(renderer)
 
@@ -826,7 +831,11 @@ class RichText(Text):
         im.set_figure(self.get_figure(root=False))
         im.set_alpha(self.get_alpha())
         im.update(
-            dict(clip_box=self.clipbox, clip_path=self._clippath, clip_on=self._clipon)
+            {
+                "clip_box": self.clipbox,
+                "clip_path": self._clippath,
+                "clip_on": self._clipon,
+            }
         )
         im.draw(renderer)
 
@@ -928,10 +937,10 @@ def _parse_cached(text, base, markdown, html, math_, newline):
 # -----------------------------------------------------------------------
 # Converting existing Text artists
 # -----------------------------------------------------------------------
-_RICH_CLASSES: Dict[type, type] = {}
+_RICH_CLASSES: dict[type, type] = {}
 
 
-def _rich_class_for(cls: Type[Text]) -> Type[RichText]:
+def _rich_class_for(cls: type[Text]) -> type[RichText]:
     """
     The rich version of a Text (sub)class.
 
@@ -949,7 +958,7 @@ def _rich_class_for(cls: Type[Text]) -> Type[RichText]:
         from matplotlib.text import Annotation
 
         name = f"Rich{cls.__name__}"
-        namespace: Dict[str, Any] = {"__module__": __name__}
+        namespace: dict[str, Any] = {"__module__": __name__}
         if issubclass(cls, Annotation):
             # Annotation.draw calls Text.draw(self, ...) explicitly,
             # which would skip RichText.draw
@@ -1050,7 +1059,7 @@ def _text_set_richtext(self: Text, richtext: Any):
 
 def _text_get_richtext(self: Text) -> None:
     """Return the rich text options (None for plain text)."""
-    return None
+    return
 
 
 def install_text_property() -> None:

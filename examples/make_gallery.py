@@ -61,10 +61,12 @@ def main():
     parts = [
         "# Gallery",
         "",
-        "Every image in the documentation, with the code that made it. "
-        "The scripts live in `examples/`; run `python examples/run_all.py` "
-        "to regenerate the images and `python examples/make_gallery.py` "
-        "to rebuild this page.",
+        (
+            "Every image in the documentation, with the code that made it. "
+            "The scripts live in `examples/`; run `python examples/run_all.py` "
+            "to regenerate the images and `python examples/make_gallery.py` "
+            "to rebuild this page."
+        ),
         "",
         "| Example | Script |",
         "|---|---|",

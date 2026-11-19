@@ -15,7 +15,8 @@ the default style of the text) together with any
 
 from __future__ import annotations
 
-from typing import Any, Iterable, Literal, Tuple, Union
+from collections.abc import Iterable
+from typing import Any, Literal
 
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure, SubFigure
@@ -25,16 +26,16 @@ from ._artist import RichText, make_rich
 from ._spec import _FIELD_NAMES, RichTextSpec, _normalize_kwargs
 
 __all__ = [
-    "text",
-    "textbox",
     "annotate",
-    "richify",
     "rich_ticklabels",
-    "set_title",
+    "richify",
     "set_suptitle",
+    "set_title",
     "set_xlabel",
     "set_ylabel",
     "split_kwargs",
+    "text",
+    "textbox",
 ]
 
 # ggplot2-style aliases that are unambiguous for matplotlib text
@@ -44,7 +45,7 @@ _SPEC_ALIASES = {"box_colour", "linetype", "label_r", "radius"}
 _ALIGN_KEYS = {"ha", "va", "horizontalalignment", "verticalalignment"}
 
 
-def split_kwargs(kwargs: dict) -> Tuple[dict, dict]:
+def split_kwargs(kwargs: dict) -> tuple[dict, dict]:
     """
     Split keyword arguments into rich text options and Text properties.
 
@@ -90,7 +91,7 @@ def _spec_from(richtext: Any, spec_kw: dict) -> RichTextSpec:
 
 
 def text(
-    target: Union[Axes, Figure, SubFigure],
+    target: Axes | Figure | SubFigure,
     x: float,
     y: float,
     s: str,
@@ -137,12 +138,12 @@ def text(
 
 
 def textbox(
-    target: Union[Axes, Figure, SubFigure],
+    target: Axes | Figure | SubFigure,
     x: float,
     y: float,
     s: str,
     *,
-    width: Union[float, str, None] = "2in",
+    width: float | str | None = "2in",
     fill: Any = "white",
     box_color: Any = "black",
     padding: Any = 5.5,
@@ -198,8 +199,8 @@ def textbox(
 def annotate(
     ax: Axes,
     s: str,
-    xy: Tuple[float, float],
-    xytext: Tuple[float, float] | None = None,
+    xy: tuple[float, float],
+    xytext: tuple[float, float] | None = None,
     *,
     richtext: Any = True,
     **kwargs: Any,
@@ -220,10 +221,10 @@ def annotate(
 
 
 def richify(
-    texts: Union[Text, Iterable[Text]],
+    texts: Text | Iterable[Text],
     richtext: Any = True,
     **kwargs: Any,
-) -> Union[Text, list]:
+) -> Text | list:
     """
     Turn existing matplotlib text artists into rich text, in place.
 
@@ -346,7 +347,7 @@ def set_ylabel(ax: Axes, label: str, *, richtext: Any = True, **kwargs: Any) -> 
 
 
 def set_suptitle(
-    fig: Union[Figure, SubFigure], t: str, *, richtext: Any = True, **kwargs: Any
+    fig: Figure | SubFigure, t: str, *, richtext: Any = True, **kwargs: Any
 ) -> Text:
     """:meth:`matplotlib.figure.Figure.suptitle` with rich text."""
     return _set_label(fig.suptitle, t, richtext, kwargs)

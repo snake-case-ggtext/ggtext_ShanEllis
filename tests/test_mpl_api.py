@@ -25,7 +25,7 @@ def test_split_kwargs():
 
 
 def test_text_on_axes_uses_data_coords(fig_ax):
-    f, ax = fig_ax
+    _f, ax = fig_ax
     ax.set_xlim(0, 10)
     t = ggtext.text(ax, 5, 0.5, "**x**", fill="red", color="blue")
     assert isinstance(t, RichText) and t in ax.texts
@@ -73,7 +73,7 @@ def test_annotate_text_is_drawn(fig_ax):
 
 
 def test_richify_single_and_many(fig_ax):
-    f, ax = fig_ax
+    _f, ax = fig_ax
     ax.set_xlabel("**x**")
     assert ggtext.richify(ax.xaxis.label) is ax.xaxis.label
     assert isinstance(ax.xaxis.label, RichText)
@@ -97,7 +97,7 @@ def test_label_setters(fig_ax, func, getter):
 
 
 def test_suptitle(fig_ax):
-    f, ax = fig_ax
+    f, _ax = fig_ax
     t = ggtext.set_suptitle(f, "**Super**")
     assert t is f._suptitle and isinstance(t, RichText)
 
@@ -127,7 +127,7 @@ def test_rich_ticklabels_axes(fig_ax, axis, which):
 
 
 def test_works_with_pyplot_text():
-    f, ax = plt.subplots()
+    _f, _ax = plt.subplots()
     t = plt.text(0.5, 0.5, "**x**", richtext=True)
     assert isinstance(t, RichText)
 

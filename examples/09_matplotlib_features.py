@@ -15,10 +15,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -81,7 +81,7 @@ ggtext.text(
 ggtext.annotate(
     ax, "**Outlier?** check the<br>raw data",
     xy=(3, values[2].max()), xytext=(1.25, 10.6),
-    arrowprops=dict(arrowstyle="->", color="#555555"),
+    arrowprops={"arrowstyle": "->", "color": "#555555"},
     fontsize=9, fill="white", box_color="#999999", padding=3, r=3,
 )  # fmt: skip
 

@@ -449,14 +449,14 @@
       "severity": "error"
     },
     {
-      "column": 51,
+      "column": 30,
       "path": "src/ggtext/_artist.py",
       "name": "missing-attribute",
       "concise_description": "Object of class `RichText` has no attribute `_clippath`",
       "severity": "error"
     },
     {
-      "column": 75,
+      "column": 28,
       "path": "src/ggtext/_artist.py",
       "name": "missing-attribute",
       "concise_description": "Object of class `RichText` has no attribute `_clipon`",
@@ -617,14 +617,14 @@
       "severity": "error"
     },
     {
-      "column": 51,
+      "column": 30,
       "path": "src/ggtext/_artist.py",
       "name": "missing-attribute",
       "concise_description": "Object of class `RichText` has no attribute `_clippath`",
       "severity": "error"
     },
     {
-      "column": 75,
+      "column": 28,
       "path": "src/ggtext/_artist.py",
       "name": "missing-attribute",
       "concise_description": "Object of class `RichText` has no attribute `_clipon`",
@@ -967,7 +967,7 @@
       "severity": "error"
     },
     {
-      "column": 18,
+      "column": 13,
       "path": "src/ggtext/mpl.py",
       "name": "implicit-any-type-argument",
       "concise_description": "Cannot determine the type parameter `_T` for generic class `list[_T]`",
@@ -1011,20 +1011,6 @@
     {
       "column": 55,
       "path": "src/ggtext/mpl.py",
-      "name": "implicit-any-type-argument",
-      "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
-      "severity": "error"
-    },
-    {
-      "column": 21,
-      "path": "src/ggtext/plotnine/elements.py",
-      "name": "implicit-any-type-argument",
-      "concise_description": "Cannot determine the type parameter `_KT` for generic class `dict[_KT, _VT]`",
-      "severity": "error"
-    },
-    {
-      "column": 21,
-      "path": "src/ggtext/plotnine/elements.py",
       "name": "implicit-any-type-argument",
       "concise_description": "Cannot determine the type parameter `_VT` for generic class `dict[_KT, _VT]`",
       "severity": "error"
@@ -1849,7 +1835,7 @@
       "severity": "error"
     },
     {
-      "column": 17,
+      "column": 18,
       "path": "tests/test_artist.py",
       "name": "not-iterable",
       "concise_description": "Type `float` is not iterable",

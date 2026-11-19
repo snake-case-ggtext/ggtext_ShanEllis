@@ -14,8 +14,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import pandas as pd
+from plotnine import (
     aes,
     coord_flip,
     geom_col,
@@ -27,7 +27,7 @@ from plotnine import (  # noqa: E402
     theme_minimal,
 )
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)

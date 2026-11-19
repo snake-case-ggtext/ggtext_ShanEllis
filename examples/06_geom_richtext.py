@@ -12,9 +12,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import numpy as np
+import pandas as pd
+from plotnine import (
     aes,
     coord_fixed,
     geom_point,
@@ -26,7 +26,7 @@ from plotnine import (  # noqa: E402
     theme_void,
 )
 
-from ggtext import element_markdown, geom_richtext  # noqa: E402
+from ggtext import element_markdown, geom_richtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)

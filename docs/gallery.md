@@ -43,7 +43,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_point,
     ggplot,
@@ -52,9 +52,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -116,10 +116,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -146,7 +146,7 @@ ggtext.annotate(
     xy=(np.pi / 2, 1),
     xytext=(3.2, 1.45),
     va="center",
-    arrowprops=dict(arrowstyle="->", color="#444444"),
+    arrowprops={"arrowstyle": "->", "color": "#444444"},
     fill="#FFF8E1",
     box_color="#999999",
     padding=4,
@@ -194,7 +194,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_line,
     ggplot,
@@ -204,9 +204,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import economics_long  # noqa: E402
+from plotnine.data import economics_long
 
-from ggtext import element_markdown, element_textbox_simple  # noqa: E402
+from ggtext import element_markdown, element_textbox_simple
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -294,8 +294,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import pandas as pd
+from plotnine import (
     aes,
     coord_flip,
     geom_col,
@@ -307,7 +307,7 @@ from plotnine import (  # noqa: E402
     theme_minimal,
 )
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -401,7 +401,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     facet_wrap,
     geom_point,
@@ -411,9 +411,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_bw,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown  # noqa: E402
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -485,9 +485,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import numpy as np
+import pandas as pd
+from plotnine import (
     aes,
     coord_fixed,
     geom_point,
@@ -499,7 +499,7 @@ from plotnine import (  # noqa: E402
     theme_void,
 )
 
-from ggtext import element_markdown, geom_richtext  # noqa: E402
+from ggtext import element_markdown, geom_richtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -590,8 +590,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import pandas as pd
+from plotnine import (
     aes,
     geom_point,
     ggplot,
@@ -600,9 +600,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown, geom_textbox  # noqa: E402
+from ggtext import element_markdown, geom_textbox
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -617,11 +617,15 @@ notes = pd.DataFrame(
         "ha": ["left", "right"],
         "va": ["top", "bottom"],
         "label": [
-            f"<span style='color:{COLORS['Gentoo']}'>**Gentoo**</span> penguins are the "
-            "heaviest, with the longest flippers: most weigh **over 4.5 kg**.",
-            f"<span style='color:{COLORS['Adelie']}'>**Adelie**</span> and "
-            f"<span style='color:{COLORS['Chinstrap']}'>**Chinstrap**</span> overlap almost "
-            "completely; body mass alone *cannot* tell them apart.",
+            (
+                f"<span style='color:{COLORS['Gentoo']}'>**Gentoo**</span> penguins are the "
+                "heaviest, with the longest flippers: most weigh **over 4.5 kg**."
+            ),
+            (
+                f"<span style='color:{COLORS['Adelie']}'>**Adelie**</span> and "
+                f"<span style='color:{COLORS['Chinstrap']}'>**Chinstrap**</span> overlap almost "
+                "completely; body mass alone *cannot* tell them apart."
+            ),
         ],
         "halign": ["left", "right"],
     }
@@ -684,9 +688,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
-from plotnine import (  # noqa: E402
+import numpy as np
+import pandas as pd
+from plotnine import (
     aes,
     geom_col,
     ggplot,
@@ -696,8 +700,8 @@ from plotnine import (  # noqa: E402
     theme_minimal,
 )
 
-import ggtext  # noqa: E402
-from ggtext import element_markdown  # noqa: E402
+import ggtext
+from ggtext import element_markdown
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -787,10 +791,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -853,7 +857,7 @@ ggtext.text(
 ggtext.annotate(
     ax, "**Outlier?** check the<br>raw data",
     xy=(3, values[2].max()), xytext=(1.25, 10.6),
-    arrowprops=dict(arrowstyle="->", color="#555555"),
+    arrowprops={"arrowstyle": "->", "color": "#555555"},
     fontsize=9, fill="white", box_color="#999999", padding=3, r=3,
 )  # fmt: skip
 
@@ -885,10 +889,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
-import ggtext  # noqa: E402
+import ggtext
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -976,7 +980,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_histogram,
     geom_point,
@@ -987,9 +991,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown, element_textbox_simple  # noqa: E402
+from ggtext import element_markdown, element_textbox_simple
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -1001,7 +1005,7 @@ rich_theme = theme_minimal() + theme(
     plot_title=element_markdown(size=12),
     plot_subtitle=element_textbox_simple(
         size=9, fill="#F2F2F2", padding=4, r=3, margin={"b": 6}
-    ),  # fmt: skip
+    ),
     legend_position="none",
 )
 

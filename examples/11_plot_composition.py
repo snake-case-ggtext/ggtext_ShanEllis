@@ -13,7 +13,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from plotnine import (  # noqa: E402
+from plotnine import (
     aes,
     geom_histogram,
     geom_point,
@@ -24,9 +24,9 @@ from plotnine import (  # noqa: E402
     theme,
     theme_minimal,
 )
-from plotnine.data import penguins  # noqa: E402
+from plotnine.data import penguins
 
-from ggtext import element_markdown, element_textbox_simple  # noqa: E402
+from ggtext import element_markdown, element_textbox_simple
 
 OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -38,7 +38,7 @@ rich_theme = theme_minimal() + theme(
     plot_title=element_markdown(size=12),
     plot_subtitle=element_textbox_simple(
         size=9, fill="#F2F2F2", padding=4, r=3, margin={"b": 6}
-    ),  # fmt: skip
+    ),
     legend_position="none",
 )
 

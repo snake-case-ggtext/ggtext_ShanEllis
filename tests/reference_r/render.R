@@ -18,7 +18,7 @@ test_that("visual tests", {
     fill = c("#E6EBD1", "#CDEFE9", "#E8E6FC", "#FEE1E5"),
     label.size = c(0.1, 0.25, 0.5, 1)
   )
-  
+
   p <- ggplot() +
     geom_richtext(
       data = df,
@@ -31,7 +31,7 @@ test_that("visual tests", {
     ) +
     xlim(0, 1) + ylim(0, 1) +
     scale_discrete_identity(aesthetics = c("orientation", "label.colour", "fill"))
-  
+
   expect_doppelganger("Rotated labels w/ colors", p)
 })
 
@@ -48,7 +48,7 @@ test_that("visual tests", {
     valign = c(1, 0.5, 0.5, 0),
     box.size = c(0.1, 0.25, 0.5, 1)
   )
-  
+
   p <- ggplot() +
     geom_textbox(
       data = df,
@@ -64,7 +64,7 @@ test_that("visual tests", {
     ) +
     xlim(0, 1) + ylim(0, 1) +
     scale_discrete_identity(aesthetics = c("orientation", "box.colour", "fill"))
-  
+
   expect_doppelganger("Rotated boxes w/ colors and alignments", p)
 })
 
@@ -97,7 +97,7 @@ p1 <- ggplot(df) +
   scale_color_identity() +
   scale_fill_identity() +
   xlim(0, 1) + ylim(0, 1)
-  
+
 # labels without frame or background are also possible
 p2 <- ggplot(df) +
   aes(
