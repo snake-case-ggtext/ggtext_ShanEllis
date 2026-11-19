@@ -9,6 +9,13 @@ plotnine).
 
 Create or update baselines with ``pytest --update-baselines``.
 
+Baselines depend on how text is rasterized, which differs between
+platforms and between the FreeType versions bundled with matplotlib 3.10
+and 3.11. The baselines are made in one reference environment, Linux with
+matplotlib 3.11 (CI's ``ubuntu-latest`` job). Anywhere else the plot is
+still drawn, so the code paths run, but the pixel comparison is skipped.
+Set ``GGTEXT_IMAGE_TESTS=force`` to compare (or update) anyway.
+
 Everything here is local to image tests: ``ggplot.__eq__`` is only
 patched while a test marked ``image`` runs (see ``conftest.py``), and the
 size, dpi, fonts and rcParams are applied per comparison and restored.
@@ -18,7 +25,9 @@ from __future__ import annotations
 
 import inspect
 import io
+import os
 import shutil
+import sys
 import types
 from pathlib import Path
 
@@ -38,6 +47,26 @@ FONT_RCPARAMS = {
     "font.sans-serif": ["DejaVu Sans"],
     "font.serif": ["DejaVu Serif"],
 }
+
+# Where the baselines were made: Linux, matplotlib 3.11
+REFERENCE_PLATFORM = "linux"
+REFERENCE_MATPLOTLIB = (3, 11)
+
+
+def reference_environment() -> tuple[bool, str]:
+    """Whether this is the environment the baselines were made in."""
+    if os.environ.get("GGTEXT_IMAGE_TESTS", "").lower() == "force":
+        return True, ""
+    mpl_version = tuple(mpl.__version_info__[:2])
+    if (
+        not sys.platform.startswith(REFERENCE_PLATFORM)
+        or mpl_version != REFERENCE_MATPLOTLIB
+    ):
+        here = f"{sys.platform}, matplotlib {mpl.__version__}"
+        ref = "{}, matplotlib {}.{}".format(REFERENCE_PLATFORM, *REFERENCE_MATPLOTLIB)
+        return False, f"image baselines are for {ref}; this is {here}"
+    return True, ""
+
 
 tests_dir = Path(__file__).parent
 baseline_images_dir = tests_dir / "baseline_images"
@@ -94,10 +123,21 @@ def _sized(plot):
 
 
 def ggplot_equals(plot, name: str) -> bool:
+    import pytest
+
     test_file = inspect.stack()[1][1]
     filenames = make_test_image_filenames(name, test_file)
     with _test_cleanup():
         _sized(plot).save(filenames.result, verbose=False, dpi=DPI)
+
+    is_reference, reason = reference_environment()
+    if not is_reference:
+        if _state["update"]:
+            raise pytest.UsageError(
+                f"Refusing to update baselines: {reason}. "
+                "Set GGTEXT_IMAGE_TESTS=force to override."
+            )
+        pytest.skip(f"{reason} (the plot was drawn; the pixel comparison is skipped)")
 
     if _state["update"]:
         filenames.baseline.parent.mkdir(parents=True, exist_ok=True)
@@ -130,6 +170,7 @@ def assertrepr_compare(op, left, right):
         err = getattr(left, "_err", None)
         if err:
             return [
-                "images not close: {actual:s} vs. {expected:s} "
-                "(RMS {rms:.2f})".format(**err)
+                "images not close: {actual:s} vs. {expected:s} (RMS {rms:.2f})".format(
+                    **err
+                )
             ]
