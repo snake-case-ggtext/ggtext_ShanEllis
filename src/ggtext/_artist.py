@@ -49,6 +49,7 @@ import matplotlib as mpl
 import numpy as np
 from matplotlib import artist
 from matplotlib.colors import to_rgba
+from matplotlib.font_manager import findfont
 from matplotlib.patches import FancyBboxPatch
 from matplotlib.path import Path
 from matplotlib.text import Text
@@ -93,11 +94,22 @@ _TEXT_METRICS = _BoundedCache(8192)
 _FONT_METRICS = _BoundedCache(1024)
 
 
+def _font_key(fp) -> Tuple[int, str]:
+    """
+    Cache key for a font: its properties *and* the file they resolve to.
+
+    A generic family such as ``"sans-serif"`` resolves through rcParams, so
+    the same ``FontProperties`` can mean different fonts in different
+    figures. matplotlib's ``findfont`` is itself cached and rcParams-aware.
+    """
+    return hash(fp), findfont(fp)
+
+
 def _text_metrics(
     renderer_key: Any, renderer, s: str, fp, ismath: bool
 ) -> Tuple[float, float, float]:
     """``(width, ascent, descent)`` of *s* in pixels."""
-    key = (renderer_key, s, hash(fp), ismath)
+    key = (renderer_key, s, _font_key(fp), ismath)
     try:
         return _TEXT_METRICS[key]
     except KeyError:
@@ -116,7 +128,7 @@ def _font_metrics(
     We ask throw-away ``Text`` artists for their layout so that rich text
     is spaced exactly like plain text in the installed matplotlib.
     """
-    key = (renderer_key, hash(fp))
+    key = (renderer_key, _font_key(fp))
     try:
         return _FONT_METRICS[key]
     except KeyError:

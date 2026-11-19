@@ -48,6 +48,26 @@ def test_markdown_does_not_change_plain_extent(fig, renderer):
     )
 
 
+def test_metric_caches_follow_font_rcparams():
+    # The same FontProperties ("sans-serif", 12pt) resolves to different
+    # fonts under different rcParams. Measuring under one font must not leak
+    # cached metrics into figures that use another.
+    s = "two\nlines"
+    extents = {}
+    for family in (["DejaVu Sans"], ["DejaVu Sans Mono"]):
+        with plt.rc_context({"font.family": "sans-serif", "font.sans-serif": family}):
+            f = plt.figure(figsize=(6, 4), dpi=100)
+            r = f.canvas.get_renderer()
+            plain = f.text(0.4, 0.5, s, fontsize=12)
+            rich = f.add_artist(RichText(0.4, 0.5, s, fontsize=12, richtext=PLAIN))
+            a = plain.get_window_extent(r).extents
+            b = rich.get_window_extent(r).extents
+            np.testing.assert_allclose(a, b, atol=0.6)
+            extents[family[0]] = b
+    # Sanity check: the two fonts really do measure differently
+    assert not np.allclose(extents["DejaVu Sans"], extents["DejaVu Sans Mono"])
+
+
 def test_bold_is_wider_than_plain(fig, renderer):
     plain = ggtext.text(fig, 0.1, 0.5, "Hello world")
     bold = ggtext.text(fig, 0.1, 0.3, "**Hello world**")
