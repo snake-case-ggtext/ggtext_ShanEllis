@@ -72,7 +72,9 @@ def main():
     for s in scripts:
         title = (ast.get_docstring(ast.parse(s.read_text())) or s.stem).split("\n")[0]
         name = title.rstrip(".")
-        parts.append(f"| [{md_escape(name, table=True)}](#{anchor(s)}) | `examples/{s.name}` |")
+        parts.append(
+            f"| [{md_escape(name, table=True)}](#{anchor(s)}) | `examples/{s.name}` |"
+        )
     parts.append("")
     parts += [section(s) for s in scripts]
     (DOCS / "gallery.md").write_text("\n".join(parts))

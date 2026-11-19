@@ -46,7 +46,9 @@ ROWS = [
 ]
 
 fig = plt.figure(figsize=(8.5, 10), dpi=120)
-ggtext.set_suptitle(fig, "**ggtext** syntax cheatsheet", fontsize=16, x=0.06, ha="left", y=0.985)
+ggtext.set_suptitle(
+    fig, "**ggtext** syntax cheatsheet", fontsize=16, x=0.06, ha="left", y=0.985
+)
 fig.text(0.06, 0.945, "source", fontsize=9, color="#888888", family="monospace")
 fig.text(0.62, 0.945, "rendered", fontsize=9, color="#888888")
 
@@ -54,7 +56,9 @@ y = 0.915
 for source, _ in ROWS:
     if source in ("Markdown", "HTML", "Math"):
         y -= 0.008
-        ggtext.text(fig, 0.06, y, f"**{source}**", fontsize=12, color="#0072B2", va="center")
+        ggtext.text(
+            fig, 0.06, y, f"**{source}**", fontsize=12, color="#0072B2", va="center"
+        )
         y -= 0.036
         continue
     fig.text(0.06, y, source, fontsize=8.5, family="monospace", color="#333333",

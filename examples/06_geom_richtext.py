@@ -38,7 +38,9 @@ df = pd.DataFrame(
         "x": 1.2 * np.cos(np.radians(angles)),
         "y": 1.2 * np.sin(np.radians(angles)),
         "angle": angles,
-        "label": [f"**{a}°** <span style='color:#D55E00'>*rich*</span>" for a in angles],
+        "label": [
+            f"**{a}°** <span style='color:#D55E00'>*rich*</span>" for a in angles
+        ],
         "half": np.where(angles < 180, "top", "bottom"),
     }
 )
@@ -65,7 +67,12 @@ p = (
         label_color="#555555",
     )
     + geom_richtext(
-        aes(label="label"), data=center, fill=None, label_size=0, size=10, color="#333333"
+        aes(label="label"),
+        data=center,
+        fill=None,
+        label_size=0,
+        size=10,
+        color="#333333",
     )
     + scale_fill_manual(values={"top": "#FFF3D6", "bottom": "#DCEFFA"}, guide=None)
     + lims(x=(-1.95, 1.95), y=(-1.95, 1.95))

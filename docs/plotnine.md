@@ -2,8 +2,11 @@
 
 ```python
 from ggtext import (
-    element_markdown, element_textbox, element_textbox_simple,  # theme elements
-    geom_richtext, geom_textbox,                                # geoms
+    element_markdown,
+    element_textbox,
+    element_textbox_simple,  # theme elements
+    geom_richtext,
+    geom_textbox,  # geoms
 )
 ```
 
@@ -74,10 +77,16 @@ Unlike R's ggtext, a text box can be rotated to **any** angle with `rotation=`. 
 
 ```python
 # A boxed y-axis title that spans 80% of the panel height
-theme(axis_title_y=element_textbox(
-    orientation="left-rotated", width=0.8, halign="center",
-    fill="#E8EEF7", padding=4, r=3,
-))
+theme(
+    axis_title_y=element_textbox(
+        orientation="left-rotated",
+        width=0.8,
+        halign="center",
+        fill="#E8EEF7",
+        padding=4,
+        r=3,
+    )
+)
 ```
 
 ### `element_textbox_simple()`
@@ -130,8 +139,12 @@ Rich text labels in the data. By default each label sits in a white box with a t
 
 ```python
 ggplot(df, aes("x", "y", label="label")) + geom_richtext(angle=30)
-ggplot(df, aes("x", "y", label="label")) + geom_richtext(fill=None, label_size=0)  # no box
-ggplot(df, aes("x", "y", label="label", label_color="group")) + geom_richtext(hjust="inward")
+ggplot(df, aes("x", "y", label="label")) + geom_richtext(
+    fill=None, label_size=0
+)  # no box
+ggplot(df, aes("x", "y", label="label", label_color="group")) + geom_richtext(
+    hjust="inward"
+)
 ```
 
 The geoms follow ggtext's conventions:
@@ -169,7 +182,9 @@ To draw labels with no box, set `fill=None` and `label_size=0` (R: `fill = NA, l
 Word-wrapped rich text in boxes of a fixed width. `ha`/`va` (or `hjust`/`vjust`, with the same values as in `geom_richtext()`) place the *box* relative to the point (default: centered), and `halign`/`valign` align the *text* inside the box. Rotated boxes (`orientation`) turn around the anchor point, as in ggtext.
 
 ```python
-ggplot(notes, aes("x", "y", label="label")) + geom_textbox(width="2.3in", fill="#FAFAFA")
+ggplot(notes, aes("x", "y", label="label")) + geom_textbox(
+    width="2.3in", fill="#FAFAFA"
+)
 ```
 
 **Aesthetics:** the text aesthetics of `geom_richtext()` plus `halign` (`"left"`), `valign` (`"top"`), `orientation` (`"upright"`), `box_color`/`box_colour` (`None`: the text color; `"none"`: no outline), `box_size` (`0.7` points), and `text_color`.

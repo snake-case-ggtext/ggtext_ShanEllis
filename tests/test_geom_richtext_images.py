@@ -177,9 +177,7 @@ def test_text_color_alpha_and_named_just():
     )
     p = (
         ggplot(df, aes("x", "y", label="label", hjust="hjust", vjust="vjust"))
-        + geom_richtext(
-            color="darkblue", text_color="firebrick", alpha=0.6, size=14
-        )
+        + geom_richtext(color="darkblue", text_color="firebrick", alpha=0.6, size=14)
         + geom_point()
     )
     assert p == "text_color_alpha_and_named_just"

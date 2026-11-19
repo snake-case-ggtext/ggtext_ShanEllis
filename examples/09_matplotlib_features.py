@@ -41,13 +41,18 @@ ggtext.set_xlabel(ax, "Dose group <span style='color:#777777'>(*n* = 40 each)</s
 # Rich tick labels
 ax.set_xticks(
     [1, 2, 3],
-    ["Control", "<span style='color:#E69F00'>**Low**</span>",
-     "<span style='color:#D55E00'>**High**</span>"],
+    [
+        "Control",
+        "<span style='color:#E69F00'>**Low**</span>",
+        "<span style='color:#D55E00'>**High**</span>",
+    ],
 )
 ggtext.rich_ticklabels(ax, "x")
 
 # An existing artist, converted in place
-ax.text(0.45, 12.2, "Mean of *high* ≈ **8** (made-up data)", fontsize=9, color="#444444")
+ax.text(
+    0.45, 12.2, "Mean of *high* ≈ **8** (made-up data)", fontsize=9, color="#444444"
+)
 ggtext.richify(ax.texts[-1])
 
 # Inline styles

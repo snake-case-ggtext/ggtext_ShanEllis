@@ -4,9 +4,11 @@ ggtext renders **Markdown, HTML, and inline CSS** in matplotlib and plotnine plo
 
 ```python
 from ggtext import element_markdown
-theme(plot_title=element_markdown())   # plotnine
+
+theme(plot_title=element_markdown())  # plotnine
 
 import ggtext
+
 ggtext.set_title(ax, "A **rich** title")  # matplotlib
 ```
 

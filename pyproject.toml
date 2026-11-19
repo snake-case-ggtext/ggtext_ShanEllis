@@ -81,11 +81,4 @@ branch = true
 show_missing = true
 skip_covered = true
 
-[tool.ruff]
-line-length = 88
-target-version = "py310"
-src = ["src", "tests"]
-
-[tool.ruff.lint]
-select = ["E", "F", "W", "I", "B", "UP", "SIM"]
-ignore = ["E501", "UP007", "UP006", "UP035", "SIM108"]
+# Ruff runs with its out-of-the-box rules and formatter settings.

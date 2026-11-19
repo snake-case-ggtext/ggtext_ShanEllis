@@ -130,6 +130,7 @@ def assertrepr_compare(op, left, right):
         err = getattr(left, "_err", None)
         if err:
             return [
-                "images not close: {actual:s} vs. {expected:s} "
-                "(RMS {rms:.2f})".format(**err)
+                "images not close: {actual:s} vs. {expected:s} (RMS {rms:.2f})".format(
+                    **err
+                )
             ]

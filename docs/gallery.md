@@ -332,7 +332,9 @@ p = (
     ggplot(df, aes("vehicle", "co2", fill="kind"))
     + geom_col(width=0.7)
     + scale_x_discrete(limits=list(labels), labels=list(labels.values()))
-    + scale_fill_manual(values={"electric": "#009E73", "hybrid": "#56B4E9", "gas": "#999999"})
+    + scale_fill_manual(
+        values={"electric": "#009E73", "hybrid": "#56B4E9", "gas": "#999999"}
+    )
     + labs(
         x="",
         y="CO<sub>2</sub> emissions (g km<sup>-1</sup>)",
@@ -354,9 +356,11 @@ p2 = (
     p
     + coord_flip()
     + labs(title="…and on the **y axis** after `coord_flip()`")
-    + theme(axis_text_x=element_markdown(rotation=0, ha="center"),
-            axis_text_y=element_markdown(size=10, ha="right"),
-            axis_title_x=element_markdown(size=11))
+    + theme(
+        axis_text_x=element_markdown(rotation=0, ha="center"),
+        axis_text_y=element_markdown(size=10, ha="right"),
+        axis_title_x=element_markdown(size=11),
+    )
 )
 
 if __name__ == "__main__":
@@ -428,8 +432,10 @@ p = (
     + facet_wrap("island", labeller=island_label)
     + scale_color_manual(
         values={"female": "#CC79A7", "male": "#0072B2"},
-        labels=["<span style='color:#CC79A7'>**female**</span>",
-                "<span style='color:#0072B2'>**male**</span>"],
+        labels=[
+            "<span style='color:#CC79A7'>**female**</span>",
+            "<span style='color:#0072B2'>**male**</span>",
+        ],
     )
     + labs(
         x="Flipper length (mm)",
@@ -505,7 +511,9 @@ df = pd.DataFrame(
         "x": 1.2 * np.cos(np.radians(angles)),
         "y": 1.2 * np.sin(np.radians(angles)),
         "angle": angles,
-        "label": [f"**{a}°** <span style='color:#D55E00'>*rich*</span>" for a in angles],
+        "label": [
+            f"**{a}°** <span style='color:#D55E00'>*rich*</span>" for a in angles
+        ],
         "half": np.where(angles < 180, "top", "bottom"),
     }
 )
@@ -532,7 +540,12 @@ p = (
         label_color="#555555",
     )
     + geom_richtext(
-        aes(label="label"), data=center, fill=None, label_size=0, size=10, color="#333333"
+        aes(label="label"),
+        data=center,
+        fill=None,
+        label_size=0,
+        size=10,
+        color="#333333",
     )
     + scale_fill_manual(values={"top": "#FFF3D6", "bottom": "#DCEFFA"}, guide=None)
     + lims(x=(-1.95, 1.95), y=(-1.95, 1.95))
@@ -800,13 +813,18 @@ ggtext.set_xlabel(ax, "Dose group <span style='color:#777777'>(*n* = 40 each)</s
 # Rich tick labels
 ax.set_xticks(
     [1, 2, 3],
-    ["Control", "<span style='color:#E69F00'>**Low**</span>",
-     "<span style='color:#D55E00'>**High**</span>"],
+    [
+        "Control",
+        "<span style='color:#E69F00'>**Low**</span>",
+        "<span style='color:#D55E00'>**High**</span>",
+    ],
 )
 ggtext.rich_ticklabels(ax, "x")
 
 # An existing artist, converted in place
-ax.text(0.45, 12.2, "Mean of *high* ≈ **8** (made-up data)", fontsize=9, color="#444444")
+ax.text(
+    0.45, 12.2, "Mean of *high* ≈ **8** (made-up data)", fontsize=9, color="#444444"
+)
 ggtext.richify(ax.texts[-1])
 
 # Inline styles
@@ -903,7 +921,9 @@ ROWS = [
 ]
 
 fig = plt.figure(figsize=(8.5, 10), dpi=120)
-ggtext.set_suptitle(fig, "**ggtext** syntax cheatsheet", fontsize=16, x=0.06, ha="left", y=0.985)
+ggtext.set_suptitle(
+    fig, "**ggtext** syntax cheatsheet", fontsize=16, x=0.06, ha="left", y=0.985
+)
 fig.text(0.06, 0.945, "source", fontsize=9, color="#888888", family="monospace")
 fig.text(0.62, 0.945, "rendered", fontsize=9, color="#888888")
 
@@ -911,7 +931,9 @@ y = 0.915
 for source, _ in ROWS:
     if source in ("Markdown", "HTML", "Math"):
         y -= 0.008
-        ggtext.text(fig, 0.06, y, f"**{source}**", fontsize=12, color="#0072B2", va="center")
+        ggtext.text(
+            fig, 0.06, y, f"**{source}**", fontsize=12, color="#0072B2", va="center"
+        )
         y -= 0.036
         continue
     fig.text(0.06, y, source, fontsize=8.5, family="monospace", color="#333333",
@@ -977,8 +999,9 @@ pg = penguins.dropna()
 
 rich_theme = theme_minimal() + theme(
     plot_title=element_markdown(size=12),
-    plot_subtitle=element_textbox_simple(size=9, fill="#F2F2F2", padding=4, r=3,
-                                         margin={"b": 6}),  # fmt: skip
+    plot_subtitle=element_textbox_simple(
+        size=9, fill="#F2F2F2", padding=4, r=3, margin={"b": 6}
+    ),  # fmt: skip
     legend_position="none",
 )
 
@@ -990,7 +1013,8 @@ p1 = (
         title="**Flipper length**",
         subtitle=f"<span style='color:{COLORS['Gentoo']}'>**Gentoo**</span> penguins have "
         "clearly longer flippers; the other two species overlap.",
-        x="mm", y="count",
+        x="mm",
+        y="count",
     )
     + rich_theme
 )
@@ -1002,7 +1026,8 @@ p2 = (
         title="**Bill shape**",
         subtitle=f"Bill depth separates <span style='color:{COLORS['Gentoo']}'>**Gentoo**</span>; "
         f"bill length separates <span style='color:{COLORS['Adelie']}'>**Adelie**</span> from the rest.",
-        x="length (mm)", y="depth (mm)",
+        x="length (mm)",
+        y="depth (mm)",
     )
     + scale_color_manual(values=COLORS)
     + rich_theme

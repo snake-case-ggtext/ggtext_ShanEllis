@@ -45,8 +45,10 @@ p = (
     + facet_wrap("island", labeller=island_label)
     + scale_color_manual(
         values={"female": "#CC79A7", "male": "#0072B2"},
-        labels=["<span style='color:#CC79A7'>**female**</span>",
-                "<span style='color:#0072B2'>**male**</span>"],
+        labels=[
+            "<span style='color:#CC79A7'>**female**</span>",
+            "<span style='color:#0072B2'>**male**</span>",
+        ],
     )
     + labs(
         x="Flipper length (mm)",

@@ -191,8 +191,6 @@ def test_native_width_no_wrap():
 def test_bad_orientation():
     # Port of plotnine-ggtext test_geom_textbox.py::test_bad_orientation.
     df = pd.DataFrame({"x": [1], "y": [1], "label": ["x"]})
-    p = ggplot(df, aes("x", "y", label="label")) + geom_textbox(
-        orientation="sideways"
-    )
+    p = ggplot(df, aes("x", "y", label="label")) + geom_textbox(orientation="sideways")
     with pytest.raises(PlotnineError, match="orientation"):
         p.draw_test()  # pyright: ignore
