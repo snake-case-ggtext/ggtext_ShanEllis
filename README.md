@@ -1,7 +1,5 @@
 # ggtext
 
-[![tests](https://github.com/snake-case-ggtext/ggtext_ShanEllis/actions/workflows/tests.yml/badge.svg)](https://github.com/snake-case-ggtext/ggtext_ShanEllis/actions/workflows/tests.yml)
-
 **Rich text for matplotlib and plotnine.** You can use Markdown, HTML, and inline CSS anywhere text appears in a plot: titles, subtitles, captions, axis titles, tick labels, facet strips, legends, and labels placed in the data.
 
 This is a Python take on the R package [ggtext](https://wilkelab.org/ggtext/) by Claus Wilke. It is built for the Python/SciPy community. The core works with plain matplotlib, and plotnine support is an optional extra on top.
@@ -24,12 +22,14 @@ plotnine styles all of its text with `text.set(**element.properties)`. ggtext re
 
 ## Install
 
+ggtext isn't on PyPI yet: its parser, [ggIR](https://github.com/snake-case-ggtext/ggIR), has to be published there first (see the [roadmap](docs/roadmap.md)). Install it from GitHub; this also installs ggIR:
+
 ```bash
-pip install "ggtext[plotnine]"   # with plotnine
-pip install ggtext               # matplotlib only
+pip install "ggtext[plotnine] @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"   # with plotnine
+pip install "ggtext @ git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"             # matplotlib only
 ```
 
-ggtext supports Python ≥ 3.10, matplotlib ≥ 3.10, and plotnine 0.15.
+ggtext supports Python ≥ 3.10, matplotlib ≥ 3.10, and plotnine 0.15. To work on ggtext itself, see [Contributing](#contributing).
 
 > **Version note:** matplotlib 3.11 requires Python ≥ 3.11. On Python 3.10, pip installs matplotlib 3.10, and ggtext supports both. The test suite runs on Python 3.10 + matplotlib 3.10 and on Python 3.11 + matplotlib 3.11.
 
@@ -107,6 +107,43 @@ ax.text(1, 1, "**works** with ax.text too", richtext=True)
 
 You can also write `$...$` for matplotlib mathtext. `snake_case_names` stay literal. See the [syntax reference](docs/syntax.md) and the [cheatsheet image](docs/images/syntax_cheatsheet.png).
 
+## What's in the package
+
+`import ggtext` gives you 23 public names (`ggtext.__all__`). The five plotnine helpers import plotnine only when you first use one, so ggtext works without plotnine installed.
+
+**plotnine** (also in `ggtext.plotnine`)
+
+| Name | What it is |
+|---|---|
+| `element_markdown` | theme element: rich text for any text slot in `theme()` |
+| `element_textbox` | theme element: word-wrapped rich text in a box |
+| `element_textbox_simple` | `element_textbox` with full-width defaults, for long subtitles and captions |
+| `geom_richtext` | rich text labels in the data, optionally boxed, at any angle |
+| `geom_textbox` | word-wrapped rich text boxes in the data |
+
+**matplotlib** (also in `ggtext.mpl`)
+
+| Name | What it is |
+|---|---|
+| `text`, `textbox`, `annotate` | add rich text, a word-wrapped box, or an annotation with an arrow to an axes or figure |
+| `set_title`, `set_suptitle`, `set_xlabel`, `set_ylabel` | rich versions of matplotlib's setters |
+| `richify` | turn existing text objects (`ax.title`, legend text, ...) into rich text |
+| `rich_ticklabels` | make an axis's tick labels rich, including ticks matplotlib creates later |
+
+**Core objects and utilities**
+
+| Name | What it is |
+|---|---|
+| `RichText` | the `matplotlib.text.Text` subclass that draws rich text |
+| `RichTextSpec` | the rich text options: wrapping width, box fill and outline, padding, margins, alignment, ... |
+| `make_rich`, `make_plain`, `is_rich` | convert a `Text` object to rich text and back, or check which it is |
+| `parse` | turn a string into styled tokens (with ggIR); handy for debugging markup |
+| `Style` | the style of one token (built on ggIR's `Style`) |
+| `register_image` | make a numpy array or PIL image available to `<img src="name">` |
+| `options` | package settings, e.g. `ggtext.options.allow_remote_images = False` |
+
+Importing ggtext also adds a `richtext` property to matplotlib's `Text` (`ax.text(..., richtext=True)`, `text.set(richtext=...)`). That property is how the plotnine theme elements turn plotnine's own text into rich text; it adds to `Text` and changes nothing for plain text.
+
 ## Compared with R's ggtext
 
 | Feature | Status |
@@ -163,7 +200,13 @@ ggtext follows Python, matplotlib, and plotnine conventions where they differ fr
 
 ## Testing
 
-The suite has 1,059 tests in 13 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,058 pass, 1 skipped). Elsewhere the 16 image comparisons are also skipped (see below). A full run takes 20–30 seconds.
+The suite has 1,060 tests in 13 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,059 pass, 1 skipped). Elsewhere the 16 image comparisons are also skipped (see below). A full run takes 20–30 seconds.
+
+```bash
+make test                             # whole suite in random order, with coverage (uses uv)
+```
+
+Or with pip:
 
 ```bash
 pip install -e ".[test,notebook]"     # the notebook extra runs examples/ggtext_tour.ipynb
@@ -174,9 +217,11 @@ pytest --update-baselines -m image    # rewrite the image baselines after an int
 pytest --doctest-modules src/ggtext   # examples in the docstrings
 ```
 
+With the dev tools installed (`uv sync`), tests run in a random order (pytest-randomly) to catch tests that depend on each other. To reproduce a failure, rerun with the seed printed at the top: `pytest -p randomly --randomly-seed=<seed>`.
+
 | File | Tests | What it checks |
 |---|---|---|
-| `tests/test_artist.py` | 669 | The core `RichText` artist |
+| `tests/test_artist.py` | 670 | The core `RichText` artist |
 | `tests/test_plotnine.py` | 100 | The plotnine integration |
 | `tests/test_parse.py` | 60 | Markdown, HTML and math parsing, through `ggtext.parse()` |
 | `tests/test_spec.py` | 46 | Rich-text options, validation, unit conversion |
@@ -195,7 +240,7 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 - Size behaviour: bold text is wider, a big span makes the line taller, padding and margins grow the box, and fixed, maximum, minimum and fractional widths and heights come out the right size.
 - Pixel checks: the figure is rendered and inspected for the right colors, fills, highlights, underlines, transparency and inline images.
 - Every output format: PNG, PDF, SVG, PS and EPS; the SVG check confirms links are written out.
-- Converting existing text in place and back, saving and reloading figures (pickling), matplotlib's constrained and tight layouts, and the two-pass layout.
+- Converting existing text in place and back, saving and reloading figures (pickling), matplotlib's constrained and tight layouts, the two-pass layout, and the font-metric caches (keyed on the actual font file, so a font change can't reuse stale measurements).
 
 **The plotnine integration (`test_plotnine.py`)**
 - Every text slot works with `element_markdown`: title, subtitle, caption, tag, both axis titles, legend title and labels, facet strips, and tick labels on each axis. Slots you didn't style stay plain.
@@ -207,8 +252,8 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 **Image comparisons (`test_geom_richtext_images.py`, `test_geom_textbox_images.py`, `test_theme_images.py`)**
 - **Geoms (10 comparisons):** ported from [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext), one test for each of ggtext's own `vdiffr` snapshot tests for the two geoms, with the same data and parameters, plus the roxygen examples. The R ggtext renderings of the same plots are in `tests/reference_r/` for side-by-side comparison; recreate them with `Rscript tests/reference_r/render.R`.
 - **Theme text (6 comparisons):** the text around the panels, where plotnine's layout has to make room for rich text: a colored title with a wrapped, boxed `element_textbox_simple` subtitle and a caption; a boxed title and a tag; rich axis titles, a wrapping rotated textbox y title and rotated rich tick labels; top and right facet strips; a legend with rich labels and a multi-line title; and a colorbar title in a bottom legend.
-- Each plot is saved at 640 × 480 pixels with DejaVu fonts and compared with a baseline in `tests/baseline_images/` (RMS tolerance 2, as in plotnine). Results and diffs go to `tests/result_images/`, which git ignores; CI uploads them when a test fails.
-- Baselines depend on how text is rasterized, which differs between platforms and between the FreeType versions bundled with matplotlib 3.10 and 3.11. They are made in one reference environment, **Linux with matplotlib 3.11** (CI's `ubuntu-latest` jobs). Anywhere else the plots are still drawn, so the code paths run, but the pixel comparison is skipped with the reason shown, and `--update-baselines` refuses to overwrite the baselines. Set `GGTEXT_IMAGE_TESTS=force` to compare or update anyway.
+- Each plot is saved at 640 × 480 pixels with DejaVu fonts and compared with a baseline in `tests/baseline_images/` (RMS tolerance 2, as in plotnine). Results and diffs go to `tests/result_images/`, which git ignores.
+- Baselines depend on how text is rasterized, which differs between platforms and between the FreeType versions bundled with matplotlib 3.10 and 3.11. They are made in one reference environment, **Linux with matplotlib 3.11**. Anywhere else the plots are still drawn, so the code paths run, but the pixel comparison is skipped with the reason shown, and `--update-baselines` refuses to overwrite the baselines. Set `GGTEXT_IMAGE_TESTS=force` to compare or update anyway.
 - The geom image files also hold 15 unit tests for justification (`resolve_just`, including `"inward"`/`"outward"`), nudging, unsupported tags and orientations.
 - The image harness (`tests/image_compare.py`) is switched on only for tests marked `image`, so the rest of the suite is unaffected.
 
@@ -227,14 +272,25 @@ pytest --doctest-modules src/ggtext   # examples in the docstrings
 - **Plot compositions in images:** side-by-side plots (`p1 | p2`) are checked by geometry, not against a baseline image.
 - **Remote images:** downloading images from URLs isn't tested, because it needs the network.
 
-CI (`.github/workflows/tests.yml`) runs the suite, including the examples and the notebook, on Python 3.10 with matplotlib 3.10 and on Python 3.11–3.13 with matplotlib 3.11 on Linux, plus macOS and Windows, along with the doctests and `ruff`. The image comparisons run in the Linux + matplotlib 3.11 jobs.
+There is no CI: run the checks locally before pushing. `make test` runs the suite and `make lint` runs ruff and type checking ([pyrefly](https://pyrefly.org/), strict, with existing errors recorded in `pyrefly-baseline.json`); the pre-commit hooks run ruff and pyrefly on every commit. Run the suite on both version setups (Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11; see [CONTRIBUTING.md](CONTRIBUTING.md)), and update image baselines only on Linux with matplotlib 3.11.
 
 ## Contributing
 
-Contributions are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains the development setup, tests on both version matrices, and how to regenerate the gallery.
+Contributions are welcome. With [uv](https://docs.astral.sh/uv/):
+
+```bash
+make install             # uv sync (the package plus pytest, ruff, pyrefly, prek, ...) and the git hooks
+make test                # tests in random order, with coverage
+make lint                # ruff check, ruff format --check, pyrefly
+make pre-commit          # run the git hooks (ruff, pyrefly, file checks) on every file
+```
+
+[CONTRIBUTING.md](CONTRIBUTING.md) covers the setup for both version matrices (including plain `pip`), the tests and image baselines, and how to regenerate the gallery.
 
 ## Credits
 
 The design follows [ggtext](https://wilkelab.org/ggtext/) and [gridtext](https://wilkelab.org/gridtext/) by Claus O. Wilke. The two earlier Python attempts, [flexitext](https://github.com/tomicapretto/flexitext) by Tomás Capretto and [highlight_text](https://github.com/znstrider/highlight_text) by Danny Phan, showed what Python users want from this. No code was copied from these projects.
+
+Parsing is done by [ggIR](https://github.com/snake-case-ggtext/ggIR). The image-comparison tests for the geoms, with their R reference renders, were ported from [plotnine-ggtext](https://github.com/snake-case-ggtext/plotnine-ggtext) by Tyler Riccio, who also contributed the ggIR integration and the development tooling.
 
 MIT licensed.

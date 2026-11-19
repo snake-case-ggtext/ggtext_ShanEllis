@@ -12,7 +12,7 @@ Create or update baselines with ``pytest --update-baselines``.
 Baselines depend on how text is rasterized, which differs between
 platforms and between the FreeType versions bundled with matplotlib 3.10
 and 3.11. The baselines are made in one reference environment, Linux with
-matplotlib 3.11 (CI's ``ubuntu-latest`` job). Anywhere else the plot is
+matplotlib 3.11. Anywhere else the plot is
 still drawn, so the code paths run, but the pixel comparison is skipped.
 Set ``GGTEXT_IMAGE_TESTS=force`` to compare (or update) anyway.
 

@@ -38,12 +38,13 @@ pip install -e ".[dev]"
 ## Make targets
 
 ```bash
+make install      # uv sync (package + dev tools) and install the prek git hooks
 make test         # pytest in random order (pytest-randomly) with coverage
 make lint         # ruff check + ruff format --check + pyrefly (strict)
 make pre-commit   # install the prek git hooks and run them on every file
 ```
 
-Run `make pre-commit` once after cloning: the hooks then run ruff and pyrefly on every commit.
+Run `make install` once after cloning: the hooks then run ruff and pyrefly on every commit. There is no CI, so run `make test` and `make lint` before pushing.
 
 pyrefly runs in strict mode. Existing errors are recorded in `pyrefly-baseline.json`, so only new ones fail. After fixing typed code, shrink the baseline with `uv run pyrefly check --update-baseline`.
 
@@ -83,16 +84,6 @@ How the tests are organized:
 | `test_notebook.py` | the tour notebook runs (needs the `notebook` extra) |
 
 New features need tests. For anything visual, check geometry (`get_window_extent`) or pixel colors first (see the helpers in `tests/conftest.py`); they don't depend on fonts. Add an image comparison (`assert p == "name"` in a test marked `image`) when the overall look matters. Image baselines are made in one reference environment, Linux with matplotlib 3.11, and the comparisons are skipped elsewhere (see `tests/image_compare.py`). Generate a new baseline there with `pytest --update-baselines -m image` and look at it before committing.
-
-## Continuous integration
-
-`.github/workflows/tests.yml` runs on every push and pull request:
-
-- Tests on Python 3.10 + matplotlib 3.10, and Python 3.11 / 3.12 / 3.13 + matplotlib 3.11, on Ubuntu, plus macOS and Windows (Python 3.13).
-- The examples and the tour notebook (installed with the `notebook` extra).
-- Image comparisons, in the Linux + matplotlib 3.11 jobs.
-- Doctests (`pytest --doctest-modules src/ggtext`).
-- Lint: `ruff check` and `ruff format --check`.
 
 ## Code style
 

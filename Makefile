@@ -1,4 +1,8 @@
-.PHONY: test lint pre-commit
+.PHONY: install test lint pre-commit
+
+install: ## Install the package with the dev tools (uv sync) and the git hooks
+	uv sync
+	uv run prek install
 
 test: ## Tests in random order (pytest-randomly) with coverage
 	uv run pytest --cov=ggtext --cov-report=term-missing
