@@ -6,7 +6,7 @@ Everything on this page works the same way in every ggtext entry point: plotnine
 
 ## Markdown
 
-ggtext reads the *inline* part of [CommonMark](https://commonmark.org/), the Markdown standard, using `markdown-it-py`. Block syntax such as headings, lists, and quotes doesn't apply to plot labels and stays literal (`"1. first"` renders as `1. first`).
+ggtext reads the *inline* part of [CommonMark](https://commonmark.org/), the Markdown standard, using [ggIR](https://github.com/snake-case-ggtext/ggIR) (built on `markdown-it-py`). Block syntax such as headings, lists, and quotes doesn't apply to plot labels and stays literal (`"1. first"` renders as `1. first`).
 
 | You write | You get |
 |---|---|

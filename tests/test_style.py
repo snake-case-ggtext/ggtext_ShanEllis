@@ -1,11 +1,21 @@
-"""Tests for styles and the CSS subset (ggtext._style)."""
+"""Tests for styles and the CSS subset (parsed by ggIR, resolved by ggtext)."""
 
 import pytest
 
-from ggtext._style import Style, parse_color, parse_css, parse_length
+from ggtext._parse import parse
+from ggtext._spec import parse_length
+from ggtext._style import Style, parse_color
+
+
+def css(declarations: str, base: Style) -> Style:
+    """The style inside a span with inline CSS *declarations*."""
+    (run,) = parse(f'<span style="{declarations}">x</span>', base)
+    return run.style
 
 
 class TestParseLength:
+    """Absolute lengths (``ggtext._spec.parse_length``) in points."""
+
     @pytest.mark.parametrize(
         "value, expected",
         [
@@ -30,7 +40,8 @@ class TestParseLength:
          ("x-large", 14.4), ("medium", 10.0)],
     )  # fmt: skip
     def test_relative(self, value, expected):
-        assert parse_length(value, em=10) == pytest.approx(expected, abs=0.01)
+        size = css(f"font-size: {value}", Style(size=10.0)).size
+        assert size == pytest.approx(expected, abs=0.01)
 
     def test_relative_without_em_is_none(self):
         assert parse_length("1.5em") is None
@@ -42,7 +53,7 @@ class TestParseLength:
         assert parse_length("12furlongs") is None
 
     def test_percent_can_be_disallowed(self):
-        assert parse_length("50%", em=10, allow_percent=False) is None
+        assert parse_length("50%", allow_percent=False) is None
 
 
 class TestParseColor:
@@ -65,16 +76,16 @@ class TestParseCss:
     base = Style(size=10.0, color="black")
 
     def test_color_and_size(self):
-        s = parse_css("color: red; font-size: 14pt", self.base)
+        s = css("color: red; font-size: 14pt", self.base)
         assert s.color == "red"
         assert s.size == 14.0
 
     def test_relative_font_size(self):
-        assert parse_css("font-size: 150%", self.base).size == 15.0
-        assert parse_css("font-size: 2em", self.base).size == 20.0
+        assert css("font-size: 150%", self.base).size == 15.0
+        assert css("font-size: 2em", self.base).size == 20.0
 
     def test_font_properties(self):
-        s = parse_css(
+        s = css(
             "font-family: 'DejaVu Serif', serif; font-weight: bold; "
             "font-style: italic; font-variant: small-caps",
             self.base,
@@ -85,42 +96,42 @@ class TestParseCss:
         assert s.variant == "small-caps"
 
     def test_numeric_weight(self):
-        assert parse_css("font-weight: 700", self.base).weight == 700
+        assert css("font-weight: 700", self.base).weight == 700
 
     def test_background_and_decorations(self):
-        s = parse_css(
+        s = css(
             "background-color: yellow; text-decoration: underline line-through",
             self.base,
         )
         assert s.background == "yellow"
         assert s.underline and s.strike
-        s2 = parse_css("text-decoration: none", s)
+        s2 = css("text-decoration: none", s)
         assert not s2.underline and not s2.strike
 
     def test_vertical_align(self):
-        assert parse_css("vertical-align: super", self.base).shift > 0
-        assert parse_css("vertical-align: sub", self.base).shift < 0
-        assert parse_css("vertical-align: 3pt", self.base).shift == 3.0
-        up = parse_css("vertical-align: super", self.base)
-        assert parse_css("vertical-align: baseline", up).shift == 0
+        assert css("vertical-align: super", self.base).shift > 0
+        assert css("vertical-align: sub", self.base).shift < 0
+        assert css("vertical-align: 3pt", self.base).shift == 3.0
+        up = css("vertical-align: super", self.base)
+        assert css("vertical-align: baseline", up).shift == 0
 
     def test_important_and_whitespace(self):
-        s = parse_css("  color : blue !important ;; ", self.base)
+        s = css("  color : blue !important ;; ", self.base)
         assert s.color == "blue"
 
     def test_unknown_property_warns_once(self):
         with pytest.warns(UserWarning, match="unsupported CSS property 'margin-q'"):
-            parse_css("margin-q: 3px", self.base)
+            css("margin-q: 3px", self.base)
 
     def test_invalid_values_warn(self):
         with pytest.warns(UserWarning, match="invalid color"):
-            s = parse_css("color: nocolorxyz", self.base)
+            s = css("color: nocolorxyz", self.base)
         assert s.color == "black"
         with pytest.warns(UserWarning, match="invalid font-size"):
-            parse_css("font-size: hugeish", self.base)
+            css("font-size: hugeish", self.base)
 
     def test_no_changes_returns_same_object(self):
-        assert parse_css("", self.base) is self.base
+        assert css("", self.base) is self.base
 
 
 class TestStyle:
