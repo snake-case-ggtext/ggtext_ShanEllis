@@ -72,7 +72,6 @@ The test files and what they cover:
 |---|---|
 | `test_style.py` | lengths, colors, CSS properties |
 | `test_parse.py` | Markdown/HTML parsing through `ggtext.parse()` (ggIR) |
-| `test_ir_adapter.py` | golden test: ggIR gives the tokens of the original parser |
 | `test_spec.py` | `RichTextSpec` options and validation |
 | `test_layout.py` | line layout with a fake measurer (no matplotlib rendering) |
 | `test_artist.py` | `RichText`: parity with `Text`, drawing (pixel checks), backends, pickling, layout engines |
