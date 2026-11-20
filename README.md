@@ -245,7 +245,6 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 | `tests/test_plotnine.py` | 102 | The plotnine integration |
 | `tests/test_parse.py` | 60 | Markdown, HTML and math parsing, through `ggtext.parse()` |
 | `tests/test_spec.py` | 46 | Rich-text options, validation, unit conversion |
-| `tests/test_ir_adapter.py` | 42 | ggIR parsing gives the same tokens as ggtext's original parser |
 | `tests/test_style.py` | 41 | Lengths, colors and CSS properties |
 | `tests/test_layout.py` | 29 | The layout algorithm, isolated from matplotlib |
 | `tests/test_geom_richtext_images.py` | 20 | `geom_richtext` against ggtext's image tests, plus justification |
@@ -282,10 +281,9 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 - Every `examples/NN_*.py` script runs with warnings treated as errors and must write non-empty images. The images go to a temporary folder (`GGTEXT_EXAMPLES_OUT`), so tests never touch `docs/images/`; `python examples/run_all.py` still regenerates the gallery.
 - `examples/ggtext_tour.ipynb` is executed from top to bottom with nbclient and must finish with no errors and show its figures. It needs the `docs` dependency group (installed by `uv sync`) and is skipped without it.
 
-**Parsing (`test_parse.py`, `test_ir_adapter.py`)**
+**Parsing (`test_parse.py`)**
 - Parsing is done by [ggIR](https://github.com/snake-case-ggtext/ggIR); `test_parse.py` checks the result through `ggtext.parse()`: every supported Markdown and HTML feature, nesting, unclosed tags, unknown tags (which warn) and comments.
 - Python-specific cases: `bill_length_mm` stays literal, the `__init__` gotcha (it renders as bold "init") and its fixes, `\n` behaviour, and math with escaped `\$`.
-- `test_ir_adapter.py` is a golden test for the move to ggIR. It runs every string in the tests, examples and docs, plus edge cases, under all 16 option combinations, and checks that `ggtext.parse()` (now `ggir.parse` followed by `ggir.resolve`) gives exactly the tokens of ggtext's original parser, which is frozen in `tests/_legacy_parse.py`. The few malformed-HTML inputs where ggIR is deliberately more correct are listed in the test.
 
 **Layout (`test_layout.py`)** uses a fake text-measuring stand-in with predictable sizes, so positions can be checked by hand: wrapping, alignment, line spacing for both matplotlib versions, superscripts, padding, margins, fixed heights with overflow, and non-breaking spaces.
 
@@ -293,7 +291,7 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 - **Plot compositions in images:** side-by-side plots (`p1 | p2`) are checked by geometry, not against a baseline image.
 - **Remote images:** downloading images from URLs isn't tested, because it needs the network.
 
-There is no CI: run the checks locally before pushing. `make test` runs the suite and `make lint` runs ruff and type checking ([pyrefly](https://pyrefly.org/), strict, with existing errors recorded in `pyrefly-baseline.json`); the pre-commit hooks run ruff and pyrefly on every commit. Run the suite on both version setups (Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11; see [CONTRIBUTING.md](CONTRIBUTING.md)), and update image baselines only on Linux with matplotlib 3.11.
+There is no CI: run the checks locally before pushing. `make test` runs the suite and `make lint` runs ruff and type checking ([pyrefly](https://pyrefly.org/), strict, with existing errors recorded in `pyrefly-baseline.json`); the pre-commit hooks run ruff and pyrefly on every commit. Run the suite on both version setups (Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11) with `make tox`, which uses [tox-uv](https://github.com/tox-dev/tox-uv) and also tries the newest matplotlib pre-release, and update image baselines only on Linux with matplotlib 3.11.
 
 ## Contributing
 
@@ -302,6 +300,7 @@ Contributions are welcome. With [uv](https://docs.astral.sh/uv/):
 ```bash
 make install             # uv sync (the package plus pytest, ruff, pyrefly, prek, ...) and the git hooks
 make test                # tests in random order, with coverage
+make tox                 # tests on matplotlib 3.10, 3.11 and the newest pre-release
 make lint                # ruff check, ruff format --check, pyrefly
 make pre-commit          # run the git hooks (ruff, pyrefly, file checks) on every file
 ```

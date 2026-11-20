@@ -1,0 +1,34 @@
+# Run the test suite against each supported matplotlib, with tox-uv.
+#
+#   uv run tox            # every environment
+#   uv run tox -e mpl310  # one environment
+#   uv run tox -- -k e2e  # pass arguments to pytest
+#
+# ggtext overrides private matplotlib Text internals (Text._get_layout and
+# friends), and matplotlib 3.11 changed them. These environments check each
+# code path, and "mpl-pre" picks up release candidates early.
+
+requires = ["tox>=4.65", "tox-uv>=1.36"]
+env_list = ["mpl310", "mpl311", "mpl-pre"]
+
+[env_run_base]
+description = "pytest with {env_name}"
+runner = "uv-venv-runner"
+dependency_groups = ["test"]
+commands = [["pytest", "-q", { replace = "posargs", extend = true }]]
+
+[env.mpl310]
+description = "oldest supported: matplotlib 3.10 on Python 3.10"
+base_python = ["3.10"]
+deps = ["matplotlib~=3.10.0"]
+
+[env.mpl311]
+description = "matplotlib 3.11 on Python 3.11 (3.11 needs Python >= 3.11)"
+base_python = ["3.11"]
+deps = ["matplotlib~=3.11.0"]
+
+[env.mpl-pre]
+description = "newest matplotlib, including pre-releases"
+base_python = ["3.14"]
+set_env = { UV_PRERELEASE = "allow" }
+deps = ["matplotlib"]

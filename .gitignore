@@ -7,3 +7,4 @@ tests/result_images/
 .coverage.*
 htmlcov/
 coverage.xml
+.tox/

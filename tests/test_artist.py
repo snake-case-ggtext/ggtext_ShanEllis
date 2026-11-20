@@ -7,7 +7,7 @@ import warnings
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
-from matplotlib.text import Annotation, Text
+from matplotlib.text import Text
 
 import ggtext
 from ggtext import RichTextSpec
@@ -15,7 +15,6 @@ from ggtext._artist import (
     MPL_311,
     RichText,
     _rich_class_for,
-    is_rich,
     make_plain,
     make_rich,
 )
@@ -243,9 +242,9 @@ def test_set_richtext_on_rich_text(fig):
 def test_make_rich_and_plain_roundtrip(fig, renderer):
     t = fig.text(0.5, 0.5, "**x**")
     make_rich(t)
-    assert is_rich(t)
+    assert isinstance(t, RichText)
     make_plain(t)
-    assert type(t) is Text and not is_rich(t)
+    assert type(t) is Text and not isinstance(t, RichText)
     t.get_window_extent(renderer)
 
 
@@ -275,11 +274,6 @@ def test_subclass_keeps_behaviour(fig):
     assert type(t) is MyText
 
 
-def test_rich_class_is_cached():
-    assert _rich_class_for(Annotation) is _rich_class_for(Annotation)
-    assert _rich_class_for(RichText) is RichText
-
-
 def test_update_from_copies_spec(fig):
     a = rich_text(fig, 0, 0, "x", fill="red")
     b = RichText(0, 0, "y")
@@ -302,9 +296,21 @@ def test_pickle(fig):
     f2.canvas.draw()
 
 
+class _TextSubclass(Text):
+    """Module level so pickle can find it (like plotnine's StripText)."""
+
+
+def test_rich_class_is_cached():
+    assert _rich_class_for(_TextSubclass) is _rich_class_for(_TextSubclass)
+    assert _rich_class_for(RichText) is RichText
+
+
 def test_pickle_dynamic_subclass(fig_ax):
     f, ax = fig_ax
-    make_rich(ax.annotate("**hi**", (0.5, 0.5), (0.1, 0.1), arrowprops={}))
+    t = _TextSubclass(0.5, 0.5, "**hi**", transform=ax.transAxes)
+    ax.add_artist(t)
+    make_rich(t)
+    assert type(t) is not _TextSubclass and isinstance(t, _TextSubclass)
     pickle.loads(pickle.dumps(f)).canvas.draw()
 
 
