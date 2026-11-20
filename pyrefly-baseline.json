@@ -1877,38 +1877,17 @@
       "severity": "error"
     },
     {
-      "column": 44,
+      "column": 36,
       "path": "tests/test_artist.py",
       "name": "implicit-any-parameter",
-      "concise_description": "`test_set_richtext_property_on_any_text` is missing an annotation for parameter `fig`",
+      "concise_description": "`test_set_richtext_on_rich_text` is missing an annotation for parameter `fig`",
       "severity": "error"
     },
     {
-      "column": 32,
+      "column": 12,
       "path": "tests/test_artist.py",
       "name": "missing-attribute",
       "concise_description": "Object of class `Text` has no attribute `get_richtext`",
-      "severity": "error"
-    },
-    {
-      "column": 44,
-      "path": "tests/test_artist.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_text_constructor_accepts_richtext` is missing an annotation for parameter `fig`",
-      "severity": "error"
-    },
-    {
-      "column": 40,
-      "path": "tests/test_artist.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `NoneType` has no attribute `fill`",
-      "severity": "error"
-    },
-    {
-      "column": 51,
-      "path": "tests/test_artist.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_set_richtext_false_is_noop_on_plain_text` is missing an annotation for parameter `fig`",
       "severity": "error"
     },
     {
@@ -2308,6 +2287,104 @@
       "path": "tests/test_geom_richtext_images.py",
       "name": "implicit-any-parameter",
       "concise_description": "`test_resolve_just_named` is missing an annotation for parameter `val`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`_png_bytes` is missing an annotation for parameter `color`",
+      "severity": "error"
+    },
+    {
+      "column": 26,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_load_local_file` is missing an annotation for parameter `tmp_path`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_images.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `shape`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_images.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
+      "severity": "error"
+    },
+    {
+      "column": 16,
+      "path": "tests/test_images.py",
+      "name": "unsupported-operation",
+      "concise_description": "`None` is not subscriptable",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_images.py",
+      "name": "unsupported-operation",
+      "concise_description": "`None` is not subscriptable",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_remote_images_can_be_disabled` is missing an annotation for parameter `monkeypatch`",
+      "severity": "error"
+    },
+    {
+      "column": 33,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_register_image_formats` is missing an annotation for parameter `img`",
+      "severity": "error"
+    },
+    {
+      "column": 12,
+      "path": "tests/test_images.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `shape`",
+      "severity": "error"
+    },
+    {
+      "column": 39,
+      "path": "tests/test_images.py",
+      "name": "missing-attribute",
+      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
+      "severity": "error"
+    },
+    {
+      "column": 40,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 45,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `renderer`",
+      "severity": "error"
+    },
+    {
+      "column": 44,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `fig`",
+      "severity": "error"
+    },
+    {
+      "column": 49,
+      "path": "tests/test_images.py",
+      "name": "implicit-any-parameter",
+      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `renderer`",
       "severity": "error"
     },
     {
@@ -2742,104 +2819,6 @@
       "path": "tests/test_mpl_api.py",
       "name": "implicit-any-parameter",
       "concise_description": "`test_rich_ticklabels_axes` is missing an annotation for parameter `which`",
-      "severity": "error"
-    },
-    {
-      "column": 16,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`_png_bytes` is missing an annotation for parameter `color`",
-      "severity": "error"
-    },
-    {
-      "column": 26,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_load_local_file` is missing an annotation for parameter `tmp_path`",
-      "severity": "error"
-    },
-    {
-      "column": 16,
-      "path": "tests/test_mpl_api.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `NoneType` has no attribute `shape`",
-      "severity": "error"
-    },
-    {
-      "column": 39,
-      "path": "tests/test_mpl_api.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
-      "severity": "error"
-    },
-    {
-      "column": 16,
-      "path": "tests/test_mpl_api.py",
-      "name": "unsupported-operation",
-      "concise_description": "`None` is not subscriptable",
-      "severity": "error"
-    },
-    {
-      "column": 12,
-      "path": "tests/test_mpl_api.py",
-      "name": "unsupported-operation",
-      "concise_description": "`None` is not subscriptable",
-      "severity": "error"
-    },
-    {
-      "column": 40,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_remote_images_can_be_disabled` is missing an annotation for parameter `monkeypatch`",
-      "severity": "error"
-    },
-    {
-      "column": 33,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_register_image_formats` is missing an annotation for parameter `img`",
-      "severity": "error"
-    },
-    {
-      "column": 12,
-      "path": "tests/test_mpl_api.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `NoneType` has no attribute `shape`",
-      "severity": "error"
-    },
-    {
-      "column": 39,
-      "path": "tests/test_mpl_api.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `NoneType` has no attribute `dtype`",
-      "severity": "error"
-    },
-    {
-      "column": 40,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `fig`",
-      "severity": "error"
-    },
-    {
-      "column": 45,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_image_size_from_one_dimension` is missing an annotation for parameter `renderer`",
-      "severity": "error"
-    },
-    {
-      "column": 44,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `fig`",
-      "severity": "error"
-    },
-    {
-      "column": 49,
-      "path": "tests/test_mpl_api.py",
-      "name": "implicit-any-parameter",
-      "concise_description": "`test_image_default_height_is_font_size` is missing an annotation for parameter `renderer`",
       "severity": "error"
     },
     {
@@ -3316,13 +3295,6 @@
       "path": "tests/test_plotnine.py",
       "name": "implicit-any-parameter",
       "concise_description": "`draw` is missing an annotation for parameter `p`",
-      "severity": "error"
-    },
-    {
-      "column": 16,
-      "path": "tests/test_plotnine.py",
-      "name": "missing-attribute",
-      "concise_description": "Object of class `element_text` has no attribute `spec`",
       "severity": "error"
     },
     {
