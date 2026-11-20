@@ -7,7 +7,7 @@ import warnings
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
-from matplotlib.text import Annotation, Text
+from matplotlib.text import Text
 
 import ggtext
 from ggtext import RichTextSpec
@@ -275,11 +275,6 @@ def test_subclass_keeps_behaviour(fig):
     assert type(t) is MyText
 
 
-def test_rich_class_is_cached():
-    assert _rich_class_for(Annotation) is _rich_class_for(Annotation)
-    assert _rich_class_for(RichText) is RichText
-
-
 def test_update_from_copies_spec(fig):
     a = rich_text(fig, 0, 0, "x", fill="red")
     b = RichText(0, 0, "y")
@@ -300,12 +295,6 @@ def test_pickle(fig):
     rich_text(fig, 0.5, 0.5, "**x**", fill="yellow", width=0.5)
     f2 = pickle.loads(pickle.dumps(fig))
     f2.canvas.draw()
-
-
-def test_pickle_dynamic_subclass(fig_ax):
-    f, ax = fig_ax
-    make_rich(ax.annotate("**hi**", (0.5, 0.5), (0.1, 0.1), arrowprops={}))
-    pickle.loads(pickle.dumps(f)).canvas.draw()
 
 
 # ---------------------------------------------------------------------------

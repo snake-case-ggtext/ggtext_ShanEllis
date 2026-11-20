@@ -956,14 +956,8 @@ def _rich_class_for(cls: type[Text]) -> type[RichText]:
         return RichText
     rich = _RICH_CLASSES.get(cls)
     if rich is None:
-        from matplotlib.text import Annotation
-
         name = f"Rich{cls.__name__}"
         namespace: dict[str, Any] = {"__module__": __name__}
-        if issubclass(cls, Annotation):
-            # Annotation.draw calls Text.draw(self, ...) explicitly,
-            # which would skip RichText.draw
-            namespace["draw"] = _annotation_draw
         rich = type(name, (cls, RichText), namespace)
         # Make the dynamic class picklable by giving it a unique,
         # importable name in this module
@@ -972,25 +966,6 @@ def _rich_class_for(cls: type[Text]) -> type[RichText]:
         globals()[qualname] = rich
         _RICH_CLASSES[cls] = rich
     return rich
-
-
-@artist.allow_rasterization
-def _annotation_draw(self, renderer):
-    """``Annotation.draw`` that draws the text with :meth:`RichText.draw`."""
-    if renderer is not None:
-        self._renderer = renderer
-    if not self.get_visible() or not self._check_xy(renderer):
-        return
-    self.update_positions(renderer)
-    self.update_bbox_position_size(renderer)
-    if self.arrow_patch is not None:
-        if (
-            self.arrow_patch.get_figure(root=False) is None
-            and (fig := self.get_figure(root=False)) is not None
-        ):
-            self.arrow_patch.set_figure(fig)
-        self.arrow_patch.draw(renderer)
-    RichText.draw(self, renderer)
 
 
 def make_rich(text: Text, richtext: Any = True) -> Text:

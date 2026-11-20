@@ -77,9 +77,7 @@ A theme without a `richtext` property is applied exactly as before. The cost is 
 
 "In place" means ggtext swaps the artist's class: `text.__class__ = RichText`. plotnine (and matplotlib) keep references to their artists in many places: theme targets, axis ticks, legend boxes. Swapping the class means every one of those references now points to a rich artist. Nothing needs replacing.
 
-Some artists are *subclasses* of `Text`, such as plotnine's `StripText` (which positions itself inside the strip background) or matplotlib's `Annotation`. For a subclass `X`, ggtext creates `RichX(X, RichText)` once and caches it. The method resolution order is `RichX → X → RichText → Text`. So `X`'s own behavior runs first, and its `super().draw()` reaches `RichText.draw`. These dynamic classes get unique module-level names so figures stay picklable.
-
-`Annotation` is special: its `draw()` calls `Text.draw(self, ...)` explicitly instead of using `super()`. `RichAnnotation` gets a `draw` that repeats Annotation's steps (position update, arrow) and then calls `RichText.draw`.
+Some artists are *subclasses* of `Text`, such as plotnine's `StripText` (which positions itself inside the strip background). For a subclass `X`, ggtext creates `RichX(X, RichText)` once and caches it. The method resolution order is `RichX → X → RichText → Text`. So `X`'s own behavior runs first, and its `super().draw()` reaches `RichText.draw`. These dynamic classes get unique module-level names so figures stay picklable.
 
 ### 6. Two-pass layout
 
