@@ -18,7 +18,7 @@ ggtext takes a different route. Its `RichText` **is** a matplotlib `Text`. It ov
 - Rich text rotates to **any** angle, boxes included.
 - A plain string in a `RichText` lands on exactly the same pixels as a plain `Text`. The test suite checks this across rotations, alignments, and line spacings on matplotlib 3.10 and 3.11.
 
-plotnine styles all of its text with `text.set(**element.properties)`. ggtext registers a `richtext` property on matplotlib `Text`, so `element_markdown()` works for **every** text themeable without patching plotnine. [docs/design.md](docs/design.md) has the full story.
+plotnine styles all of its text with `text.set(**element.properties)`. `element_markdown()` adds a `richtext` property to those properties. Just before plotnine applies a theme, ggtext turns every text that such a themeable styles into a `RichText`, so `element_markdown()` works for **every** text themeable. matplotlib's `Text` class is left untouched. [docs/design.md](docs/design.md) has the full story.
 
 ## Install
 
@@ -147,7 +147,7 @@ ggtext.textbox(
 
 # Or turn any existing Text into rich text:
 ggtext.richify(ax.title)
-ax.text(1, 1, "**works** with ax.text too", richtext=True)
+ggtext.richify(ax.text(1, 1, "**works** with ax.text too"))
 ```
 
 ![A matplotlib plot with a two-color title, an annotation, and math](docs/images/quickstart_matplotlib.png)
@@ -197,7 +197,7 @@ You can also write `$...$` for matplotlib mathtext. `snake_case_names` stay lite
 | `register_image` | make a numpy array or PIL image available to `<img src="name">` |
 | `options` | package settings, e.g. `ggtext.options.allow_remote_images = False` |
 
-Importing ggtext also adds a `richtext` property to matplotlib's `Text` (`ax.text(..., richtext=True)`, `text.set(richtext=...)`). That property is how the plotnine theme elements turn plotnine's own text into rich text; it adds to `Text` and changes nothing for plain text.
+Importing ggtext doesn't change matplotlib's `Text`. Only rich artists have the `richtext` property (`rich.set(richtext=...)`); use `richify`/`make_rich` to turn a plain `Text` into one. Importing `ggtext` (or `ggtext.plotnine`) wraps plotnine's `theme.apply` so that themes with `element_markdown()` work; themes without it are applied exactly as before.
 
 ## Compared with R's ggtext
 

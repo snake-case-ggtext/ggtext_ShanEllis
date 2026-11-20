@@ -92,10 +92,10 @@ ax.set_xlabel("Month, *2025*")
 ggtext.richify(ax.xaxis.label)
 ```
 
-Or pass `richtext=True` wherever matplotlib accepts text properties:
+`richify` returns what you pass it, so it can wrap the call that creates the text:
 
 ```python
-ax.text(0.5, 0.5, "**bold** text", richtext=True)
+ggtext.richify(ax.text(0.5, 0.5, "**bold** text"))
 ```
 
 ## Next steps

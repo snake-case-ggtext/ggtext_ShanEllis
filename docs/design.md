@@ -56,25 +56,22 @@ The test suite checks this: `tests/test_artist.py::test_extent_matches_plain_tex
 
 ### 4. Hooking into plotnine: the `richtext` property
 
-plotnine never needs to know about ggtext. Every text themeable applies its element in the same way:
+Every text themeable applies its element in the same way:
 
 ```python
 text_artist.set(**element.properties)
 ```
 
-Importing ggtext registers one extra property on `matplotlib.text.Text`:
+`element_markdown()` is an `element_text` with one extra entry in its properties, `richtext=RichTextSpec(...)`. Keeping the spec in the properties dictionary matters: it survives theme merging. When `theme_bw()` already defines `plot_title`, plotnine merges the property dictionaries but keeps the *original* element object. A hook based on the element's class (such as `element_markdown.setup()`) would be lost there; a property in the dictionary is not. Merging also carries the property from general themeables (`text`, `title`) to specific ones.
 
-```python
-Text.set_richtext = ...  # and Text.get_richtext
-```
+Only `RichText` has a `set_richtext` method; ggtext doesn't add one to matplotlib's `Text`. So plain `Text` artists must become rich *before* plotnine calls `.set(richtext=...)` on them. ggtext wraps plotnine's `theme.apply` on import (`ggtext/plotnine/_theme_hook.py`). The wrapper:
 
-`element_markdown()` is an `element_text` with one extra entry in its properties, `richtext=RichTextSpec(...)`. When plotnine applies the theme, `text.set(..., richtext=spec)` calls `set_richtext`, which turns that artist into rich text **in place**.
+1. walks the theme's themeables and picks those whose properties contain `richtext`,
+2. finds the texts each one styles (`theme.targets.plot_title`, `theme.targets.strip_text_x`, the major tick labels of each axes, ...), in the same places plotnine's `apply_figure`/`apply_ax` look,
+3. turns those texts into rich text in place (`make_rich`),
+4. calls plotnine's original `apply`. Its `text.set(..., richtext=spec)` calls then reach `RichText.set_richtext`, in plotnine's own order (general themeables first), so the most specific spec wins.
 
-- This only *adds* a property; existing `Text` behavior stays the same, and plain text is never touched.
-- It works for every themeable at once, including future ones that plotnine adds, since they all go through `.set()`.
-- It survives theme merging. When `theme_bw()` already defines `plot_title`, plotnine merges the property dictionaries but keeps the *original* element object. A hook based on the element's class would be lost there; a property in the dictionary is not.
-- It also works in plain matplotlib: `ax.text(..., richtext=True)`, `plt.setp(labels, richtext=True)`.
-- It can be switched off. `ggtext.disable()` removes the property and `ggtext.enable()` adds it back; `with ggtext.enabled():` adds it for one block and then restores the previous state. Text that is already rich stays rich, and ggtext's own helpers and geoms don't need the property. plotnine applies themes when a plot is *drawn*, so the plot must be drawn (or saved) inside the block. The property lives on the class, so the block scopes it in time, not per thread.
+A theme without a `richtext` property is applied exactly as before. The cost is that ggtext keeps its own list of text themeables (`_THEMED_TEXTS`). A text themeable that a future plotnine adds needs an entry there before `element_markdown()` works for it.
 
 ### 5. In-place class swap
 
@@ -123,7 +120,7 @@ The [roadmap](roadmap.md) has more.
 This approach could move into the core libraries in small steps:
 
 1. **matplotlib:** make `_get_layout` (or a documented "text layout" protocol) public. This lets third-party text artists take part in layout without relying on private details. That would remove most of the version-specific code here.
-2. **plotnine:** accept a `RichText`-like artist class per themeable, or call a documented hook when applying text elements. Then the `richtext` property and the class swap aren't needed. plotnine's layout engine could also iterate once more when text sizes depend on panel sizes. That would remove the need for the two-pass wrapper.
+2. **plotnine:** accept a `RichText`-like artist class per themeable, or call a documented hook when applying text elements. Then the `theme.apply` wrapper, the list of themed texts and the class swap aren't needed. plotnine's layout engine could also iterate once more when text sizes depend on panel sizes. That would remove the need for the two-pass wrapper.
 3. **plotnine:** ship `element_markdown`/`geom_richtext` built on such a hook, with ggtext as the reference implementation.
 
 Until then, ggtext works with released versions of both libraries.

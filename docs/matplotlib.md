@@ -122,16 +122,17 @@ ggtext.richify(ax.get_legend().get_texts())
 
 ### The `richtext` property
 
-Importing ggtext adds a `richtext` property to every matplotlib `Text`. You can turn rich text on anywhere that accepts text properties:
+Every `RichText` has a `richtext` property that holds its options. Change them like any other text property:
 
 ```python
-ax.text(0.5, 0.5, "**bold**", richtext=True)
-ax.set_title("**bold**", richtext={"fill": "#FFF8E1", "padding": 3})
-text_artist.set(richtext=True)
-plt.setp(ax.get_xticklabels(), richtext=True)
+rich = ggtext.richify(ax.title)
+rich.set(richtext={"fill": "#FFF8E1", "padding": 3})
+plt.setp(ggtext.richify(ax.get_xticklabels()), richtext={"fill": "#eee"})
 ```
 
-`richtext` accepts `True` (defaults), a dict of options, or a `RichTextSpec`. `False`/`None` leaves the text plain.
+`richtext` accepts `True` (defaults), a dict of options, or a `RichTextSpec`. `False`/`None` turns the artist back into a plain `Text`.
+
+ggtext does not add this property to matplotlib's own `Text`: `ax.text(..., richtext=True)` raises an error. Use `ggtext.text(...)` or `richify` instead.
 
 ## `RichText` and friends
 

@@ -124,7 +124,7 @@ src/ggtext/
   _parse.py      re-exports ggIR's token classes; parse() = ggir.parse + ggir.resolve
   _layout.py     line breaking, line heights, alignment (renderer independent)
   _spec.py       RichTextSpec (the rich text options)
-  _artist.py     RichText, measuring/drawing, make_rich, the `richtext` Text property
+  _artist.py     RichText, measuring/drawing, make_rich/make_plain
   _images.py     <img> loading, register_image, options
   mpl.py         matplotlib helper functions
   plotnine/      element_*, geom_*, plot-composition support

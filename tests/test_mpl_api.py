@@ -126,16 +126,17 @@ def test_rich_ticklabels_axes(fig_ax, axis, which):
     f.canvas.draw()
 
 
-def test_works_with_pyplot_text():
+def test_pyplot_text_has_no_richtext_keyword():
     _f, _ax = plt.subplots()
-    t = plt.text(0.5, 0.5, "**x**", richtext=True)
-    assert isinstance(t, RichText)
+    with pytest.raises(AttributeError, match="richtext"):
+        plt.text(0.5, 0.5, "**x**", richtext=True)
 
 
-def test_richtext_property_is_inspectable():
+def test_richtext_property_only_on_rich_text():
     from matplotlib.artist import ArtistInspector
 
-    assert "richtext" in ArtistInspector(Text).get_setters()
+    assert "richtext" in ArtistInspector(RichText).get_setters()
+    assert "richtext" not in ArtistInspector(Text).get_setters()
 
 
 # ---------------------------------------------------------------------------

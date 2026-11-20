@@ -207,23 +207,17 @@ def test_get_layout_format_310(fig, renderer):
 # ---------------------------------------------------------------------------
 # Converting artists in place
 # ---------------------------------------------------------------------------
-def test_set_richtext_property_on_any_text(fig):
-    t = fig.text(0.5, 0.5, "**x**")
-    assert type(t) is Text and t.get_richtext() is None
-    t.set(richtext=True)
-    assert isinstance(t, RichText)
-    assert t.get_richtext() == RichTextSpec()
+def test_matplotlib_text_is_not_patched():
+    assert not hasattr(Text, "set_richtext")
+    assert not hasattr(Text, "get_richtext")
+    with pytest.raises(AttributeError, match="richtext"):
+        Text(0, 0, "**x**", richtext=True)
 
 
-def test_text_constructor_accepts_richtext(fig):
-    t = Text(0, 0, "**x**", richtext={"fill": "red"})
-    assert isinstance(t, RichText) and t.get_richtext().fill == "red"
-
-
-def test_set_richtext_false_is_noop_on_plain_text(fig):
-    t = fig.text(0.5, 0.5, "x")
-    t.set(richtext=False)
-    assert type(t) is Text
+def test_set_richtext_on_rich_text(fig):
+    t = make_rich(fig.text(0.5, 0.5, "**x**"))
+    t.set(richtext={"fill": "red"})
+    assert t.get_richtext() == RichTextSpec(fill="red")
 
 
 def test_make_rich_and_plain_roundtrip(fig, renderer):

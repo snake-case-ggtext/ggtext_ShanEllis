@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-import ggtext  # noqa: F401  (registers the richtext property)
+import ggtext  # noqa: F401  (installs the plotnine theme hook)
 
 
 @pytest.fixture(autouse=True)
