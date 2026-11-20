@@ -296,6 +296,24 @@ def test_pickle(fig):
     f2.canvas.draw()
 
 
+class _TextSubclass(Text):
+    """Module level so pickle can find it (like plotnine's StripText)."""
+
+
+def test_rich_class_is_cached():
+    assert _rich_class_for(_TextSubclass) is _rich_class_for(_TextSubclass)
+    assert _rich_class_for(RichText) is RichText
+
+
+def test_pickle_dynamic_subclass(fig_ax):
+    f, ax = fig_ax
+    t = _TextSubclass(0.5, 0.5, "**hi**", transform=ax.transAxes)
+    ax.add_artist(t)
+    make_rich(t)
+    assert type(t) is not _TextSubclass and isinstance(t, _TextSubclass)
+    pickle.loads(pickle.dumps(f)).canvas.draw()
+
+
 # ---------------------------------------------------------------------------
 # Drawing
 # ---------------------------------------------------------------------------
