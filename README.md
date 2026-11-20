@@ -25,7 +25,7 @@ plotnine styles all of its text with `text.set(**element.properties)`. `element_
 ggtext isn't on PyPI yet: its parser, [ggIR](https://github.com/snake-case-ggtext/ggIR), has to be published there first (see the [roadmap](docs/roadmap.md)). Install it from GitHub; this also installs ggIR:
 
 ```bash
-pip install ggtext   # also installs matplotlib, plotnine, and pandas
+pip install "git+https://github.com/snake-case-ggtext/ggtext_ShanEllis"   # also installs ggIR, matplotlib, plotnine, and pandas
 ```
 
 ggtext supports Python ≥ 3.10, matplotlib ≥ 3.10, and plotnine 0.15. To work on ggtext itself, see [Contributing](#contributing).
@@ -220,7 +220,7 @@ ggtext follows Python, matplotlib, and plotnine conventions where they differ fr
 
 ## Testing
 
-The suite has 1,060 tests in 13 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,059 pass, 1 skipped). Elsewhere the 16 image comparisons are also skipped (see below). A full run takes 20–30 seconds.
+The suite has 1,046 tests in 14 files and covers 95% of the code. It runs on Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11, both with plotnine 0.15.9. On Linux with matplotlib 3.11 everything runs except one test for the other matplotlib version's internal format (1,045 pass, 1 skipped). Elsewhere the 16 image comparisons are also skipped (see below). A full run takes 20–30 seconds.
 
 ```bash
 make test                             # whole suite in random order, with coverage (uses uv)
@@ -229,7 +229,7 @@ make test                             # whole suite in random order, with covera
 Or with pip:
 
 ```bash
-pip install -e ".[test,notebook]"     # the notebook extra runs examples/ggtext_tour.ipynb
+pip install -e . --group test --group docs   # needs pip >= 25.1; the docs group runs examples/ggtext_tour.ipynb
 pytest                                # everything
 pytest -m image                       # only the image-comparison tests
 pytest -m "not image and not notebook and not examples"   # the fast core
@@ -242,7 +242,7 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 | File | Tests | What it checks |
 |---|---|---|
 | `tests/test_artist.py` | 671 | The core `RichText` artist |
-| `tests/test_plotnine.py` | 103 | The plotnine integration |
+| `tests/test_plotnine.py` | 102 | The plotnine integration |
 | `tests/test_parse.py` | 60 | Markdown, HTML and math parsing, through `ggtext.parse()` |
 | `tests/test_spec.py` | 46 | Rich-text options, validation, unit conversion |
 | `tests/test_ir_adapter.py` | 42 | ggIR parsing gives the same tokens as ggtext's original parser |
@@ -253,6 +253,7 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 | `tests/test_examples.py` | 10 | Every gallery example runs and writes its images |
 | `tests/test_theme_images.py` | 6 | Theme text (titles, axes, strips, legends, tags) against baselines |
 | `tests/test_geom_textbox_images.py` | 5 | `geom_textbox` against ggtext's image tests |
+| `tests/test_theme_hook.py` | 3 | The plotnine `theme.apply` hook is installed once, and matplotlib's `Text` is left unpatched |
 | `tests/test_notebook.py` | 1 | The tour notebook runs from top to bottom |
 
 **The core artist (`test_artist.py`)**
@@ -279,7 +280,7 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 
 **Examples and notebook (`test_examples.py`, `test_notebook.py`)**
 - Every `examples/NN_*.py` script runs with warnings treated as errors and must write non-empty images. The images go to a temporary folder (`GGTEXT_EXAMPLES_OUT`), so tests never touch `docs/images/`; `python examples/run_all.py` still regenerates the gallery.
-- `examples/ggtext_tour.ipynb` is executed from top to bottom with nbclient and must finish with no errors and show its figures. It needs the `notebook` extra and is skipped without it.
+- `examples/ggtext_tour.ipynb` is executed from top to bottom with nbclient and must finish with no errors and show its figures. It needs the `docs` dependency group (installed by `uv sync`) and is skipped without it.
 
 **Parsing (`test_parse.py`, `test_ir_adapter.py`)**
 - Parsing is done by [ggIR](https://github.com/snake-case-ggtext/ggIR); `test_parse.py` checks the result through `ggtext.parse()`: every supported Markdown and HTML feature, nesting, unclosed tags, unknown tags (which warn) and comments.
