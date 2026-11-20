@@ -438,11 +438,15 @@ class TestGeomRichtext:
         assert len(fills) == 2
 
     def test_format_string_and_missing_labels(self):
+        from plotnine.exceptions import PlotnineWarning
+
         df = DF.assign(v=[1.234, np.nan, 3.0, 4.5])
-        fig = draw(
-            ggplot(df, aes("x", "y", label="v"))
-            + geom_richtext(format_string="**{:.1f}**")
-        )
+        # plotnine drops the row with the missing label, and says so
+        with pytest.warns(PlotnineWarning, match="Removed 1 rows containing missing"):
+            fig = draw(
+                ggplot(df, aes("x", "y", label="v"))
+                + geom_richtext(format_string="**{:.1f}**")
+            )
         texts = sorted(a.get_text() for a in _rich_artists(fig))
         assert texts == ["**1.2**", "**3.0**", "**4.5**"]
 
