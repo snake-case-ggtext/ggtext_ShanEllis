@@ -15,7 +15,6 @@ from ggtext._artist import (
     MPL_311,
     RichText,
     _rich_class_for,
-    is_rich,
     make_plain,
     make_rich,
 )
@@ -243,9 +242,9 @@ def test_set_richtext_on_rich_text(fig):
 def test_make_rich_and_plain_roundtrip(fig, renderer):
     t = fig.text(0.5, 0.5, "**x**")
     make_rich(t)
-    assert is_rich(t)
+    assert isinstance(t, RichText)
     make_plain(t)
-    assert type(t) is Text and not is_rich(t)
+    assert type(t) is Text and not isinstance(t, RichText)
     t.get_window_extent(renderer)
 
 

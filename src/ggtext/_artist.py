@@ -63,7 +63,7 @@ from ._parse import ImageRun, parse, plain_text
 from ._spec import LENGTH_FIELDS, RichTextSpec, resolve_length
 from ._style import Style
 
-__all__ = ["RichText", "is_rich", "make_plain", "make_rich"]
+__all__ = ["RichText", "make_rich"]
 
 MPL_VERSION = tuple(mpl.__version_info__[:2])  # type: ignore[attr-defined]
 # matplotlib 3.11 changed the format of Text._get_layout and the way
@@ -990,8 +990,3 @@ def make_plain(text: Text) -> Text:
         text.__class__ = Text
     text.stale = True
     return text
-
-
-def is_rich(text: Any) -> bool:
-    """Whether *text* is drawn as rich text."""
-    return isinstance(text, RichText)
