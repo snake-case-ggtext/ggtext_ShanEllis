@@ -20,8 +20,8 @@ Every image in the documentation, with the code that made it. The scripts live i
 
 ## Quickstart: rich text in a plotnine plot
 
-The colored words in the title double as the legend, so you can drop
-the legend itself. This is the classic ggtext use case.
+The colored words in the title double as the legend, so the legend
+itself can be dropped. This is the classic ggtext use case.
 
 ![Quickstart: rich text in a plotnine plot](images/quickstart_plotnine.png)
 
@@ -37,6 +37,7 @@ itself can be dropped. This is the classic ggtext use case.
 Run:  python examples/01_quickstart_plotnine.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -56,7 +57,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Okabe-Ito colors, an accessible palette
@@ -110,6 +115,7 @@ Quickstart: rich text with plain matplotlib (no plotnine needed).
 Run:  python examples/02_quickstart_matplotlib.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -121,7 +127,11 @@ import numpy as np
 
 import ggtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 BLUE, ORANGE = "#0072B2", "#D55E00"
@@ -188,6 +198,7 @@ Titles, subtitles and captions.
 Run:  python examples/03_titles_and_subtitles.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -208,7 +219,11 @@ from plotnine.data import economics_long
 
 from ggtext import element_markdown, element_textbox_simple
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 BLUE, ORANGE = "#0072B2", "#D55E00"
@@ -268,8 +283,8 @@ if __name__ == "__main__":
 ## Axis titles and tick labels
 
 - Axis titles with units written with <sub>/<sup>.
-- Rich tick labels: each category label has its own style, and you can
-  rotate the labels to any angle.
+- Rich tick labels: each category label has its own style, and the
+  labels are rotated (any angle works).
 
 ![Axis titles and tick labels](images/axis_and_tick_labels.png)
 
@@ -288,6 +303,7 @@ Axis titles and tick labels.
 Run:  python examples/04_axis_and_tick_labels.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -309,7 +325,11 @@ from plotnine import (
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Illustrative (made-up) emissions of some car classes
@@ -395,6 +415,7 @@ Facet strips and legends.
 Run:  python examples/05_facet_strips_and_legends.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -415,7 +436,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 ISLAND_N = penguins.dropna().groupby("island", observed=True).size().to_dict()
@@ -464,7 +489,7 @@ if __name__ == "__main__":
 
 ## geom_richtext: rich text labels, with or without a box, at any angle
 
-Unlike plotnine's geom_label, boxed labels can rotate.
+Unlike plotnine's geom_label, boxed labels can be rotated.
 
 ![geom_richtext: rich text labels, with or without a box, at any angle](images/geom_richtext.png)
 
@@ -479,6 +504,7 @@ Unlike plotnine's geom_label, boxed labels can be rotated.
 Run:  python examples/06_geom_richtext.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -501,7 +527,11 @@ from plotnine import (
 
 from ggtext import element_markdown, geom_richtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Labels arranged on a circle, each rotated to point outwards
@@ -584,6 +614,7 @@ Handy for annotating a plot with a few sentences.
 Run:  python examples/07_geom_textbox.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -604,7 +635,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown, geom_textbox
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 COLORS = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}
@@ -682,6 +717,7 @@ With real files you would write <img src='path/to/flag.png' width='20'>.
 Run:  python examples/08_images_in_labels.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -703,7 +739,11 @@ from plotnine import (
 import ggtext
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 
@@ -785,6 +825,7 @@ A tour of the matplotlib helpers.
 Run:  python examples/09_matplotlib_features.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -796,7 +837,11 @@ import numpy as np
 
 import ggtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 rng = np.random.default_rng(1)
@@ -883,6 +928,7 @@ A visual cheatsheet: every supported syntax element next to its source.
 Run:  python examples/10_syntax_cheatsheet.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -894,7 +940,11 @@ import numpy as np
 
 import ggtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 ggtext.register_image("dot", np.array([[[0, 114, 178]]], dtype=np.uint8))
@@ -974,6 +1024,7 @@ panel area of *its own* plot, not the whole figure.
 Run:  python examples/11_plot_composition.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -995,7 +1046,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown, element_textbox_simple
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 COLORS = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}
