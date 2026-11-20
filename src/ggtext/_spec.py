@@ -1,7 +1,7 @@
 """
 The options that turn a matplotlib Text into rich text.
 
-A :class:`RichTextSpec` is what gets attached to a text artist with
+A :class:`RichTextSpec` is what gets attached to a rich text artist with
 ``text.set(richtext=spec)``. Everything that is not a plain matplotlib
 text property lives here. It covers parsing options, word wrapping and the box
 drawn around the text.

@@ -4,7 +4,7 @@ These three projects tackle the same problem, styling parts of a label, in diffe
 
 | | **ggtext (this package)** | **ggtext (R)** | **flexitext** | **highlight_text** |
 |---|---|---|---|---|
-| Language / stack | Python, matplotlib, plotnine | R, ggplot2, grid | Python, matplotlib | Python, matplotlib |
+| Language / stack | Python, plotnine (on matplotlib) | R, ggplot2, grid | Python, matplotlib | Python, matplotlib |
 | Markup | Markdown + HTML + CSS subset | Markdown + HTML + CSS subset | own tags: `<color:red, size:12>text</>` | `<highlighted>` substrings + a list of style dicts |
 | Theme elements (titles, axis titles) | ✅ `element_markdown`, `element_textbox(_simple)` | ✅ | ❌ (place text manually) | ❌ |
 | Rich tick labels | ✅ any angle | ✅ (`element_markdown`) | ❌ | ❌ |
@@ -27,7 +27,7 @@ These three projects tackle the same problem, styling parts of a label, in diffe
 
 ## When to use which
 
-- **ggtext (this package):** you want rich text in plot furniture (titles, axes, ticks, strips, legends) in plotnine or matplotlib. The package handles layout.
+- **ggtext (this package):** you want rich text in plot furniture (titles, axes, ticks, strips, legends) in plotnine. The package handles layout.
 - **highlight_text:** you want to highlight a few words in an annotation with per-word matplotlib properties, such as path effects. You place the text yourself.
 - **flexitext:** a small, dependency-light way to style parts of an annotation with a compact tag syntax.
 - **R ggtext:** you're in R. Its `align_widths` option is still ahead of this port.

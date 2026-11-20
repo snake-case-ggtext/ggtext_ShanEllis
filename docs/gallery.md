@@ -5,14 +5,12 @@ Every image in the documentation, with the code that made it. The scripts live i
 | Example | Script |
 |---|---|
 | [Quickstart: rich text in a plotnine plot](#quickstart-plotnine) | `examples/01_quickstart_plotnine.py` |
-| [Quickstart: rich text with plain matplotlib (no plotnine needed)](#quickstart-matplotlib) | `examples/02_quickstart_matplotlib.py` |
 | [Titles, subtitles and captions](#titles-and-subtitles) | `examples/03_titles_and_subtitles.py` |
 | [Axis titles and tick labels](#axis-and-tick-labels) | `examples/04_axis_and_tick_labels.py` |
 | [Facet strips and legends](#facet-strips-and-legends) | `examples/05_facet_strips_and_legends.py` |
 | [geom_richtext: rich text labels, with or without a box, at any angle](#geom-richtext) | `examples/06_geom_richtext.py` |
 | [geom_textbox: word-wrapped rich text in boxes of a fixed width](#geom-textbox) | `examples/07_geom_textbox.py` |
 | [Images inside text: &lt;img&gt; tags in tick labels and titles](#images-in-labels) | `examples/08_images_in_labels.py` |
-| [A tour of the matplotlib helpers](#matplotlib-features) | `examples/09_matplotlib_features.py` |
 | [A visual cheatsheet: every supported syntax element next to its source](#syntax-cheatsheet) | `examples/10_syntax_cheatsheet.py` |
 | [Plot compositions: rich text in p1 \| p2](#plot-composition) | `examples/11_plot_composition.py` |
 
@@ -20,8 +18,8 @@ Every image in the documentation, with the code that made it. The scripts live i
 
 ## Quickstart: rich text in a plotnine plot
 
-The colored words in the title double as the legend, so you can drop
-the legend itself. This is the classic ggtext use case.
+The colored words in the title double as the legend, so the legend
+itself can be dropped. This is the classic ggtext use case.
 
 ![Quickstart: rich text in a plotnine plot](images/quickstart_plotnine.png)
 
@@ -37,6 +35,7 @@ itself can be dropped. This is the classic ggtext use case.
 Run:  python examples/01_quickstart_plotnine.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -56,7 +55,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Okabe-Ito colors, an accessible palette
@@ -95,74 +98,6 @@ if __name__ == "__main__":
 
 </details>
 
-<a id="quickstart-matplotlib"></a>
-
-## Quickstart: rich text with plain matplotlib (no plotnine needed)
-
-![Quickstart: rich text with plain matplotlib (no plotnine needed)](images/quickstart_matplotlib.png)
-
-<details><summary>Code: <code>examples/02_quickstart_matplotlib.py</code></summary>
-
-```python
-"""
-Quickstart: rich text with plain matplotlib (no plotnine needed).
-
-Run:  python examples/02_quickstart_matplotlib.py
-"""
-
-from pathlib import Path
-
-import matplotlib
-
-matplotlib.use("Agg")
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-import ggtext
-
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
-OUT.mkdir(parents=True, exist_ok=True)
-
-BLUE, ORANGE = "#0072B2", "#D55E00"
-
-x = np.linspace(0, 4 * np.pi, 300)
-fig, ax = plt.subplots(figsize=(7, 4.2), dpi=130, layout="constrained")
-ax.plot(x, np.sin(x), color=BLUE, lw=2)
-ax.plot(x, np.cos(x), color=ORANGE, lw=2)
-
-ggtext.set_title(
-    ax,
-    f"<span style='color:{BLUE}'>**sin(x)**</span> and "
-    f"<span style='color:{ORANGE}'>**cos(x)**</span> are a quarter turn apart",
-    fontsize=13,
-)
-ggtext.set_xlabel(ax, "*x* (radians)")
-ggtext.set_ylabel(ax, "amplitude, $A$")
-
-ggtext.annotate(
-    ax,
-    "Peaks of **sin** lag those of **cos** by $\\pi/2$",
-    xy=(np.pi / 2, 1),
-    xytext=(3.2, 1.45),
-    va="center",
-    arrowprops={"arrowstyle": "->", "color": "#444444"},
-    fill="#FFF8E1",
-    box_color="#999999",
-    padding=4,
-    r=4,
-    fontsize=10,
-)
-ax.set_ylim(-1.2, 1.75)
-ax.spines[["top", "right"]].set_visible(False)
-
-if __name__ == "__main__":
-    fig.savefig(OUT / "quickstart_matplotlib.png")
-    print("wrote", OUT / "quickstart_matplotlib.png")
-```
-
-</details>
-
 <a id="titles-and-subtitles"></a>
 
 ## Titles, subtitles and captions
@@ -188,6 +123,7 @@ Titles, subtitles and captions.
 Run:  python examples/03_titles_and_subtitles.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -208,7 +144,11 @@ from plotnine.data import economics_long
 
 from ggtext import element_markdown, element_textbox_simple
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 BLUE, ORANGE = "#0072B2", "#D55E00"
@@ -268,8 +208,8 @@ if __name__ == "__main__":
 ## Axis titles and tick labels
 
 - Axis titles with units written with <sub>/<sup>.
-- Rich tick labels: each category label has its own style, and you can
-  rotate the labels to any angle.
+- Rich tick labels: each category label has its own style, and the
+  labels are rotated (any angle works).
 
 ![Axis titles and tick labels](images/axis_and_tick_labels.png)
 
@@ -288,6 +228,7 @@ Axis titles and tick labels.
 Run:  python examples/04_axis_and_tick_labels.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -309,7 +250,11 @@ from plotnine import (
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Illustrative (made-up) emissions of some car classes
@@ -395,6 +340,7 @@ Facet strips and legends.
 Run:  python examples/05_facet_strips_and_legends.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -415,7 +361,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 ISLAND_N = penguins.dropna().groupby("island", observed=True).size().to_dict()
@@ -464,7 +414,7 @@ if __name__ == "__main__":
 
 ## geom_richtext: rich text labels, with or without a box, at any angle
 
-Unlike plotnine's geom_label, boxed labels can rotate.
+Unlike plotnine's geom_label, boxed labels can be rotated.
 
 ![geom_richtext: rich text labels, with or without a box, at any angle](images/geom_richtext.png)
 
@@ -479,6 +429,7 @@ Unlike plotnine's geom_label, boxed labels can be rotated.
 Run:  python examples/06_geom_richtext.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -501,7 +452,11 @@ from plotnine import (
 
 from ggtext import element_markdown, geom_richtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Labels arranged on a circle, each rotated to point outwards
@@ -584,6 +539,7 @@ Handy for annotating a plot with a few sentences.
 Run:  python examples/07_geom_textbox.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -604,7 +560,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown, geom_textbox
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 COLORS = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}
@@ -682,6 +642,7 @@ With real files you would write <img src='path/to/flag.png' width='20'>.
 Run:  python examples/08_images_in_labels.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -703,7 +664,11 @@ from plotnine import (
 import ggtext
 from ggtext import element_markdown
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 
@@ -760,114 +725,6 @@ if __name__ == "__main__":
 
 </details>
 
-<a id="matplotlib-features"></a>
-
-## A tour of the matplotlib helpers
-
-- ggtext.text / textbox / annotate / set_title / set_xlabel / set_ylabel
-- rich tick labels with ggtext.rich_ticklabels
-- turning an existing artist into rich text with ggtext.richify
-- boxes, rotation, highlights, underline/strikethrough, mathtext
-
-![A tour of the matplotlib helpers](images/matplotlib_features.png)
-
-<details><summary>Code: <code>examples/09_matplotlib_features.py</code></summary>
-
-```python
-"""
-A tour of the matplotlib helpers.
-
-- ggtext.text / textbox / annotate / set_title / set_xlabel / set_ylabel
-- rich tick labels with ggtext.rich_ticklabels
-- turning an existing artist into rich text with ggtext.richify
-- boxes, rotation, highlights, underline/strikethrough, mathtext
-
-Run:  python examples/09_matplotlib_features.py
-"""
-
-from pathlib import Path
-
-import matplotlib
-
-matplotlib.use("Agg")
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-import ggtext
-
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
-OUT.mkdir(parents=True, exist_ok=True)
-
-rng = np.random.default_rng(1)
-groups = ["control", "low", "high"]
-values = [rng.normal(m, 1, 40) for m in (5, 6, 8)]
-
-fig, ax = plt.subplots(figsize=(8, 5), dpi=130, layout="constrained")
-ax.boxplot(values, widths=0.5)
-ax.set_xlim(0.3, 5.4)
-ax.set_ylim(1, 13)
-ax.spines[["top", "right"]].set_visible(False)
-
-# Titles and axis labels
-ggtext.set_title(ax, "The **matplotlib** side of ggtext", fontsize=14, loc="left")
-ggtext.set_ylabel(ax, "Response, *y* (mg L<sup>-1</sup>)")
-ggtext.set_xlabel(ax, "Dose group <span style='color:#777777'>(*n* = 40 each)</span>")
-
-# Rich tick labels
-ax.set_xticks(
-    [1, 2, 3],
-    [
-        "Control",
-        "<span style='color:#E69F00'>**Low**</span>",
-        "<span style='color:#D55E00'>**High**</span>",
-    ],
-)
-ggtext.rich_ticklabels(ax, "x")
-
-# An existing artist, converted in place
-ax.text(
-    0.45, 12.2, "Mean of *high* ≈ **8** (made-up data)", fontsize=9, color="#444444"
-)
-ggtext.richify(ax.texts[-1])
-
-# Inline styles
-ggtext.text(
-    ax, 3.7, 11.6,
-    "<mark>highlight</mark>, <u>underline</u>, ~~strike~~,<br>"
-    "`code`, x<sup>2</sup>, H<sub>2</sub>O and $\\bar{x} \\pm \\sigma$",
-    fontsize=10, va="top",
-)  # fmt: skip
-
-# A word-wrapped text box
-ggtext.textbox(
-    ax, 4.55, 6.3,
-    "**textbox()** wraps text to a fixed width. "
-    "<span style='color:#0072B2'>Colors</span>, *italics* and **bold** survive the wrapping.",
-    width="1.9in", fontsize=9, fill="#F4F8FB", box_color="#0072B2",
-)  # fmt: skip
-
-# Rotated text with a box
-ggtext.text(
-    ax, 3.55, 2.3, "rotated **30°**", rotation=30, fontsize=10,
-    fill="#FFF3D6", box_color="#E69F00", padding=3, r=3,
-)  # fmt: skip
-
-# An annotation whose arrow attaches to the rich box
-ggtext.annotate(
-    ax, "**Outlier?** check the<br>raw data",
-    xy=(3, values[2].max()), xytext=(1.25, 10.6),
-    arrowprops={"arrowstyle": "->", "color": "#555555"},
-    fontsize=9, fill="white", box_color="#999999", padding=3, r=3,
-)  # fmt: skip
-
-if __name__ == "__main__":
-    fig.savefig(OUT / "matplotlib_features.png")
-    print("wrote", OUT / "matplotlib_features.png")
-```
-
-</details>
-
 <a id="syntax-cheatsheet"></a>
 
 ## A visual cheatsheet: every supported syntax element next to its source
@@ -883,18 +740,35 @@ A visual cheatsheet: every supported syntax element next to its source.
 Run:  python examples/10_syntax_cheatsheet.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+from plotnine import (
+    aes,
+    annotate,
+    geom_text,
+    ggplot,
+    labs,
+    scale_x_continuous,
+    scale_y_continuous,
+    theme,
+    theme_void,
+)
 
 import ggtext
+from ggtext import element_markdown, geom_richtext
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 ggtext.register_image("dot", np.array([[[0, 114, 178]]], dtype=np.uint8))
@@ -924,30 +798,55 @@ ROWS = [
     ("$\\alpha^2 + \\sqrt{\\beta_i}$", None),
 ]
 
-fig = plt.figure(figsize=(8.5, 10), dpi=120)
-ggtext.set_suptitle(
-    fig, "**ggtext** syntax cheatsheet", fontsize=16, x=0.06, ha="left", y=0.985
-)
-fig.text(0.06, 0.945, "source", fontsize=9, color="#888888", family="monospace")
-fig.text(0.62, 0.945, "rendered", fontsize=9, color="#888888")
+SECTIONS = ("Markdown", "HTML", "Math")
 
-y = 0.915
+# One row per line of the cheatsheet, top to bottom
+rows = []
+y = 0.0
 for source, _ in ROWS:
-    if source in ("Markdown", "HTML", "Math"):
-        y -= 0.008
-        ggtext.text(
-            fig, 0.06, y, f"**{source}**", fontsize=12, color="#0072B2", va="center"
-        )
-        y -= 0.036
+    if source in SECTIONS:
+        y -= 0.4
+        rows.append({"y": y, "source": "", "rendered": f"**{source}**", "head": True})
+        y -= 1.0
         continue
-    fig.text(0.06, y, source, fontsize=8.5, family="monospace", color="#333333",
-             va="center", parse_math=False)  # fmt: skip
-    ggtext.text(fig, 0.62, y, source, fontsize=11, va="center")
-    height = 0.055 if "<br>" in source else 0.037
-    y -= height
+    # matplotlib would read $...$ in the plain source column as math
+    shown = source.replace("$", "\\$")
+    rows.append({"y": y, "source": shown, "rendered": source, "head": False})
+    y -= 1.5 if "<br>" in source else 1.0
+df = pd.DataFrame(rows)
+heads, entries = df[df["head"]], df[~df["head"]]
+
+p = (
+    ggplot(mapping=aes(y="y"))
+    + geom_text(
+        aes(x=0, label="source"), entries,
+        ha="left", size=8.5, family="monospace", color="#333333",
+    )
+    + geom_richtext(
+        aes(x=1, label="rendered"), entries,
+        hjust=0, size=11, fill="none", label_color="none", label_padding=0,
+    )
+    + geom_richtext(
+        aes(x=0, label="rendered"), heads,
+        hjust=0, size=12, color="#0072B2",
+        fill="none", label_color="none", label_padding=0,
+    )
+    + annotate("text", x=[0, 1], y=0.9, label=["source", "rendered"],
+               ha="left", size=9, color="#888888")
+    + scale_x_continuous(limits=(0, 1.8), expand=(0, 0))
+    + scale_y_continuous(expand=(0.02, 0))
+    + labs(title="**ggtext** syntax cheatsheet")
+    + theme_void()
+    + theme(
+        figure_size=(8.5, 10),
+        dpi=120,
+        plot_margin=0.03,
+        plot_title=element_markdown(size=16, ha="left"),
+    )
+)  # fmt: skip
 
 if __name__ == "__main__":
-    fig.savefig(OUT / "syntax_cheatsheet.png", bbox_inches="tight", pad_inches=0.3)
+    p.save(OUT / "syntax_cheatsheet.png", verbose=False)
     print("wrote", OUT / "syntax_cheatsheet.png")
 ```
 
@@ -974,6 +873,7 @@ panel area of *its own* plot, not the whole figure.
 Run:  python examples/11_plot_composition.py
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -995,7 +895,11 @@ from plotnine.data import penguins
 
 from ggtext import element_markdown, element_textbox_simple
 
-OUT = Path(__file__).resolve().parent.parent / "docs" / "images"
+# Images go to docs/images/; tests redirect them with GGTEXT_EXAMPLES_OUT
+OUT = Path(
+    os.environ.get("GGTEXT_EXAMPLES_OUT")
+    or Path(__file__).resolve().parent.parent / "docs" / "images"
+)
 OUT.mkdir(parents=True, exist_ok=True)
 
 COLORS = {"Adelie": "#E69F00", "Chinstrap": "#56B4E9", "Gentoo": "#009E73"}

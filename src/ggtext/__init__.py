@@ -1,18 +1,8 @@
 """
-ggtext: rich text (Markdown, HTML and CSS) for matplotlib and plotnine.
+ggtext: rich text (Markdown, HTML and CSS) for plotnine.
 
 A Python take on the R package `ggtext <https://wilkelab.org/ggtext/>`_.
 
-Matplotlib
-----------
->>> import matplotlib.pyplot as plt
->>> import ggtext
->>> fig, ax = plt.subplots()
->>> _ = ggtext.text(ax, 0.5, 0.5, "Some **bold** and <span style='color:red'>red</span> text")
->>> _ = ggtext.set_title(ax, "A *rich* title")
-
-plotnine
---------
 >>> from plotnine import ggplot, aes, geom_point, labs, theme
 >>> from ggtext import element_markdown  # doctest: +SKIP
 >>> (ggplot(df, aes("x", "y")) + geom_point()
@@ -22,33 +12,10 @@ plotnine
 
 from __future__ import annotations
 
-from typing import Any
-
-from ._artist import (
-    RichText,
-    disable,
-    enable,
-    enabled,
-    is_rich,
-    make_plain,
-    make_rich,
-)
-
 from ._images import options, register_image
 from ._parse import parse
 from ._spec import RichTextSpec
 from ._style import Style
-from .mpl import (
-    annotate,
-    rich_ticklabels,
-    richify,
-    set_suptitle,
-    set_title,
-    set_xlabel,
-    set_ylabel,
-    text,
-    textbox,
-)
 from .plotnine import (
     element_markdown,
     element_textbox,
@@ -60,32 +27,14 @@ from .plotnine import (
 __version__ = "0.1.0"
 
 __all__ = [
-    # matplotlib
-    "RichText",
     "RichTextSpec",
     "Style",
-    "annotate",
-    "disable",
-    # plotnine (imported lazily)
     "element_markdown",
     "element_textbox",
     "element_textbox_simple",
-    "enable",
-    "enabled",
     "geom_richtext",
     "geom_textbox",
-    "is_rich",
-    "make_plain",
-    "make_rich",
     "options",
     "parse",
     "register_image",
-    "rich_ticklabels",
-    "richify",
-    "set_suptitle",
-    "set_title",
-    "set_xlabel",
-    "set_ylabel",
-    "text",
-    "textbox",
 ]

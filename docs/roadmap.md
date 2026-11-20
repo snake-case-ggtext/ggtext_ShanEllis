@@ -27,7 +27,7 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 
 ## Less reliance on matplotlib internals
 
-- **Opt-in `richtext` property.** `import ggtext` adds `set_richtext`/`get_richtext` to matplotlib's `Text`, which is what lets plotnine's theme elements become rich text. Make this an explicit opt-in (e.g. `ggtext.install()`, or done when the first `element_markdown` is created) so importing ggtext changes nothing globally.
+- **A plotnine hook instead of wrapping `theme.apply`.** `import ggtext` wraps plotnine's `theme.apply` so that themed texts become rich before plotnine styles them (matplotlib's `Text` is no longer changed). A documented plotnine hook for applying text elements would remove the wrapper and ggtext's own list of text themeables.
 - **Public methods where possible.** `RichText` overrides matplotlib's private `Text._get_layout()`. Titles, axis text and tick labels could be measured through the public `get_window_extent()` instead; legend text (matplotlib's `TextArea`) still needs `_get_layout()`. See [design.md](design.md) for the trade-offs.
 
 ## Ideas
@@ -37,6 +37,5 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 - **Per-run path effects** (e.g. `<span style='outline: 2px white'>`), which highlight_text users like.
 - **`font-feature-settings`** (OpenType features) via matplotlib 3.11's `fontfeatures`.
 - **Lists and simple tables** in text boxes (`- item` → bullet lines); parsing would come from ggIR.
-- **A `ggtext.style()` context manager** to set default rich text options for a block of matplotlib code.
 - **Accessibility:** add the plain text (`get_plain_text()`) as alt/description text in SVG output.
 - **Performance:** cache parsed and measured layouts across artists that share the same text (e.g. repeated facet labels).

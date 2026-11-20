@@ -12,12 +12,23 @@ How it works
 ------------
 Every plotnine themeable styles its text artists with
 ``text.set(**element.properties)``. These elements add one extra
-property, ``richtext``, holding a :class:`ggtext.RichTextSpec`. ggtext
-registers ``richtext`` as a matplotlib ``Text`` property. When
-plotnine applies the theme, the artist turns itself into a
-:class:`ggtext.RichText`. plotnine's layout engine then measures the
-rich text like any other text. As a result, titles, axis labels, tick
-labels, facet strips and legends all get the right amount of space.
+property, ``richtext``, holding a :class:`ggtext.RichTextSpec`. Because
+it is an ordinary property, plotnine's theme merging carries it from
+general themeables (``text``, ``title``) to specific ones
+(``plot_title``).
+
+Only :class:`~ggtext._artist.RichText` has a ``richtext`` property; a plain
+matplotlib ``Text`` does not. Merging also discards the element object
+itself (only its properties survive), so the element cannot hook into
+the plot. Instead ggtext wraps plotnine's ``theme.apply`` on import
+(see :mod:`ggtext.plotnine._theme_hook`). Before plotnine styles any artist, the wrapper turns every text
+that a ``richtext`` themeable targets into a :class:`~ggtext._artist.RichText`
+(see :func:`~ggtext._artist.make_rich`). plotnine's ``text.set(richtext=spec)``
+then reaches :meth:`~ggtext._artist.RichText.set_richtext`. Themes without a
+``richtext`` property are applied exactly as before. plotnine's layout engine
+measures the rich text like any other text, so titles, axis labels,
+tick labels, facet strips and legends all get the right amount of
+space.
 """
 
 from __future__ import annotations

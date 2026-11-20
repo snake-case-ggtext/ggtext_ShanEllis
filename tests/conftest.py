@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -9,8 +11,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure, SubFigure
 
-import ggtext  # noqa: F401  (registers the richtext property)
+import ggtext  # noqa: F401  (installs the plotnine theme hook)
+from ggtext._artist import RichText, make_rich
+from ggtext._spec import _FIELD_NAMES, RichTextSpec, _normalize_kwargs
 
 
 @pytest.fixture(autouse=True)
@@ -33,6 +39,37 @@ def fig_ax():
 @pytest.fixture
 def renderer(fig):
     return fig.canvas.get_renderer()
+
+
+def rich_text(
+    target: Axes | Figure | SubFigure,
+    x: float,
+    y: float,
+    s: str,
+    *,
+    richtext: Any = True,
+    **kwargs: Any,
+) -> RichText:
+    """
+    Add a :class:`RichText` to an axes or figure (test helper).
+
+    Keyword arguments that are :class:`RichTextSpec` options go into the
+    spec; the rest are ``Text`` properties. Numeric ``ha``/``va`` are set
+    after the artist is rich, since plain ``Text`` only accepts names.
+    """
+    spec_kw = {k: kwargs.pop(k) for k in list(kwargs) if k in _FIELD_NAMES}
+    late = {
+        k: kwargs.pop(k)
+        for k in list(kwargs)
+        if k in ("ha", "va") and isinstance(kwargs[k], (int, float))
+    }
+    spec = RichTextSpec.coerce(richtext) or RichTextSpec()
+    if spec_kw:
+        spec = spec.replace(**_normalize_kwargs(spec_kw))
+    t = make_rich(target.text(x, y, s, **kwargs), spec)
+    if late:
+        t.set(**late)
+    return t  # type: ignore[return-value]
 
 
 def render_rgba(fig) -> np.ndarray:

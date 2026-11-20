@@ -21,7 +21,6 @@ from plotnine import (
 )
 
 from ggtext import (
-    RichText,
     RichTextSpec,
     element_markdown,
     element_textbox,
@@ -29,6 +28,7 @@ from ggtext import (
     geom_richtext,
     geom_textbox,
 )
+from ggtext._artist import RichText
 
 from .conftest import has_color, pixels_in_bbox, render_rgba
 
@@ -257,6 +257,34 @@ def test_specific_element_text_after_markdown_keeps_markdown():
     assert isinstance(title, RichText)
 
 
+def test_theme_without_markdown_leaves_text_plain():
+    from matplotlib.text import Text
+
+    p = base_plot() + labs(title=TITLE) + facet_wrap("f")
+    fig = draw(p)
+    texts = [p.theme.targets.plot_title, *p.theme.targets.strip_text_x]
+    texts += [t.label1 for t in fig.axes[0].xaxis.get_major_ticks()]
+    assert texts and not any(isinstance(t, RichText) for t in texts)
+    assert not hasattr(Text, "set_richtext")
+
+
+def test_most_specific_markdown_spec_wins():
+    p = (
+        base_plot()
+        + labs(title=TITLE, x="**x**")
+        + theme(
+            text=element_markdown(fill="red"),
+            plot_title=element_markdown(fill="blue"),
+        )
+    )
+    draw(p)
+    title, xlabel = p.theme.targets.plot_title, p.theme.targets.axis_title_x
+    assert isinstance(title, RichText) and isinstance(xlabel, RichText)
+    title_spec, xlabel_spec = title.get_richtext(), xlabel.get_richtext()
+    assert title_spec is not None and title_spec.fill == "blue"
+    assert xlabel_spec is not None and xlabel_spec.fill == "red"
+
+
 def test_element_blank_after_markdown():
     p = (
         base_plot()
@@ -410,11 +438,15 @@ class TestGeomRichtext:
         assert len(fills) == 2
 
     def test_format_string_and_missing_labels(self):
+        from plotnine.exceptions import PlotnineWarning
+
         df = DF.assign(v=[1.234, np.nan, 3.0, 4.5])
-        fig = draw(
-            ggplot(df, aes("x", "y", label="v"))
-            + geom_richtext(format_string="**{:.1f}**")
-        )
+        # plotnine drops the row with the missing label, and says so
+        with pytest.warns(PlotnineWarning, match="Removed 1 rows containing missing"):
+            fig = draw(
+                ggplot(df, aes("x", "y", label="v"))
+                + geom_richtext(format_string="**{:.1f}**")
+            )
         texts = sorted(a.get_text() for a in _rich_artists(fig))
         assert texts == ["**1.2**", "**3.0**", "**4.5**"]
 
