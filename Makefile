@@ -1,4 +1,4 @@
-.PHONY: install test lint pre-commit
+.PHONY: install test tox lint pre-commit
 
 install: ## Install the package with the dev tools (uv sync) and the git hooks
 	uv sync
@@ -6,6 +6,9 @@ install: ## Install the package with the dev tools (uv sync) and the git hooks
 
 test: ## Tests in random order (pytest-randomly) with coverage
 	uv run pytest --cov=ggtext --cov-report=term-missing
+
+tox: ## Tests on each matplotlib: 3.10, 3.11 and the newest pre-release (tox-uv)
+	uv run tox -p auto
 
 lint: ## ruff (lint + format check) and pyrefly (strict, baselined)
 	uv run ruff check .

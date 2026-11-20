@@ -45,6 +45,8 @@ dev = [
     "ruff",
     "prek",
     "pyrefly",
+    "tox>=4.65.0",
+    "tox-uv>=1.36.1",
 ]
 
 [project.urls]

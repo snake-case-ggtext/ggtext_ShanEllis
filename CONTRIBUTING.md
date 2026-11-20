@@ -40,11 +40,12 @@ pip ignores `uv.lock`, so it installs the newest versions `pyproject.toml` allow
 ```bash
 make install      # uv sync (package + dev tools) and install the prek git hooks
 make test         # pytest in random order (pytest-randomly) with coverage
+make tox          # the tests on matplotlib 3.10, 3.11 and the newest pre-release (tox-uv)
 make lint         # ruff check + ruff format --check + pyrefly (strict)
 make pre-commit   # install the prek git hooks and run them on every file
 ```
 
-Run `make install` once after cloning: the hooks then run ruff and pyrefly on every commit. There is no CI, so run `make test` and `make lint` before pushing.
+Run `make install` once after cloning: the hooks then run ruff and pyrefly on every commit. There is no CI, so run `make test` and `make lint` before pushing, and `make tox` when a change touches text layout or drawing: ggtext overrides private matplotlib internals that changed in 3.11, so each version has its own code path.
 
 pyrefly runs in strict mode. Existing errors are recorded in `pyrefly-baseline.json`, so only new ones fail. After fixing typed code, shrink the baseline with `uv run pyrefly check --update-baseline`.
 

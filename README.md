@@ -291,7 +291,7 @@ With the dev tools installed (`uv sync`), tests run in a random order (pytest-ra
 - **Plot compositions in images:** side-by-side plots (`p1 | p2`) are checked by geometry, not against a baseline image.
 - **Remote images:** downloading images from URLs isn't tested, because it needs the network.
 
-There is no CI: run the checks locally before pushing. `make test` runs the suite and `make lint` runs ruff and type checking ([pyrefly](https://pyrefly.org/), strict, with existing errors recorded in `pyrefly-baseline.json`); the pre-commit hooks run ruff and pyrefly on every commit. Run the suite on both version setups (Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11; see [CONTRIBUTING.md](CONTRIBUTING.md)), and update image baselines only on Linux with matplotlib 3.11.
+There is no CI: run the checks locally before pushing. `make test` runs the suite and `make lint` runs ruff and type checking ([pyrefly](https://pyrefly.org/), strict, with existing errors recorded in `pyrefly-baseline.json`); the pre-commit hooks run ruff and pyrefly on every commit. Run the suite on both version setups (Python 3.10 + matplotlib 3.10 and Python 3.11 + matplotlib 3.11) with `make tox`, which uses [tox-uv](https://github.com/tox-dev/tox-uv) and also tries the newest matplotlib pre-release, and update image baselines only on Linux with matplotlib 3.11.
 
 ## Contributing
 
@@ -300,6 +300,7 @@ Contributions are welcome. With [uv](https://docs.astral.sh/uv/):
 ```bash
 make install             # uv sync (the package plus pytest, ruff, pyrefly, prek, ...) and the git hooks
 make test                # tests in random order, with coverage
+make tox                 # tests on matplotlib 3.10, 3.11 and the newest pre-release
 make lint                # ruff check, ruff format --check, pyrefly
 make pre-commit          # run the git hooks (ruff, pyrefly, file checks) on every file
 ```
