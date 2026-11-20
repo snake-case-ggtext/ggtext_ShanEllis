@@ -69,35 +69,6 @@ from ggtext import geom_richtext, geom_textbox
 ggplot(df, aes("x", "y", label="label")) + geom_richtext(angle=20)
 ```
 
-## Your first matplotlib plot
-
-The helpers mirror matplotlib's functions and take the same arguments:
-
-```python
-import matplotlib.pyplot as plt
-import ggtext
-
-fig, ax = plt.subplots(layout="constrained")
-ax.plot([1, 2, 3], [2, 4, 3])
-
-ggtext.set_title(ax, "Sales **peaked** in <span style='color:#D55E00'>February</span>")
-ggtext.set_ylabel(ax, "Revenue (USD 10<sup>3</sup>)")
-ggtext.text(ax, 2, 2.5, "x<sub>i</sub> marks the spot", ha="center")
-```
-
-You can also convert text that already exists:
-
-```python
-ax.set_xlabel("Month, *2025*")
-ggtext.richify(ax.xaxis.label)
-```
-
-`richify` returns what you pass it, so it can wrap the call that creates the text:
-
-```python
-ggtext.richify(ax.text(0.5, 0.5, "**bold** text"))
-```
-
 ## Next steps
 
 - See everything you can write in the [syntax reference](syntax.md).

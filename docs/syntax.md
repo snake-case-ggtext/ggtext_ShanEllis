@@ -1,6 +1,6 @@
 # Syntax reference
 
-Everything on this page works the same way in every ggtext entry point. These include plotnine theme elements, the geoms, and the matplotlib helpers.
+Everything on this page works the same way in every ggtext entry point. These are the plotnine theme elements and the geoms.
 
 ![A two-column cheatsheet showing each syntax element's source and how it renders](images/syntax_cheatsheet.png)
 

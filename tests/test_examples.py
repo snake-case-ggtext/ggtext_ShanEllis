@@ -26,7 +26,7 @@ pytestmark = [pytest.mark.examples, pytest.mark.plotnine]
 
 
 def test_examples_found():
-    assert len(EXAMPLES) >= 10
+    assert len(EXAMPLES) >= 9
 
 
 @pytest.mark.parametrize("script", EXAMPLES, ids=lambda p: p.stem)

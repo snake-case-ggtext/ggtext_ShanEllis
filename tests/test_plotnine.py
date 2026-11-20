@@ -21,7 +21,6 @@ from plotnine import (
 )
 
 from ggtext import (
-    RichText,
     RichTextSpec,
     element_markdown,
     element_textbox,
@@ -29,6 +28,7 @@ from ggtext import (
     geom_richtext,
     geom_textbox,
 )
+from ggtext._artist import RichText
 
 from .conftest import has_color, pixels_in_bbox, render_rgba
 

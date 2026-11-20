@@ -29,8 +29,8 @@ properties become the defaults for the unstyled parts of the text.
 
 Converting existing artists
 ---------------------------
-Libraries such as matplotlib and plotnine create their own ``Text``
-artists (titles, tick labels, legend entries). :func:`make_rich` turns
+plotnine creates its own ``Text`` artists (titles, tick labels, legend
+entries, strip labels). :func:`make_rich` turns
 such an artist into rich text *in place*. It does so by swapping its
 class for a rich subclass of its own class. ggtext never changes
 matplotlib's ``Text`` class itself: only rich artists have the

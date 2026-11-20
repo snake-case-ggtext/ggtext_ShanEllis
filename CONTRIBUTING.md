@@ -76,7 +76,7 @@ The test files and what they cover:
 | `test_spec.py` | `RichTextSpec` options and validation |
 | `test_layout.py` | line layout with a fake measurer (no matplotlib rendering) |
 | `test_artist.py` | `RichText`: parity with `Text`, drawing (pixel checks), backends, pickling, layout engines |
-| `test_mpl_api.py` | the matplotlib helper functions |
+| `test_images.py` | image loading and `<img>` sizing |
 | `test_plotnine.py` | elements, geoms, every themeable, layout space, compositions |
 | `test_geom_richtext_images.py`, `test_geom_textbox_images.py` | geoms against ggtext's image tests (ported from plotnine-ggtext) |
 | `test_theme_images.py` | theme text (titles, axes, strips, legends, tags) against baselines |
@@ -126,7 +126,6 @@ src/ggtext/
   _spec.py       RichTextSpec (the rich text options)
   _artist.py     RichText, measuring/drawing, make_rich/make_plain
   _images.py     <img> loading, register_image, options
-  mpl.py         matplotlib helper functions
   plotnine/      element_*, geom_*, plot-composition support
 docs/            user documentation (see docs/design.md for the internals)
 examples/        runnable examples and the notebook tour

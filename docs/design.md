@@ -89,7 +89,7 @@ matplotlib's own `constrained_layout` iterates for exactly this kind of reason. 
 
 ### 7. Plot compositions
 
-In a composition (`p1 | p2`, `p1 / p2`), a figure holds several plots. "The panel area" has to mean *the panels of the plot this title belongs to*. The plotnine integration registers a resolver (`ggtext._artist.register_panel_resolver`, implemented in `ggtext/plotnine/layout.py`). It asks plotnine's layout engine which plot owns the text, then uses that plot's axes. Plain matplotlib figures fall back to the union of all axes.
+In a composition (`p1 | p2`, `p1 / p2`), a figure holds several plots. "The panel area" has to mean *the panels of the plot this title belongs to*. The plotnine integration registers a resolver (`ggtext._artist.register_panel_resolver`, implemented in `ggtext/plotnine/layout.py`). It asks plotnine's layout engine which plot owns the text, then uses that plot's axes. Figures without a plotnine plot fall back to the union of all axes.
 
 ## The private-API risk, and how it's managed
 
@@ -100,7 +100,6 @@ ggtext relies on private matplotlib APIs:
 | `Text._get_layout` (override and format) | the single measurement hook | version-specific formats; parity tests on 3.10 and 3.11; `TextArea`/`bbox`/annotation tests exercise the callers |
 | `Text._get_layout` on proxy texts | read font metrics exactly as matplotlib computes them | line-height parity tests |
 | `Text._get_multialignment`, `_get_wrap_line_width`, `_set_gc_clip` | reuse `Text` behavior | covered by alignment, wrap, and clip tests |
-| `Axis._copy_tick_props` (wrapped per axis instance, in `rich_ticklabels`) | keep newly created ticks rich | tick tests |
 | `LayoutEngine.execute` (wrapped per figure instance) | two-pass layout | relayout tests |
 
 The suite runs on Python 3.10 + matplotlib 3.10 and on Python 3.11–3.13 + matplotlib 3.11 (Linux, macOS, Windows). A matplotlib release that changes `_get_layout` again will fail the parity tests immediately, and the fix belongs in one function.

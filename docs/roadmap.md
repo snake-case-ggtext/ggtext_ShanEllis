@@ -37,6 +37,5 @@ Parsing (Markdown, HTML, inline CSS) now lives in [ggIR](https://github.com/snak
 - **Per-run path effects** (e.g. `<span style='outline: 2px white'>`), which highlight_text users like.
 - **`font-feature-settings`** (OpenType features) via matplotlib 3.11's `fontfeatures`.
 - **Lists and simple tables** in text boxes (`- item` → bullet lines); parsing would come from ggIR.
-- **A `ggtext.style()` context manager** to set default rich text options for a block of matplotlib code.
 - **Accessibility:** add the plain text (`get_plain_text()`) as alt/description text in SVG output.
 - **Performance:** cache parsed and measured layouts across artists that share the same text (e.g. repeated facet labels).

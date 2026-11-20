@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ggtext"
 version = "0.1.0"
-description = "Rich text (Markdown, HTML, CSS) for matplotlib and plotnine — a Python take on R's ggtext"
+description = "Rich text (Markdown, HTML, CSS) for plotnine — a Python take on R's ggtext"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
