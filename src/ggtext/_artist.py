@@ -229,23 +229,6 @@ class _Geometry:
         return rx - self.offsetx, ry - self.offsety
 
 
-# Functions ``(text, figure) -> list of Axes or None`` that say which axes
-# form the "panel area" of a figure-level text.
-_PANEL_RESOLVERS: list[Callable[[Any, Any], Any]] = []
-
-
-def register_panel_resolver(func: Callable[[Any, Any], Any]) -> None:
-    """
-    Register a function that finds the panel area of a figure-level text.
-
-    ggtext calls *func* as ``func(text, figure)``.
-    It returns a list of axes whose union is the reference for fractional
-    widths, or None if unknown. Used by integrations such as plotnine.
-    """
-    if func not in _PANEL_RESOLVERS:
-        _PANEL_RESOLVERS.append(func)
-
-
 # -----------------------------------------------------------------------
 # The artist
 # -----------------------------------------------------------------------
@@ -390,10 +373,9 @@ class RichText(Text):
 
         For rotated text (closer to vertical than horizontal), ggtext swaps
         width and height. So a ``width`` always runs along the text.
-        Integrations can refine the panel area by registering a function with
-        :func:`register_panel_resolver`. The plotnine integration uses this,
-        so that in a plot composition a title refers to its own plot's
-        panels. Alternatively, set ``_ggtext_reference`` to a callable to
+        With plotnine, a figure-level text refers to the panels of its own
+        plot (see :func:`ggtext.plotnine.layout.plot_panels`), so that in a
+        plot composition a title is sized against its own plot's panels. Alternatively, set ``_ggtext_reference`` to a callable to
         override everything.
         """
         if self._ggtext_reference is not None:
@@ -403,15 +385,14 @@ class RichText(Text):
                 bbox = self.axes.bbox
             else:
                 fig = self.get_figure(root=False) or self.get_figure(root=True)
-                axes = None
-                for resolver in _PANEL_RESOLVERS:
-                    axes = resolver(self, fig)
-                    if axes:
-                        # remember: when saving, matplotlib may swap in a
-                        # placeholder layout engine and the resolver can
-                        # no longer tell which plot the text belongs to
-                        self._ggtext_panels = axes
-                        break
+                from .plotnine.layout import plot_panels
+
+                axes = plot_panels(self, fig)
+                if axes:
+                    # remember: when saving, matplotlib may swap in a
+                    # placeholder layout engine and plot_panels can
+                    # no longer tell which plot the text belongs to
+                    self._ggtext_panels = axes
                 if not axes:
                     cached = getattr(self, "_ggtext_panels", None) or []
                     axes = [a for a in cached if a in fig.axes]

@@ -87,7 +87,7 @@ matplotlib's own `constrained_layout` iterates for exactly this kind of reason. 
 
 ### 7. Plot compositions
 
-In a composition (`p1 | p2`, `p1 / p2`), a figure holds several plots. "The panel area" has to mean *the panels of the plot this title belongs to*. The plotnine integration registers a resolver (`ggtext._artist.register_panel_resolver`, implemented in `ggtext/plotnine/layout.py`). It asks plotnine's layout engine which plot owns the text, then uses that plot's axes. Figures without a plotnine plot fall back to the union of all axes.
+In a composition (`p1 | p2`, `p1 / p2`), a figure holds several plots. "The panel area" has to mean *the panels of the plot this title belongs to*. The plotnine integration does this in `ggtext/plotnine/layout.py` (`plot_panels`), which `_reference_size` calls directly. It asks plotnine's layout engine which plot owns the text, then uses that plot's axes. Figures without a plotnine plot fall back to the union of all axes.
 
 ## The private-API risk, and how it's managed
 
